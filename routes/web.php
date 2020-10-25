@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('home/create', 'Admin\HomeController@add');
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('profile/create', 'Admin\ProfileController@add');
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('recipe/create', 'Admin\RecipeController@add');
+});
