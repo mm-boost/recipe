@@ -23,7 +23,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/create', 'Admin\ProfileController@add');
 });
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('recipe/create', 'Admin\RecipeController@form');
-    Route::post('recipe/create', 'Admin\RecipeController@add');
-});
+
+Route::get('/recipelist', 'Admin\RecipeController@form');
+Route::post('/recipelist', 'Admin\RecipeController@add');
+
