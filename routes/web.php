@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/home', 'Admin\HomeController@home');
 
 
+
 Route::group(['prefix' => 'admin'], function() {
     Route::get('profile/create', 'Admin\ProfileController@add');
 });
