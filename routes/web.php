@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/home', 'Admin\HomeController@home');
 
+Route::get('/recipelist', 'Admin\RecipeController@form');
+Route::post('/recipelist', 'Admin\RecipeController@add');
+
 Route::group(['prefix' => 'setting'], function() {
     Route::get('/create', 'Admin\SettingController@add');
     Route::post('/create','Admin\SettingController@create');
@@ -24,8 +27,9 @@ Route::group(['prefix' => 'setting'], function() {
     Route::post('/edit', 'Admin\SettingController@update');
 });
 
-Route::get('/shoppinglist', 'Admin\ShoppinglistController@add');
-
-Route::get('/recipelist', 'Admin\RecipeController@form');
-Route::post('/recipelist', 'Admin\RecipeController@add');
-
+Route::group(['prefix' => 'shoppinglist'], function() {
+    Route::get('/create', 'Admin\ShoppinglistController@add');
+    Route::post('/create','Admin\ShoppinglistController@create');
+    Route::get('/edit', 'Admin\ShoppinglistController@edit');
+    Route::post('/edit', 'Admin\ShoppinglistController@update');
+});

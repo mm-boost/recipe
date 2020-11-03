@@ -4,12 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Log;
+
 class ShoppinglistController extends Controller
 {
     public function add()
     {
-        Log::debug('message');
-        return view('shoppinglist');
+        return view('shoppinglist/create');
     }
+
+    public function create()
+    {
+        return redirect('shoppinglist/create');
+    }
+
+    public function edit()
+    {
+        return view('shoppinglist/edit');
+    }
+
+    public function update()
+    {
+        return redirect('shoppinglist/edit');
+    }
+
   }
