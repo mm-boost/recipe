@@ -27,14 +27,14 @@
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" name="amount" size="10" value="{{ old('title') }}"></input>
+                            <input type="text" id="amount" size="10" value="{{ old('title') }}" onkeyup="inputCheck()"></input>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">品数</label>
                         <div class="col-sm-10">
-                            　<select name="num">
+                            　<select id="num" onchange="inputCheck()">
                                <option value="">選択してください</option>
                                <option value="1">1</option>
                                <option value="2">2</option>
@@ -53,7 +53,7 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">合計金額</label>
                         <div class="col-md-10">
-                            <input type="text" name="amounttotal" size="10" value="{{ old('title') }}"></input>
+                            <input type="text" id="amounttotal" size="10" value="{{ old('title') }}"></input>
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">購入先</label>
                       <div class="col-md-10">
-                      <select name="retaile">
+                      <select id="retaile">
                         <input type="checkbox" name=“shop” value="1">スーパー
                         <input type="checkbox" name=“shop” value="2">ドラッグストア
                         <input type="checkbox" name=“shop” value="3">ネットスーパー
@@ -111,6 +111,27 @@
                     {{ csrf_field() }}
                     <input type="submit" name="create" value="追加">
                 </form>
+
+                <script type="text/javascript">
+                        function inputCheck(){
+                            // 2つの入力フォームの値を取得
+                            //document（資料）オブジェクトは、ブラウザ上で表示されたドキュメントを操作できます
+                            var amount = document.getElementById("amount").value;
+                            var num = document.getElementById("num").value;
+                            //乗算の設定
+                            var mul = parseFloat(amount, 10) * parseFloat(num, 10);
+                            //デバックの設定
+                            console.log(mul);
+                            // 計算結果を表示
+                            var amounttotal = document.getElementById("amounttotal");
+                            if(isNaN){
+                              amounttotal.value = mul;
+                            } else {
+                              amounttotal.value = 0;
+                            }    
+
+                        }  
+                </script>
             </div>
         </div>
     </div>
