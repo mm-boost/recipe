@@ -51,10 +51,8 @@
                     </li>
                     
                     <li class="nav-item">
-　　　　　　　　　　　 {{-- onclick処理 --}}
-　　　　　　　　　　　<onclick="history.back();">
-　　　　　　　　　　　 {{-- href属性に設定 --}}
-　　　　　　　　　　　<a class="nav-link" href="javascript:history.back()">戻る</a>
+                   {{-- href属性に設定 --}}
+                    <a class="nav-link" href="#" onclick="history.back()">戻る</a>
                     </li>
                     
                   </ul>
