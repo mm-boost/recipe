@@ -63,13 +63,13 @@ class SettingController extends Controller
 
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title !='') {
-            $posts = Setting::where('title',$cond_title)->get();
+        $cond_nickname = $request->cond_nickname;
+        if ($cond_nickname !='') {
+            $posts = Setting::where('title',$cond_nickname)->get();
         } else {
             $posts = Setting::all();
         }
-        return view('setting.index',['posts' => $posts,'cond_title' => $cond_title]);
+        return view('setting',['posts' => $posts,'cond_nickname' => $cond_nickname]);
     }
     
     public function delete(Request $request)

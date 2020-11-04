@@ -68,7 +68,7 @@ class ShoppinglistController extends Controller
             $path = $request->file('image')->store('public/image');
             $shoppinglist_form['image_path'] = basename($path);
         } else {
-            $shoppinglist_form['image_path'] = $news->image_path;
+            $shoppinglist_form['image_path'] = $shoppinglist->image_path;
         }
 
         unset($shoppinglist_form['image']);

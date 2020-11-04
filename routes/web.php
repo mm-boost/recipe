@@ -33,4 +33,5 @@ Route::group(['prefix' => 'setting'], function() {
     Route::post('/create','Admin\SettingController@create');
     Route::get('/edit', 'Admin\SettingController@edit');
     Route::post('/edit', 'Admin\SettingController@update');
+    Route::get('/', 'Admin\SettingController@index');
 });

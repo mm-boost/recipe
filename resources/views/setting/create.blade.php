@@ -19,13 +19,13 @@
                     <div class="form-group row">
                         <label class="col-md-2">ニックネーム(nickname)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" name="nickname" value="{{ old('name') }}">
                         </div>
                     </div>
                      {{--  性別選択欄　ラジオボタン  --}}
                     <div class="form-group row">
                         <label class="col-md-2">性別(gender)</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-10" name=gender>
                             　<input type="radio" name="gender" checked="checked" value="man">男性
                             　<input type="radio" name="gender" value="woman">女性
                             　<input type="radio" name="gender" value="neither">中性
@@ -51,7 +51,7 @@
                      {{--  目標選択　ラジオボタン  --}}
                     <div class="form-group row">
                         <label class="col-md-2">目標(aim)</label>
-                        <div class="col-md-10">
+                        <div class="col-md-10" name=aim>
                             <input type="radio" name="aim" value="1" checked="checked">健康維持
                             <input type="radio" name="aim" value="2">ダイエット・身体づくり
                         </div>
