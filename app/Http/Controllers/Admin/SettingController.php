@@ -34,6 +34,8 @@ class SettingController extends Controller
     public function edit(Request $request)
     {
         $setting = Setting::find($request->id);
+        Log::debug('設定取得結果', compact('setting'));
+        
         if(empty($setting)) {
             abort(404);
         }
@@ -48,6 +50,7 @@ class SettingController extends Controller
         $setting = Setting::find($request->id);
         //送信されてきたフォームデータを格納する
         $setting_form = $request->all();
+        unset($setting_form['remove']);
         unset($setting_form['_token']);
         
         //該当するデータを上書きして保存する

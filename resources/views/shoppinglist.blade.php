@@ -31,7 +31,6 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
                                 <th width="10%">商品名</th>
                                 <th width="10%">金額</th>
                                 <th width="10%">個数</th>
