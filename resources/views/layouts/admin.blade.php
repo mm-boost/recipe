@@ -46,7 +46,7 @@
                       <a class="nav-link" href="{!! action('Admin\RecipeController@add'); !!}">レシピ一覧</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{!! action('Admin\ShoppinglistController@add'); !!}">買い物メモ</a>
+                      <a class="nav-link" href="{!! action('Admin\ShoppinglistController@index'); !!}">買い物メモ</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{!! action('Admin\SettingController@add'); !!}">設定</a>

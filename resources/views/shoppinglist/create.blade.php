@@ -45,7 +45,7 @@
                                <option value="7">7</option>
                                <option value="8">8</option>
                                <option value="9">9</option>
-                               <option value="10以上">10以上</option>
+                               <option value="10">10</option>
                               </select>
                         </div>
                     </div>
@@ -107,7 +107,6 @@
                             <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
-                    
                     
                     {{ csrf_field() }}
                     <input type="submit" name="create" value="追加">
