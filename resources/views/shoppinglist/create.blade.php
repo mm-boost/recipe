@@ -18,16 +18,16 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">品名</label>
+                        <label class="col-md-2">商品名</label>
                         <div class="col-md-10">
-                            <input type="text" name="title" size="25" value="{{ old('title') }}"></input>
+                            <input type="text" name="productname" size="25" value="{{ old('title') }}"></input>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" name="title" size="10" value="{{ old('title') }}"></input>
+                            <input type="text" name="amount" size="10" value="{{ old('title') }}"></input>
                         </div>
                     </div>
 
@@ -53,14 +53,14 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">合計金額</label>
                         <div class="col-md-10">
-                            <input type="text" name="title" size="10" value="{{ old('title') }}"></input>
+                            <input type="text" name="amounttotal" size="10" value="{{ old('title') }}"></input>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">分類</label>
                         <div class="col-sm-10">
-                            　<select name="division">
+                            　<select name="genre">
                                <option value="">選択してください</option>
                                <option value="米、パン類">米、パン類</option>
                                <option value="野菜類">野菜類</option>
@@ -79,23 +79,25 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">購入先</label>
                       <div class="col-md-10">
+                      <select name="retaile">
                         <input type="checkbox" name=“shop” value="1">スーパー
                         <input type="checkbox" name=“shop” value="2">ドラッグストア
                         <input type="checkbox" name=“shop” value="3">ネットスーパー
+                      </select>
                       </div>
                     </div>
 
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">お気に入り</label>
                       <div class="col-md-10">
-                        <input type="checkbox" name=“お気に入り”>
+                        <input type="checkbox" name=“favorite”>
                       </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">メモ</label>
                         <div class="col-md-10">
-                            <textarea name="contents" style="width:400px; height:70px;" value="{{ old('contents') }}"></textarea>
+                            <textarea name="memo" style="width:400px; height:70px;" value="{{ old('contents') }}"></textarea>
                         </div>
                     </div>
 
