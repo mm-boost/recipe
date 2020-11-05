@@ -34,6 +34,7 @@ class CreateShoppinglistsTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::table('shoppinglists', function (Blueprint $table) {
