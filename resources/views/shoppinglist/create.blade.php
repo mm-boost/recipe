@@ -90,7 +90,7 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">お気に入り</label>
                       <div class="col-md-10">
-                        <input type="checkbox" name=“favorite”>
+                        <input type="checkbox" name=“favorite” value="チェック">
                       </div>
                     </div>
 
@@ -109,9 +109,7 @@
                     </div>
                     
                     {{ csrf_field() }}
-                    <button type="submit" name="create" value="追加">
-                       <a href="{!! action('Admin\ShoppinglistController@index'); !!}">追加</a>
-                    </button>
+                    <input type="submit" name="create" value="追加" >
                 </form>
                
                 <script type="text/javascript">
