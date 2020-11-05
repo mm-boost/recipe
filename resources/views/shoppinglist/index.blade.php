@@ -17,10 +17,11 @@
                          <div class="col-md-10">
                             　<select name="shopcategory">
                                <option value="">選択してください</option>
-                               <option value="">スーパー</option>
-                               <option value="野菜類">ドラッグストア</option>
-                               <option value="果物類">ネットスーパー</option>
-                               <option value="肉類">お気に入り</option>
+                               <option value="スーパー">スーパー</option>
+                               <option value="ドラックストア">ドラッグストア</option>
+                               <option value="ネットスーパー">ネットスーパー</option>
+                               <option value="お気に入り">お気に入り</option>
+                               <option value="未分類">未分類</option>
                               </select>
                          </div>
                     </div>
@@ -34,32 +35,32 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th width="5%">No</th>
-                                <th width="15%">商品名</th>
-                                <th width="10%">金額</th>
-                                <th width="10%">個数</th>
-                                <th width="10%">合計金額</th>
-                                <th width="10%">分類</th>
-                                <th width="10%">購入先</th>
-                                <th width="10%">お気に入り</th>
-                                <th width="40%">メモ</th>
-                                <th width="10%">画像</th>
+                            <td></td>
+                                <th scope="col" width="8%">チェック</th>
+                                <th scope="col" width="13%">購入先</th>
+                                <th scope="col" width="13%">商品名</th>
+                                <th scope="col" width="8%">金額</th>
+                                <th scope="col" width="8%">個数</th>
+                                <th scope="col" width="10%">合計金額</th>
+                                <th scope="col" width="7%">分類</th>
+                                <th scope="col" width="13%">メモ</th>
+                                <th scope="col" width="10%">画像</th>
+                                <th scope="col" width="10%">編集</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($posts as $shoppinglist)
                                 <tr>
-                                    <th>{{ $shoppinglist->id }}</th>
-                                    <td>{{ \Str::limit($shoppinglist->productname, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->amount, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->num, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->amounttotal, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->genre, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->retaile, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->favorite, 100) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->memo, 250) }}</td>
-                                    <td>{{ \Str::limit($shoppinglist->image, 250) }}</td>
-                                    <td>
+                                    <td data-label="お気に入り">{{ \Str::limit($shoppinglist->favorite, 100) }}</td>
+                                    <th data-label="購入先">{{ \Str::limit($shoppinglist->retaile, 100) }}</th>
+                                    <td data-label="商品名">{{ \Str::limit($shoppinglist->productname, 100) }}</td>
+                                    <td data-label="金額">{{ \Str::limit($shoppinglist->amount, 100) }}</td>
+                                    <td data-label="個数">{{ \Str::limit($shoppinglist->num, 100) }}</td>
+                                    <td data-label="合計金額">{{ \Str::limit($shoppinglist->amounttotal, 100) }}</td>
+                                    <td data-label="分類">{{ \Str::limit($shoppinglist->genre, 100) }}</td>
+                                    <td data-label="メモ">{{ \Str::limit($shoppinglist->memo, 250) }}</td>
+                                    <td data-label="画像">{{ \Str::limit($shoppinglist->image, 250) }}</td>
+                                    <td data-label="編集">
                                     　<div>
                                         <a href="{{ action('Admin\ShoppinglistController@edit', ['id' => $shoppinglist->id]) }}">編集</a>
                                     　</div>

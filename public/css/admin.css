@@ -104,3 +104,35 @@ nav a:hover {
   color: black;
 }
 
+table {
+  border-collapse: collapse;
+  display: table;
+  height: 200px;
+}
+
+table tr {
+  background-color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #eee;
+}
+
+table thead tr {
+  width: auto;
+  /*位置の指定*/
+  margin: auto;
+  text-align: left;
+  background-color: #e7609e;
+  color: #fff;
+}
+
+table tbody th {
+  width: auto;
+  margin: auto;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 0.1em;
+}
+
