@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ShoppingList;
 use Log;
+use App\ShoppingHistory;
+use Carbon\Carbon;
 
 class ShoppinglistController extends Controller
 {
@@ -81,12 +83,12 @@ class ShoppinglistController extends Controller
         //該当するデータを上書きして保存する
         $shoppinglist->fill($shoppinglist_form)->save();
         
-        $shoppinglist_history = new ShoppinglistHistory;
+        $shoppinglist_history = new ShoppingHistory;
         $shoppinglist_history->shoppinglist_id = $shoppinglist->id;
         $shoppinglist_history->edited_at = Carbon::now();
         $shoppinglist_history->save();
 
-        return redirect('shoppinglist/edit');
+        return redirect('shoppinglist/index');
     }
 
     public function index(Request $request)

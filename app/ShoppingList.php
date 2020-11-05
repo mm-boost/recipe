@@ -14,8 +14,10 @@ class ShoppingList extends Model
     );
     protected $fillable = ['productname','amount','num','amounttotal','genre','retailer','favorite','image_path','memo']; //更新しても良い項目を指定する
     
-    public function shoppinglist_histories()
+
+    // Shoppinglistモデルとshoppinghistoryとの関連付けを行う
+    public function histories()
     {
-        return $this->hasMany('App\SoppinglistHistory');
+        return $this->hasMany('App\SoppingHistory');
     }
 }

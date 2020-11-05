@@ -109,7 +109,7 @@
                     </div>
                     
                     {{ csrf_field() }}
-                    <input type="submit" name="create" value="追加" >
+                    <input type="submit" onclick="location.href='https://~ubuntu/recipe/shoppinglist/index" name="create" value="追加">
                 </form>
                
                 <script type="text/javascript">

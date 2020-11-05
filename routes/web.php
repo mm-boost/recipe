@@ -17,6 +17,7 @@
 
 Route::get('/home', 'Admin\HomeController@home');
 
+//レシピ
 Route::get('/recipelist', 'Admin\RecipeController@form');
 Route::post('/recipelist', 'Admin\RecipeController@add');
 
