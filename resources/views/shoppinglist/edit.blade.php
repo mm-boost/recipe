@@ -145,7 +145,7 @@
 
                 <div class="row mt-5">
                      <div class="col-md-4 mx-auto">
-                        <h2>研修履歴</h2>
+                        <h2>編集履歴</h2>
                         <ul class="list-group">
                            @if ($shoppinglist_form->shoppinglist_histories!= NULL)
                              @foreach ($shoppinglist_form->shoppinglist_histories as $shoppinglist_history)

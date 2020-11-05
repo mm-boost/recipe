@@ -109,7 +109,9 @@
                     </div>
                     
                     {{ csrf_field() }}
-                    <input type="submit" onclick="location.href='https://~ubuntu/recipe/shoppinglist/index" name="create" value="追加">
+                    <button type="submit" name="create" value="追加">
+                       <a href="{!! action('Admin\ShoppinglistController@index'); !!}">追加</a>
+                    </button>
                 </form>
                
                 <script type="text/javascript">

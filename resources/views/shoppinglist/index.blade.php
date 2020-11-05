@@ -13,32 +13,37 @@
             <div class="col-md-8">
                 <form action="{{ action('Admin\ShoppinglistController@index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">商品名</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="cond_productname" value="{{ $cond_productname }}">
-                        </div>
-                        <div class="col-md-2">
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="検索">
-                        </div>
+                        <h4><span class="label label-success">カテゴリ</span></h4>
+                         <div class="col-md-10">
+                            　<select name="shopcategory">
+                               <option value="">選択してください</option>
+                               <option value="">スーパー</option>
+                               <option value="野菜類">ドラッグストア</option>
+                               <option value="果物類">ネットスーパー</option>
+                               <option value="肉類">お気に入り</option>
+                              </select>
+                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        
         <div class="row">
-            <div class="list-news col-md-12 mx-auto">
+            <div class="list-shopping col-md-12 mx-auto">
                 <div class="row">
-                    <table class="table table-dark">
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th width="10%">商品名</th>
+                                <th width="5%">No</th>
+                                <th width="15%">商品名</th>
                                 <th width="10%">金額</th>
                                 <th width="10%">個数</th>
                                 <th width="10%">合計金額</th>
                                 <th width="10%">分類</th>
                                 <th width="10%">購入先</th>
-                                <th width="30%">お気に入り</th>
-                                <th width="60%">メモ</th>
+                                <th width="10%">お気に入り</th>
+                                <th width="40%">メモ</th>
+                                <th width="10%">画像</th>
                             </tr>
                         </thead>
                         <tbody>
