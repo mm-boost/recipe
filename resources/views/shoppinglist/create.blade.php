@@ -27,14 +27,14 @@
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" id="amount" size="10" value="{{ old('title') }}" onkeyup="inputCheck()"></input>
+                            <input type="text" id="amount" name="amount" size="10" value="{{ old('title') }}" onkeyup="inputCheck()"></input>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">品数</label>
                         <div class="col-sm-10">
-                            　<select id="num" onchange="inputCheck()">
+                            　<select name="num" id="num" onchange="inputCheck()">
                                <option value="">選択してください</option>
                                <option value="1">1</option>
                                <option value="2">2</option>
@@ -53,14 +53,14 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">合計金額</label>
                         <div class="col-md-10">
-                            <input type="text" id="amounttotal" size="10" value="{{ old('title') }}"></input>
+                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('title') }}"></input>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">分類</label>
                         <div class="col-sm-10">
-                            　<select id="genre">
+                            　<select name="genre">
                                <option value="">選択してください</option>
                                <option value="米、パン類">米、パン類</option>
                                <option value="野菜類">野菜類</option>
@@ -80,9 +80,9 @@
                         <label class="col-md-2">購入先</label>
                       <div class="col-md-10">
                       <select>
-                        <input type="checkbox" name=“shop” value="スーパー">スーパー
-                        <input type="checkbox" name=“shop” value="ドラッグストア">ドラッグストア
-                        <input type="checkbox" name=“shop” value="ネットスーパー">ネットスーパー
+                        <input type="checkbox" name=“shop[]” value="スーパー">スーパー
+                        <input type="checkbox" name=“shop[]” value="ドラッグストア">ドラッグストア
+                        <input type="checkbox" name=“shop[]” value="ネットスーパー">ネットスーパー
                       </select>
                       </div>
                     </div>
@@ -90,7 +90,7 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">お気に入り</label>
                       <div class="col-md-10">
-                        <input type="checkbox" id=“favorite”>
+                        <input type="checkbox" name=“favorite”>
                       </div>
                     </div>
 
@@ -109,41 +109,10 @@
                     </div>
                     
                     {{ csrf_field() }}
-                    <input type="submit" name="create" value="追加" onclick="func1()">
+                    <input type="submit" name="create" value="追加" >
                 </form>
                
                 <script type="text/javascript">
-                        //セレクトボックスの値を取得
-                        function func1(){
-	                    const str = document.getElementById("num").value;
-                        document.getElementsByName("form1").textContent = str;
-                        const str = document.getElementById("genre").value;
-                        document.getElementsByName("form1").textContent = str;
-                        }
-
-                       //チェックボックス（複数）の値を取得
-                    
-	　　　　　　　　　　　　const func1 = () => {
-	　　　　　　　　　　　　  const elements = document.getElementsByName("shop");
-                          onsole.log("--- 選択したオプションは以下の通りです ---");
-
-	                    for (let i = 0; i < shop.length; i++){
-		                 if (shop[i].checked){ 
-                            console.log(elements[i].value);
-		                  }
-	                     }
-                        }
-
-                        //チェックボックスの値を取得
-                        function clickBtn3(){
-	                      const favorite = document.form1.favorite;
-
-	                    if(favorite.checked){ //(favorite.checked === true)と同じ
-		                  document.getElementsByName("form1").textContent = "trueです";
-	                     } else {
-		                   document.getElementsByName("form1").textContent = "falseです";
-	                      }
-                        }
 
                         function inputCheck(){
                             // 2つの入力フォームの値を取得

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Shoppinglist;
+use App\ShoppingList;
 use Log;
 
 class ShoppinglistController extends Controller
@@ -18,9 +18,12 @@ class ShoppinglistController extends Controller
     {
         //validationを行う
         $this->validate($request, Shoppinglist::$rules);
-        $shoppinglist = new Shoppinglist;
+        $shoppinglist = new ShoppingList;
         $form = $request->all();
+        //＄関数名内のデータを確認
+        //dd($form); 
 
+        
         // フォームから画像が送信されてきたら、保存して、$shoppinglist->image_path に画像のパスを保存する
         if (isset($form['image'])) {
         $path = $request->file('image')->store('public/image');
@@ -94,14 +97,14 @@ class ShoppinglistController extends Controller
         } else {
             $posts = Shoppinglist::all();
         }
-        return view('shoppinglist',['posts' => $posts,'cond_productname' => $cond_productname]);
+        return view('shoppinglist/index',['posts' => $posts,'cond_productname' => $cond_productname]);
     }
     
     public function delete(Request $request)
     {
         $shoppinglist = Shoppinglist::find($request->id);
         $shoppinglist->delete();
-        return redirect('shoppinglist');
+        return redirect('shoppinglist/index');
     }
-
-  }
+    
+}  

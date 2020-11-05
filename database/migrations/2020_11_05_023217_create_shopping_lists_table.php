@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppinglistsTable extends Migration
+class CreateShoppingListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateShoppinglistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shoppinglists', function (Blueprint $table) {
+        Schema::create('shopping_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('productname');    //商品名を保存するカラム
-            $table->string('amount')->nullable()->change();  //金額を保存するカラム
-            $table->string('num')->nullable()->change();  // 品数を保存するカラム
-            $table->string('amounttotal')->nullable()->change();  //合計金額を保存するカラム
+            $table->string('amount')->nullable();  //金額を保存するカラム
+            $table->string('num')->nullable();  // 品数を保存するカラム
+            $table->string('amounttotal')->nullable();  //合計金額を保存するカラム
             $table->string('genre');    //分類を保存するカラム
-            $table->string('retailer')->nullable()->change();  //購入先を保存するカラム
-            $table->string('favorite');  // お気に入りか否かを保存するカラム
-            $table->string('image_path')->nullable()->change();  // 画像のパスを保存するカラム
-            $table->string('memo')->nullable()->change();  //メモを保存するカラム
+            $table->string('retailer')->nullable();  //購入先を保存するカラム
+            $table->string('favorite')->default(false);  // お気に入りか否かを保存するカラム.デフォルト値を設定。
+            $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
+            $table->string('memo')->nullable();  //メモを保存するカラム
 
             $table->timestamps();
         });
@@ -34,9 +34,10 @@ class CreateShoppinglistsTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
-        Schema::table('shoppinglists', function (Blueprint $table) {
+        Schema::table('shopping_lists', function (Blueprint $table) {
             $table->dropColumn('amount');
             $table->dropColumn('num');
             $table->dropColumn('amounttotal');
@@ -45,4 +46,5 @@ class CreateShoppinglistsTable extends Migration
             $table->dropColumn('memo');
         });
     }
+}
     
