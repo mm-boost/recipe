@@ -19,6 +19,7 @@
                         <label class="col-md-2">購入先</label>
                       <div class="col-md-10">
                       <select name="retailer" id="retailer" required>
+                        <?php $shopname = old('shopname' , $shoppinglist_form->shopname); ?>
                         <option>ショッピングモール</option>
                         <option>スーパー</option>
                         <option>ドラックストア</option>
@@ -26,7 +27,7 @@
                       </select>
                       <button onclick="removeFirstOption()">項目削除</button>
                       <input type="text" name="shop" value="">
-                      <input type="button" value="項目追加" onClick="addSelectItem()">
+                      <input type="button" name="shopname" value="項目追加" onClick="addSelectItem()">
                       </div>
                     </div>
 

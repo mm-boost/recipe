@@ -111,12 +111,18 @@ table tr:nth-child(even){
   background-color: #eee;
 }
 //タイトルタグ
-table thead tr{
+table thead tr td{
+  width: auto;/*位置の指定*/
+  text-align: left;
+  height: 8px;
+  background-color: #d872f1;
+}
+//タイトルタグ
+table thead tr th{
   width: auto;/*位置の指定*/
   margin: auto;
   text-align: left;
-  background-color: #e7609e;
-  color:#fff;
+  background-color: #b3e760;
 }
 //本体
 table tbody th {

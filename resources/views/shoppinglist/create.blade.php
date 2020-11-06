@@ -29,7 +29,7 @@
                       </select>
                       <button onclick="removeFirstOption()">項目削除</button>
                       <input type="text" name="shop" value="">
-                      <input type="button" value="項目追加" onClick="addSelectItem()">
+                      <input type="button" name="shopname" value="項目追加" onClick="addSelectItem()">
                       </div>
                     </div>
                     
