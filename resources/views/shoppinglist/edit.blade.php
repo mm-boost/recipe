@@ -17,14 +17,14 @@
                     <div class="form-group row">
                         <label class="col-md-2">商品名</label>
                         <div class="col-md-10">
-                            <input type="text" name="productname" size="25" value="{{ old('title') }}"></input>
+                            <input type="text" name="productname" size="25" value="{{ old('productname', $shoppinglist_form->productname) }}"></input>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" id="amount" name="amount" size="10" value="{{ old('title') }}" onkeyup="inputCheck()"></input>
+                            <input type="text" id="amount" name="amount" size="10" value="{{ old('amount', $shoppinglist_form->amount) }}" onkeyup="inputCheck()"></input>
                         </div>
                     </div>
 
@@ -32,17 +32,18 @@
                         <label class="col-md-2">品数</label>
                         <div class="col-sm-10">
                             　<select name="num" id="num" onchange="inputCheck()">
+                              <?php $num = old('num' , $shoppinglist_form->num); ?>
                                <option value="">選択してください</option>
-                               <option value="1">1</option>
-                               <option value="2">2</option>
-                               <option value="3">3</option>
-                               <option value="4">4</option>
-                               <option value="5">5</option>
-                               <option value="6">6</option>
-                               <option value="7">7</option>
-                               <option value="8">8</option>
-                               <option value="9">9</option>
-                               <option value="10">10</option>
+                               <option value="1" @if($num =='1') selected="selected" @endif>1</option>
+                               <option value="2" @if($num =='2') selected="selected" @endif>2</option>
+                               <option value="3" @if($num =='3') selected="selected" @endif>3</option>
+                               <option value="4" @if($num =='4') selected="selected" @endif>4</option>
+                               <option value="5" @if($num =='5') selected="selected" @endif>5</option>
+                               <option value="6" @if($num =='6') selected="selected" @endif>6</option>
+                               <option value="7" @if($num =='7') selected="selected" @endif>7</option>
+                               <option value="8" @if($num =='8') selected="selected" @endif>8</option>
+                               <option value="9" @if($num =='9') selected="selected" @endif>9</option>
+                               <option value="10" @if($num =='10') selected="selected" @endif>10</option>
                               </select>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">合計金額</label>
                         <div class="col-md-10">
-                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('title') }}"></input>
+                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal', $shoppinglist_form->amounttotal) }}"></input>
                         </div>
                     </div>
 
@@ -58,17 +59,18 @@
                         <label class="col-md-2">分類</label>
                         <div class="col-sm-10">
                             　<select name="genre">
+                               <?php $genre = old('gender' , $shoppinglist_form->genre); ?>
                                <option value="">選択してください</option>
-                               <option value="米、パン類">米、パン類</option>
-                               <option value="野菜類">野菜類</option>
-                               <option value="果物類">果物類</option>
-                               <option value="肉類">肉類</option>
-                               <option value="魚介類">魚介類</option>
-                               <option value="卵、豆類">卵、豆類</option>
-                               <option value="乳製品">乳製品</option>
-                               <option value="飲料">飲料</option>
-                               <option value="嗜好品">嗜好品</option>
-                               <option value="その他">その他</option>
+                               <option value="米、パン類" @if($genre =='米、パン類') selected="selected" @endif>米、パン類</option>
+                               <option value="野菜類" @if($genre =='野菜類') selected="selected" @endif>野菜類</option>
+                               <option value="果物類" @if($genre =='果物類') selected="selected" @endif>果物類</option>
+                               <option value="肉類" @if($genre =='肉類') selected="selected" @endif>肉類</option>
+                               <option value="魚介類" @if($genre =='魚介類') selected="selected" @endif>魚介類</option>
+                               <option value="卵、豆類" @if($genre =='卵、豆類') selected="selected" @endif>卵、豆類</option>
+                               <option value="乳製品" @if($genre =='乳製品') selected="selected" @endif>乳製品</option>
+                               <option value="飲料" @if($genre =='飲料') selected="selected" @endif>飲料</option>
+                               <option value="嗜好品" @if($genre =='嗜好品') selected="selected" @endif>嗜好品</option>
+                               <option value="その他" @if($genre =='その他') selected="selected" @endif>その他</option>
                               </select>
                         </div>
                     </div>
@@ -87,14 +89,14 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">お気に入り</label>
                       <div class="col-md-10">
-                        <input type="checkbox" name=“favorite”>
+                        <input type="checkbox" name=“favorite” @if($favorite =='お気に入り') checked="checked" @endif>
                       </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">メモ</label>
                         <div class="col-md-10">
-                            <textarea name="memo" style="width:400px; height:70px;" value="{{ old('contents') }}"></textarea>
+                            <textarea class="form-control" name="memo" style="width:400px; height:70px;">{{ $shoppinglist_form->memo }}</textarea>
                         </div>
                     </div>
 

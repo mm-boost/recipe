@@ -43,7 +43,7 @@ class ShoppinglistController extends Controller
         $shoppinglist->fill($form);
         $shoppinglist->save();
 
-        return redirect('shoppinglist/create');
+        return redirect('shoppinglist/index');
     }
 
     public function edit(Request $request)
@@ -56,7 +56,7 @@ class ShoppinglistController extends Controller
             Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
         }
-        return view('shoppinglist/edit',['shoppinglist_form' => $shoppinglist]);
+        return view('shoppinglist/edit',['shoppinglist_form' => $shoppinglist, 'favorite' => 0]);
     }
 
     public function update(Request $request)
