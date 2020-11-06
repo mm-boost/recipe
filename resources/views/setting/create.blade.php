@@ -28,7 +28,6 @@
                         <div class="col-sm-10" name=gender>
                             　<input type="radio" name="gender" checked="checked" value="man">男性
                             　<input type="radio" name="gender" value="woman">女性
-                            　<input type="radio" name="gender" value="neither">中性
                         </div>
                     </div>
                      {{--  年代選択設定　ドロップダウン  --}}

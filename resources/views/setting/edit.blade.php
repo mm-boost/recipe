@@ -17,16 +17,15 @@
                     <div class="form-group row">
                         <label class="col-md-2">ニックネーム(nickname)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="nickname" value="{{ old('name') }}">
+                            <input type="text" class="form-control" name="nickname" value="{{ old('nickname', $setting_form->nickname) }}">
                         </div>
                     </div>
                      {{--  性別選択欄　ラジオボタン  --}}
                     <div class="form-group row">
                         <label class="col-md-2">性別(gender)</label>
                         <div class="col-sm-10" name=gemder>
-                            　<input type="radio" name="gender" checked="checked" value="man">男性
-                            　<input type="radio" name="gender" value="woman">女性
-                            　<input type="radio" name="gender" value="neither">中性
+                            　<input type="radio" checked="checked" value="man">男性
+                            　<input type="radio" value="woman">女性
                         </div>
                     </div>
                      {{--  年代選択設定　ドロップダウン  --}}
@@ -34,6 +33,7 @@
                         <label class="col-md-2">年齢(age)</label>
                         <div class="col-sm-10">
                             　<select name="age">
+                              <?php $age = old('age' , $setting_form->age); ?>
                                <option value="">選択してください</option>
                                <option value="20歳未満">20歳未満</option>
                                <option value="20-29歳">20-29歳</option>

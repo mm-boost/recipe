@@ -23,6 +23,7 @@
                         <option value="{{$shop->id}}">{{ $shop->name }}</option>
                         @endforeach
                         </select>
+                        <input type="text" name="shop" value="">
                         <input type="button" name="shopname" value="項目追加" onClick="addSelectItem()">
                         </div>
                     </div>
