@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ShoppingList;
 use Log;
+use App\Shop;
 use App\ShoppingHistory;
 use Carbon\Carbon;
 
@@ -13,7 +14,8 @@ class ShoppinglistController extends Controller
 {
     public function add()
     {
-        return view('shoppinglist/create');
+        $shops = Shop::all();
+        return view('shoppinglist/create',["shops" => $shops]);
     }
 
     public function create(Request $request)
@@ -55,7 +57,8 @@ class ShoppinglistController extends Controller
             Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
         }
-        return view('shoppinglist/edit',['shoppinglist_form' => $shoppinglist, 'favorite' => 0]);
+        $shops = Shop::all();
+        return view('shoppinglist/edit',["shops" => $shops,'shoppinglist_form' => $shoppinglist, 'favorite' => 0]);
     }
 
     public function update(Request $request)
@@ -98,7 +101,8 @@ class ShoppinglistController extends Controller
         } else {
             $posts = Shoppinglist::all();
         }
-        return view('shoppinglist/index',['posts' => $posts,'cond_productname' => $cond_productname]);
+        $shops = Shop::all();
+        return view('shoppinglist/index',["shops" => $shops,'posts' => $posts,'cond_productname' => $cond_productname]);
     }
     
     public function delete(Request $request)

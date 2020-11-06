@@ -21,15 +21,11 @@
                         <thead>
                             <tr>
                                 <td><label>購入先</label>
-                                    <select name="shopcategory">
-                                    <option value="">選択してください</option>
-                                    <option value="1">全て</option>
-                                    <option value="2">ショッピングモール</option>
-                                    <option value="3">スーパー</option>
-                                    <option value="4">ドラッグストア</option>
-                                    <option value="6">コンビニ</option>
-                                    <option value="7" name="shopname"></option>
-                                    </select></td>
+                                    <select name="retailer" id="retailer" required>
+                                        @foreach ($shops as $shop)
+                                        <option value="{{$shop->id}}">{{ $shop->name }}</option>
+                                        @endforeach
+                                        </select></td>
                                 <td colspan="7"><label>お気に入り</label>
                                     <select>
                                      <option>○</option>

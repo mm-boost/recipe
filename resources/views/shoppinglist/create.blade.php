@@ -20,17 +20,16 @@
 
                     <div class="form-group row">
                         <label class="col-md-2">購入先</label>
-                      <div class="col-md-10">
-                      <select name="retailer" id="retailer" required>
-                        <option>ショッピングモール</option>
-                        <option>スーパー</option>
-                        <option>ドラックストア</option>
-                        <option>コンビニ</option>
-                      </select>
-                      <button onclick="removeFirstOption()">項目削除</button>
-                      <input type="text" name="shop" value="">
-                      <input type="button" name="shopname" value="項目追加" onClick="addSelectItem()">
-                      </div>
+                        <div class="col-md-10">
+                        <select name="retailer" id="retailer" required>
+                        @foreach ($shops as $shop)
+                        <option value="{{$shop->id}}">{{ $shop->name }}</option>
+                        @endforeach
+                        </select>
+                        <button onclick="removeFirstOption()">項目削除</button>
+                        <input type="text" name="shop" value="">
+                        <input type="button" name="shopname" value="項目追加" onClick="addSelectItem()">
+                        </div>
                     </div>
                     
                     <div class="form-group row">
@@ -123,13 +122,6 @@
                     len = document.form1.retailer.options.length;
                     document.form1.retailer.options[len] = new Option(itemStr,itemStr);
                      }  
-  
-                      //select要素の取得
-                       const element = document.getElementById("retailer");
-                      //removeFirstOption 最初のoption要素を削除
-                       const removeFirstOption = () => {
-                       element.remove(0);
-                        };
   
                       function inputCheck(){
                           // 2つの入力フォームの値を取得
