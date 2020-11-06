@@ -14,6 +14,22 @@
                             @endforeach
                         </ul>
                     @endif
+
+                    <div class="form-group row">
+                        <label class="col-md-2">購入先</label>
+                      <div class="col-md-10">
+                      <select name="retailer" id="retailer" required>
+                        <option>ショッピングモール</option>
+                        <option>スーパー</option>
+                        <option>ドラックストア</option>
+                        <option>コンビニ</option>
+                      </select>
+                      <button onclick="removeFirstOption()">項目削除</button>
+                      <input type="text" name="shop" value="">
+                      <input type="button" value="項目追加" onClick="addSelectItem()">
+                      </div>
+                    </div>
+
                     <div class="form-group row">
                         <label class="col-md-2">商品名</label>
                         <div class="col-md-10">
@@ -74,17 +90,6 @@
                               </select>
                         </div>
                     </div>
-　　　　　　　　　　　　
-　　　　　　　　　　　　<div class="form-group row">
-                        <label class="col-md-2">購入先</label>
-                      <div class="col-md-10">
-                      <select>
-                        <input type="checkbox" name=“shop[]” value="スーパー">スーパー
-                        <input type="checkbox" name=“shop[]” value="ドラッグストア">ドラッグストア
-                        <input type="checkbox" name=“shop[]” value="ネットスーパー">ネットスーパー
-                      </select>
-                      </div>
-                    </div>
 
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">お気に入り</label>
@@ -125,6 +130,18 @@
                 </form>
 
                  <script type="text/javascript">
+                  function addSelectItem(){
+                  itemStr = document.form1.shop.value;
+                  len = document.form1.retailer.options.length;
+                  document.form1.retailer.options[len] = new Option(itemStr,itemStr);
+                   }  
+
+                    //select要素の取得
+                     const element = document.getElementById("retailer");
+                    //removeFirstOption 最初のoption要素を削除
+                     const removeFirstOption = () => {
+                     element.remove(0);
+                      };
 
                     function inputCheck(){
                         // 2つの入力フォームの値を取得

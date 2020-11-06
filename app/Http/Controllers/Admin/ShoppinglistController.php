@@ -24,7 +24,6 @@ class ShoppinglistController extends Controller
         $form = $request->all();
         //＄関数名内のデータを確認
         //dd($form); 
-
         
         // フォームから画像が送信されてきたら、保存して、$shoppinglist->image_path に画像のパスを保存する
         if (isset($form['image'])) {

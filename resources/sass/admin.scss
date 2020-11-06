@@ -100,13 +100,13 @@ nav a:hover{ //リンクにカーソルなどが乗った際のスタイル
   table {
   border-collapse: collapse;
   display: table;
-  height: 200px;
+  height: 170px;
 }
+//擬似クラスで二色背景を構成
 table tr {
   background-color: #fff;
   border-bottom: 2px solid #fff;
 }
-//擬似クラスで二色背景を構成
 table tr:nth-child(even){
   background-color: #eee;
 }
@@ -124,5 +124,11 @@ table tbody th {
   margin: auto;
   text-align: left;
   vertical-align:　middle;
-  font-size: .10em;
 }
+/*リンクの位置調整*/
+.link-a {
+  position: relative;
+  top: -20px;
+  display: block;
+  }
+  

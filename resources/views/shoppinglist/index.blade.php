@@ -17,12 +17,16 @@
                          <div class="col-md-10">
                             　<select name="shopcategory">
                                <option value="">選択してください</option>
+                               <option value="ショッピングモール">ショッピングモール</option>
                                <option value="スーパー">スーパー</option>
-                               <option value="ドラックストア">ドラッグストア</option>
-                               <option value="ネットスーパー">ネットスーパー</option>
-                               <option value="お気に入り">お気に入り</option>
-                               <option value="未分類">未分類</option>
+                               <option value="ドラッグストア">ドラッグストア</option>
+                               <option value="コンビニ">コンビニ</option>
                               </select>
+                               <label>お気に入り</label>
+                               <select name="shopcategory">
+                                <option>○</option>
+                                <option>✖︎</option>
+                               </select>
                          </div>
                     </div>
                 </form>
@@ -35,39 +39,35 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <td></td>
-                                <th scope="col" width="8%">チェック</th>
-                                <th scope="col" width="13%">購入先</th>
-                                <th scope="col" width="13%">商品名</th>
+                                <th scope="col" width="15%">購入先</th>
+                                <th scope="col" width="10%">商品名</th>
                                 <th scope="col" width="8%">金額</th>
                                 <th scope="col" width="8%">個数</th>
-                                <th scope="col" width="10%">合計金額</th>
-                                <th scope="col" width="7%">分類</th>
-                                <th scope="col" width="13%">メモ</th>
-                                <th scope="col" width="10%">画像</th>
-                                <th scope="col" width="10%">編集</th>
+                                <th scope="col" width="11%">合計金額</th>
+                                <th scope="col" width="8%">分類</th>
+                                <th scope="col" width="15%">メモ</th>
+                                <th scope="col" width="8%">画像</th>
+                                <th scope="col" width="9%">編集</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($posts as $shoppinglist)
                                 <tr>
-                                    <td data-label="お気に入り">{{ \Str::limit($shoppinglist->favorite, 100) }}</td>
-                                    <th data-label="購入先">{{ \Str::limit($shoppinglist->retaile, 100) }}</th>
-                                    <td data-label="商品名">{{ \Str::limit($shoppinglist->productname, 100) }}</td>
-                                    <td data-label="金額">{{ \Str::limit($shoppinglist->amount, 100) }}</td>
-                                    <td data-label="個数">{{ \Str::limit($shoppinglist->num, 100) }}</td>
-                                    <td data-label="合計金額">{{ \Str::limit($shoppinglist->amounttotal, 100) }}</td>
-                                    <td data-label="分類">{{ \Str::limit($shoppinglist->genre, 100) }}</td>
-                                    <td data-label="メモ">{{ \Str::limit($shoppinglist->memo, 250) }}</td>
-                                    <td data-label="画像">{{ \Str::limit($shoppinglist->image, 250) }}</td>
-                                    <td data-label="編集">
-                                    　<div>
-                                        <a href="{{ action('Admin\ShoppinglistController@edit', ['id' => $shoppinglist->id]) }}">編集</a>
-                                    　</div>
-                                      <div>
+                                    <th data-label="購入先">{{ \Str::limit($shoppinglist->retailer, 250) }}</th>
+                                    <th data-label="商品名">{{ \Str::limit($shoppinglist->productname, 100) }}</th>
+                                    <th data-label="金額">{{ \Str::limit($shoppinglist->amount, 100) }}</th>
+                                    <th data-label="個数">{{ \Str::limit($shoppinglist->num, 100) }}</th>
+                                    <th data-label="合計金額">{{ \Str::limit($shoppinglist->amounttotal, 100) }}</th>
+                                    <th data-label="分類">{{ \Str::limit($shoppinglist->genre, 100) }}</th>
+                                    <th data-label="メモ">{{ \Str::limit($shoppinglist->memo, 250) }}</th>
+                                    <th data-label="画像">{{ \Str::limit($shoppinglist->image, 250) }}</th>
+                                    <th data-label="編集">
+                                    　<div class="link-a">
+                                        <a href="{{ action('Admin\ShoppinglistController@edit', ['id' => $shoppinglist->id]) }}">編集/</a>
                                         <a href="{{ action('Admin\ShoppinglistController@delete', ['id' => $shoppinglist->id]) }}">削除</a>
                                       </div>
-                                    </td>
+                                    </th>
+                                    <th data-label="お気に入り">{{ \Str::limit($shoppinglist->favorite, 100) }}</th>
                                 </tr>
                             @endforeach
                         </tbody>
