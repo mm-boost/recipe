@@ -15,8 +15,7 @@ class CreateShoppingListsTable extends Migration
     {
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('retailer');  //購入先を保存するカラム
-            $table->string('shopname')->nullable();  //新しい購入先を保存するカラム
+            $table->integer('shop_id');  //新しい購入先を保存するカラム
             $table->string('productname');    //商品名を保存するカラム
             $table->string('amount')->nullable();  //金額を保存するカラム
             $table->string('num')->nullable();  // 品数を保存するカラム
@@ -38,14 +37,7 @@ class CreateShoppingListsTable extends Migration
 
     public function down()
     {
-        Schema::table('shopping_lists', function (Blueprint $table) {
-            $table->dropColumn('amount');
-            $table->dropColumn('num');
-            $table->dropColumn('amounttotal');
-            $table->dropColumn('retailer');
-            $table->dropColumn('image_path');
-            $table->dropColumn('memo');
-        });
+        Schema::dropIfExists('shopping_lists');
     }
 }
     

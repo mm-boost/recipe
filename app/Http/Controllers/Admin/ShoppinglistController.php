@@ -22,8 +22,17 @@ class ShoppinglistController extends Controller
     {
         //validationを行う
         $this->validate($request, Shoppinglist::$rules);
-        $shoppinglist = new ShoppingList;
         $form = $request->all();
+        $shop = Shop::where('name', $form['retailer'])->first();
+        //dd($shop);
+        //dd($form);
+        if (is_null($shop)){
+            $shop =new Shop;
+            $shop->name=$form['retailer'];
+            $shop->save();
+        }
+        //dd($form);
+        $shoppinglist = new ShoppingList;
         //＄関数名内のデータを確認
         //dd($form); 
         
@@ -39,9 +48,12 @@ class ShoppinglistController extends Controller
         unset($form['_token']);
         // フォームから送信されてきたimageを削除する
         unset($form['image']);
+        unset($form['retailer']);
+        unset($form['shop']);
 
         //データベースに保存する
         $shoppinglist->fill($form);
+        $shoppinglist->shop_id=$shop->id;
         $shoppinglist->save();
 
         return redirect('shoppinglist/index');
