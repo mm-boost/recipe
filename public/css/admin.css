@@ -99,6 +99,23 @@ body > .container {
   padding-left: 15px;
 }
 
+label.cat {
+  display: block;
+  /* これなしだとwidthが効かない */
+  width: 270px;
+  margin: 5px 0;
+  padding: 0.3em;
+  background: #fdeff2;
+}
+
+label.menu {
+  display: block;
+  width: 600px;
+  margin: 5px 0;
+  padding: 0.3em;
+  background: #e9e4d4;
+}
+
 .category {
   padding: 0;
   position: relative;

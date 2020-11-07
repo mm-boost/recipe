@@ -1,5 +1,6 @@
 {{-- layoutsを読み込む --}}
 @extends('layouts.admin')
+
 {{-- admin.blade.phpの@yield('title')に'ホーム画面'を埋め込む --}}
 @section('title', 'レシピリスト')
 
@@ -19,8 +20,7 @@
                     @endif
 
                     <div class="form-group row">
-                        <label class="col-md-2">カテゴリ１</label>
-                        <div class="col-sm-10">
+                        <label class="cat">カテゴリ１ 料理のジャンル
                             　<select name="category1" id="category1">
                                <option value="">----選択してください----</option>
                                <option value="1">和食</option>
@@ -28,59 +28,68 @@
                                <option value="3">中華</option>
                                <option value="4">肉料理</option>
                                <option value="5">野菜料理</option>
-                               <option value="6">鍋料理</option>
-                               <option value="7">デザート</option>
-                               <option value="8">ドリンク</option>
-                               <option value="9">アジア料理</option>
-                               <option value="10">ヨーロッパ料理</option>
-                               <option value="11">その他</option>
+                               <option value="6">デザート</option>
+                               <option value="7">ドリンク</option>
+                               <option value="8">アジア料理</option>
+                               <option value="9">ヨーロッパ料理</option>
+                               <option value="10">その他</option>
                               </select>
-                        </div>
+                        </label>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-2">カテゴリ２</label>
-                        <div class="col-sm-10">
+                        <label class="cat">カテゴリ２ 調理法
                             　<select name="category2" id="category2">
                                <option value="">----選択してください----</option>
                                <option value="1">炊飯器</option>
-                               <option value="2"></option>
-                               <option value="3">3</option>
-                               <option value="4">4</option>
-                               <option value="5">5</option>
-                               <option value="6">6</option>
-                               <option value="7">7</option>
-                               <option value="8">8</option>
+                               <option value="2">電子レンジ</option>
+                               <option value="3">鍋料理</option>
+                               <option value="4">フライパン</option>
+                               <option value="5">トースター</option>
+                               <option value="6">鉄板</option>
                               </select>
+                        </label>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="cat">カテゴリ3 キーワード
+                            　<select name="category3" id="category3">
+                               <option value="">----選択してください----</option>
+                               <option value="1">お手軽</option>
+                               <option value="2">作り置き</option>
+                               <option value="3">低糖質・高タンパク</option>
+                               <option value="4">節約</option>
+                        　　　　{{--@foreach ($keys as $key)
+                        　　　　<option value="{{$key->id}}">{{ $key->keyname }}</option>
+                        　　　　　@endforeach--}}
+                        　　　　</select>
+                        　　　　<input type="text" name="key" value="">
+                        　　　　<input type="button" name="key" value="項目追加" onClick="addSelectItem()">
+                        </label>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="menu">メニュー名
+                            <input type="text" name="menu" size="50" value="{{ old('menu') }}"></label>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="menu" >材料（1人分) __[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]
+                        <div class="col-md-10">
+　　　　　　　　　　　　　　　　　<textarea name="food" id="food" cols="80" rows="4" maxlength="200"></textarea></label>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-2">メニュー名</label>
+                        <label class="menu">手順
                         <div class="col-md-10">
-                            <input type="text" name="menu" size="25" value="{{ old('menu') }}">
+                        <textarea name="howto" cols="80" rows="4" maxlength="200" value="{{ old('howto') }}"></textarea></label>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-2">材料（1人分）</label>
-                        <div class="col-md-10">
-                        <textarea name="food" cols="50" rows="4" maxlength="150" value="{{ old('food') }}"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2">手順</label>
-                        <div class="col-md-10">
-                        <textarea name="howto" cols="50" rows="4" maxlength="150" value="{{ old('howto') }}"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                        </div>
+                        <label class="cat">画像
+                            <input type="file" class="form-control-file" name="image"></label>
                     </div>
                     
                     {{ csrf_field() }}
