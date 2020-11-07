@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピリスト</h2>
-                <form action="{{ action('Admin\RecipeController@add') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('Admin\RecipeController@form') }}" method="post" enctype="multipart/form-data">
                     
                     @if (count($errors) > 0)
                         <ul>

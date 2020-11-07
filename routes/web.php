@@ -18,8 +18,15 @@
 Route::get('/home', 'Admin\HomeController@home');
 
 //レシピ
-Route::get('/recipelist', 'Admin\RecipeController@form');
-Route::post('/recipelist', 'Admin\RecipeController@add');
+Route::group(['prefix' => 'recipe'], function() {
+    Route::get('/create', 'Admin\RecipeController@add');
+    Route::post('/create','Admin\RecipeController@create');
+    Route::get('/edit', 'Admin\RecipeController@edit');
+    Route::post('/edit', 'Admin\RecipeController@update');
+    Route::get('/delete', 'Admin\RecipeController@delete');
+    Route::get('/', 'Admin\RecipeController@contents');
+    Route::get('/index', 'Admin\RecipeController@index');
+});
 
 //買い物メモ
 Route::group(['prefix' => 'shoppinglist'], function() {

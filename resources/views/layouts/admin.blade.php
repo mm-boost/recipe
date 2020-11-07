@@ -43,7 +43,7 @@
                       <a class="nav-link" href="{!! action('Admin\HomeController@home'); !!}">ホーム <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{!! action('Admin\RecipeController@add'); !!}">レシピ一覧</a>
+                      <a class="nav-link" href="{!! action('Admin\RecipeController@index'); !!}">レシピ一覧</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{!! action('Admin\ShoppinglistController@index'); !!}">買い物メモ</a>
@@ -62,12 +62,19 @@
               </div>
             </nav>
             {{-- ここまでナビゲーションバー --}}
+             {{-- ヘッダー --}}
+            <footer class="footer">
+            <div class="container">
+            <p class="text-muted">Place sticky footer content here.</p>
+            </div>
+            </footer>
+
 
             <main class="py-4">
                 {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
                 @yield('content')
             </main>
-        </div>
-    </div>
+         </div>
+      </div>
     </body>
 </html>
