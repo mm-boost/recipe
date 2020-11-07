@@ -73,9 +73,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu" >材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]</span>
+                        <label class="menu" >材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]</span></label>
                         <div class="col-md-10">
-						 <table class="foodtable">
+						 <table class="foodtable" id="food_table">
 							<thead class="foodhead">
 								<tr>
 									<td class="foodname">材料名</td>
@@ -86,22 +86,21 @@
                                 <tr>
                                    <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
                                    <td class="foodnum"><input value="" name="foodnum" type="text" placeholder="数量"></td>
-                                   <td class="food_del"><input value="✖︎" name="del" type="submit"></td>
+                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
                                    <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
                                    <td class="foodnum"><input value="" name="foodnum" type="text" placeholder="数量"></td>
-                                   <td class="food_del"><input value="✖︎" name="del" type="submit"></td>
+                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
                                    <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
                                    <td class="foodnum"><input value="" name="foodnum" type="text" placeholder="数量"></td>
-                                   <td class="food_del"><input value="✖︎" name="del" type="submit"></td>
+                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 </tbody>
                         </table>
-                             <input type="submit" name="create" value="追加" >
-                        </label>
+                             <button id="food_cre">追加</button>
                         </div>
                     </div>                     
 
@@ -118,10 +117,8 @@
                     </div>
                     
                     {{ csrf_field() }}
-                    <input type="submit" name="create" value="追加" >
+                    <input type="submit" class="btn btn-primary" value="追加">
                 </form>
-                <script type="text/javascript">
-                </script>
             </div>
         </div>
     </div>

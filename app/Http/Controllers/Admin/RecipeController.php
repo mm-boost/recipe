@@ -32,8 +32,8 @@ class RecipeController extends Controller
         unset($form['_token']);
         
         //データベースに保存する
-        $recipe->fill($form);
-        $recipe->save();
+        //$recipe->fill($form);
+        //$recipe->save();
         
         return redirect('recipe/create');
     }
