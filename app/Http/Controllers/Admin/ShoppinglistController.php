@@ -22,10 +22,10 @@ class ShoppinglistController extends Controller
     {
         //validationを行う
         $this->validate($request, Shoppinglist::$rules);
+
         $form = $request->all();
-        $shop = Shop::where('name', $form['retailer'])->first();
-        //dd($shop);
-        //dd($form);
+        $shop = Shop::find($form['retailer']);
+        //店舗名設定　もしショップモデルが空なら、購入先IDを取得してセーブする
         if (is_null($shop)){
             $shop =new Shop;
             $shop->name=$form['retailer'];
@@ -77,8 +77,17 @@ class ShoppinglistController extends Controller
     {
         //validationをかける
         $this->validate($request, Shoppinglist::$rules);
+        $form = $request->all();
+        $shop = Shop::where('name', $form['retailer'])->first();
+        //店舗名設定　もしショップモデルが空なら、購入先IDを取得してセーブする
+        if (is_null($shop)){
+            $shop =new Shop;
+            $shop->name=$form['retailer'];
+            $shop->save();
+        }
         // Shoppinglist Modelからデータを受け取る
         $shoppinglist = Shoppinglist::find($request->id);
+
         //送信されてきたフォームデータを格納する
         $shoppinglist_form = $request->all();
         if ($request->remove == 'true') {
@@ -90,12 +99,17 @@ class ShoppinglistController extends Controller
             $shoppinglist_form['image_path'] = $shoppinglist->image_path;
         }
 
+        unset($shoppinglist_form['retailer']);
+        unset($shoppinglist_form['shop']);
         unset($shoppinglist_form['image']);
         unset($shoppinglist_form['remove']);
         unset($shoppinglist_form['_token']);
         
+        
         //該当するデータを上書きして保存する
-        $shoppinglist->fill($shoppinglist_form)->save();
+        $shoppinglist->fill($shoppinglist_form);
+        $shoppinglist->shop_id=$shop->id;
+        $shoppinglist->save();
         
         $shoppinglist_history = new ShoppingHistory;
         $shoppinglist_history->shoppinglist_id = $shoppinglist->id;
@@ -107,13 +121,15 @@ class ShoppinglistController extends Controller
 
     public function index(Request $request)
     {
-        $cond_productname = $request->cond_productname;
+        $cond_productname = $request->retailer;
+        //dd($cond_productname);
         if ($cond_productname !='') {
-            $posts = Shoppinglist::where('title',$cond_productname)->get();
+            $posts = Shoppinglist::where('shop_id',$cond_productname)->get();
         } else {
             $posts = Shoppinglist::all();
         }
         $shops = Shop::all();
+        //'cond_productname' => $cond_productname検索設定
         return view('shoppinglist/index',["shops" => $shops,'posts' => $posts,'cond_productname' => $cond_productname]);
     }
     

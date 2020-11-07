@@ -17,7 +17,6 @@
                      @endforeach
                         </ul>
                     @endif
-
                     <div class="form-group row">
                         <label class="col-md-2">購入先</label>
                         <div class="col-md-10">
