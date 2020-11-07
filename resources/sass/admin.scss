@@ -66,6 +66,21 @@ nav a:hover{ //リンクにカーソルなどが乗った際のスタイル
   .login-body {
     background-color: rgba(0, 0, 0, 0.25);
   }
+  //ナビバー　子階層
+  .navbar-nav li li { 
+    height: 0;
+    overflow: hidden; //非表示設定
+    transition: .5s; //0.5秒でアニメーションの動き
+   }
+  .navbar-nav li li{
+    border-top: 1px; //上ボーダーのスタイル・太さ・色を指定する際に使用
+    height: 2px;
+  }
+  .navbar-nav li:hover > ul > li { 
+    height: 2px;
+    overflow: visible;
+  }
+
   //フッター
   .footer {
   position: absolute;
@@ -86,8 +101,9 @@ margin: 20px 0;
 padding-right: 15px;
 padding-left: 15px;
 }
+  //recipe.create
   label.cat {
-  display: block; /* これなしだとwidthが効かない */
+  display: block; //widthの使用に大切 
   width: 270px;
   margin: 5px 0;
   padding: 0.3em;
@@ -100,7 +116,31 @@ padding-left: 15px;
   padding: 0.3em;
   background: #e9e4d4;
 }
-
+  table.foodtable td.foodname {
+  width: 310px;
+  background: #e9e4d4;
+ }
+ table.foodtable td.foodname input {
+  display: block; 
+  width: 300px;
+}
+  table.foodtable td.foodnum{
+  width: 60px;
+  background: #e9e4d4;
+ }
+ table.foodtable td.foodnum input {
+  display: block; 
+  width: 50px;
+}
+  table.foodtable td.food_del{
+  width: 40px;
+  background: #e9e4d4;
+ }
+ table.foodtable td.food_del input {
+  display: block; 
+  width: 30px;
+  background: #ee836f;
+}
   //recipe.index
   .category {
    padding: 0;

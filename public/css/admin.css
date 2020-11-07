@@ -77,6 +77,22 @@ nav a:hover {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
+.navbar-nav li li {
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.navbar-nav li li {
+  border-top: 1px;
+  height: 2px;
+}
+
+.navbar-nav li:hover > ul > li {
+  height: 2px;
+  overflow: visible;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -101,7 +117,6 @@ body > .container {
 
 label.cat {
   display: block;
-  /* これなしだとwidthが効かない */
   width: 270px;
   margin: 5px 0;
   padding: 0.3em;
@@ -114,6 +129,37 @@ label.menu {
   margin: 5px 0;
   padding: 0.3em;
   background: #e9e4d4;
+}
+
+table.foodtable td.foodname {
+  width: 310px;
+  background: #e9e4d4;
+}
+
+table.foodtable td.foodname input {
+  display: block;
+  width: 300px;
+}
+
+table.foodtable td.foodnum {
+  width: 60px;
+  background: #e9e4d4;
+}
+
+table.foodtable td.foodnum input {
+  display: block;
+  width: 50px;
+}
+
+table.foodtable td.food_del {
+  width: 40px;
+  background: #e9e4d4;
+}
+
+table.foodtable td.food_del input {
+  display: block;
+  width: 30px;
+  background: #ee836f;
 }
 
 .category {

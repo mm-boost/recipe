@@ -1,6 +1,5 @@
 {{-- layoutsを読み込む --}}
 @extends('layouts.admin')
-
 {{-- admin.blade.phpの@yield('title')に'ホーム画面'を埋め込む --}}
 @section('title', 'レシピリスト')
 
@@ -74,16 +73,42 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu" >材料（1人分) __[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]
+                        <label class="menu" >材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]</span>
                         <div class="col-md-10">
-　　　　　　　　　　　　　　　　　<textarea name="food" id="food" cols="80" rows="4" maxlength="200"></textarea></label>
+						 <table class="foodtable">
+							<thead class="foodhead">
+								<tr>
+									<td class="foodname">材料名</td>
+									<td class="foodnum">分量</td>
+								</tr>
+							</thead>
+                            <tbody class="foodbody">
+                                <tr>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="food_del"><input value="✖︎" name="del" type="submit"></td>
+                                </tr>
+                                <tr>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="food_del"><input value="✖︎" name="del" type="submit"></td>
+                                </tr>
+                                <tr>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="food_del"><input value="✖︎" name="del" type="submit"></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                             <input type="submit" name="create" value="追加" >
+                        </label>
                         </div>
-                    </div>
+                    </div>                     
 
                     <div class="form-group row">
-                        <label class="menu">手順
+                        <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="80" rows="4" maxlength="200" value="{{ old('howto') }}"></textarea></label>
+                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{ old('howto') }}"></textarea></label>
                         </div>
                     </div>
 
