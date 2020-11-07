@@ -18,29 +18,33 @@
                     <thead>
                         <tr>
                         <td><form action="{{ action('Admin\ShoppinglistController@index') }}" method="get">
-                            購入先 ： <select name="retailer" required>
-                                  <option value="">----選択して下さい----</option>
+                        購入先 ： <select name="retailer">
+                                 <option value="">----選択して下さい----</option>
                                    @foreach ($shops as $shop)
-                                  <option value="{{$shop->id}}">{{ $shop->name }}</option>
+                                 <option value="{{$shop->id}}">{{ $shop->name }}</option>
                                    @endforeach
-                                  </select>
+                                 </select>
                             {{ csrf_field() }}
+                            <input type="submit" value=表示>
+                        </td>
+                        <td colspan="7">
+                        お気に入り ： <select name="favorite">
+                                    <option>チェックあり</option>
+                                    <option>チェックなし</option>
+                                    </select>
+                         {{ csrf_field() }}
                             <input type="submit" value=表示></form>
                         </td>
-                        <td colspan="7">お気に入り ： <select>
-                                                 <option>○</option>
-                                                 <option>✖︎</option>
-                                                 </select></td>
                         </tr>
                         <tr>
-                            <th scope="col" width="10%">商品名</th>
-                            <th scope="col" width="10%">金額</th>
-                            <th scope="col" width="10%">個数</th>
-                            <th scope="col" width="10%">合計金額</th>
-                            <th scope="col" width="10%">分類</th>
-                            <th scope="col" width="15%">メモ</th>
-                            <th scope="col" width="10%">画像</th>
-                             <th scope="col" width="10%">編集</th>
+                            <th scope="col">商品名</th>
+                            <th scope="col" >金額</th>
+                            <th scope="col" >個数</th>
+                            <th scope="col" >合計金額</th>
+                            <th scope="col" >分類</th>
+                            <th scope="col" >メモ</th>
+                            <th scope="col" >画像</th>
+                             <th scope="col">編集</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +63,6 @@
                                         <a href="{{ action('Admin\ShoppinglistController@delete', ['id' => $shoppinglist->id]) }}">削除</a>
                                       </div>
                                     </th>
-                                    <th data-label="お気に入り">{{ \Str::limit($shoppinglist->favorite, 50) }}</th>
                                 </tr>
                         @endforeach    
                     </tbody>

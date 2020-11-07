@@ -122,8 +122,8 @@ table tr:nth-child(even) {
 table thead tr td {
   width: auto;
   /*位置の指定*/
+  margin: auto;
   text-align: left;
-  height: 8px;
   background-color: #68be8d;
 }
 

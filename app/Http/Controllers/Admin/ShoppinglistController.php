@@ -31,7 +31,6 @@ class ShoppinglistController extends Controller
             $shop->name=$form['retailer'];
             $shop->save();
         }
-        //dd($form);
         $shoppinglist = new ShoppingList;
         //＄関数名内のデータを確認
         //dd($form); 
@@ -78,7 +77,7 @@ class ShoppinglistController extends Controller
         //validationをかける
         $this->validate($request, Shoppinglist::$rules);
         $form = $request->all();
-        $shop = Shop::where('name', $form['retailer'])->first();
+        $shop = Shop::find($form['retailer']);
         //店舗名設定　もしショップモデルが空なら、購入先IDを取得してセーブする
         if (is_null($shop)){
             $shop =new Shop;
@@ -121,16 +120,22 @@ class ShoppinglistController extends Controller
 
     public function index(Request $request)
     {
-        $cond_productname = $request->retailer;
-        //dd($cond_productname);
-        if ($cond_productname !='') {
-            $posts = Shoppinglist::where('shop_id',$cond_productname)->get();
+        $cond_shopname = $request->retailer;
+        if ($cond_shopname !='') {
+            $posts = Shoppinglist::where('shop_id',$cond_shopname)->get();
         } else {
             $posts = Shoppinglist::all();
         }
+
+        /*$cond_favorite = $request->favorite;
+        if ($cond_favorite !='') {
+            $posts = Shoppinglist::where('favorite_id',$cond_favorite)->get();
+        } else {
+            $posts = Shoppinglist::all();}*/
+
         $shops = Shop::all();
-        //'cond_productname' => $cond_productname検索設定
-        return view('shoppinglist/index',["shops" => $shops,'posts' => $posts,'cond_productname' => $cond_productname]);
+        //'cond_shopname' => $cond_shopname検索設定
+        return view('shoppinglist/index',["shops" => $shops,'posts' => $posts,'cond_shopname' => $cond_shopname,]);
     }
     
     public function delete(Request $request)
