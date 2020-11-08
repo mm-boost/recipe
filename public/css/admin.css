@@ -125,20 +125,20 @@ label.cat {
 
 label.menu {
   display: block;
-  width: 600px;
+  width: 580px;
   margin: 5px 0;
   padding: 0.3em;
   background: #e9e4d4;
 }
 
 table.foodtable td.foodname {
-  width: 310px;
+  width: 280px;
   background: #e9e4d4;
 }
 
-table.foodtable td.foodname input {
+.foodtex {
   display: block;
-  width: 300px;
+  width: 265px;
 }
 
 table.foodtable td.foodnum {
@@ -146,7 +146,17 @@ table.foodtable td.foodnum {
   background: #e9e4d4;
 }
 
-table.foodtable td.foodnum input {
+.food_num {
+  display: block;
+  width: 50px;
+}
+
+table.foodtable td.foodunit {
+  width: 60px;
+  background: #e9e4d4;
+}
+
+.unit {
   display: block;
   width: 50px;
 }
@@ -156,10 +166,10 @@ table.foodtable td.food_del {
   background: #e9e4d4;
 }
 
-table.foodtable td.food_del input {
+.fooddel {
   display: block;
   width: 30px;
-  background: #ee836f;
+  background: #f5b199;
 }
 
 .category {
