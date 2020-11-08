@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//use App\Recipe;
+use App\Recipe;
 use Log;
 
 class RecipeController extends Controller
@@ -17,26 +16,35 @@ class RecipeController extends Controller
  
     public function add()
     {
-        //$recipes = Recipe::all();
+        $recipes = Recipe::all();
         return view('recipe/create');
     }
 
     public function create(Request $request)
     {
         //validationを行う
-        //$this->validate($request, Recipe::$rules);
-        //$recipe = new Recipe;
+        $this->validate($request, Recipe::$rules);
+        $recipe = new Recipe;
         $form = $request->all();
-        
+
+        // formに画像があれば、保存する
+      if (isset($form['image'])) {
+        $path = $request->file('image')->store('public/image');
+        $recipe->image_path = basename($path);
+      } else {
+          $recipe->image_path = null;
+      }
         //フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
-        
+        unset($form['image']);
+
         //データベースに保存する
         //$recipe->fill($form);
         //$recipe->save();
         
         return redirect('recipe/create');
     }
+    
     public function edit(Request $request)
     {
         //$recipe = Recipe::find($request->id);
