@@ -1,21 +1,57 @@
 body {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
 }
 
 .navbar-laravel {
-  background-color: #000;
+  background-color: #9ef5d2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .navbar-brand {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 .nav-link {
-  color: #fff !important;
+  color: #000 !important;
+}
+
+nav {
+  text-align: center;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  list-style: none;
+  display: inline-block;
+  width: 10%;
+  min-width: 90px;
+}
+
+nav li:not(:last-child) {
+  border-right: 2px solid #bbb9b9;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+}
+
+nav a.current {
+  color: #f04b98;
+  border-bottom: 2px solid #e9206d;
+}
+
+nav a:hover {
+  -moz-columns: #f7cb4d;
+       columns: #f7cb4d;
+  border-bottom: 2px solid #f7cb4d;
 }
 
 .table-dark {
