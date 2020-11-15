@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>マイページ</h2>
+                <p>{{ $userInfo['nick_name'] }}</p>
             </div>
         </div>
     </div>

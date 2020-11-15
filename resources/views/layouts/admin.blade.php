@@ -42,7 +42,7 @@
                       <a class="nav-link" href="#">ホーム <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">レシピ一覧</a>
+                      <a class="nav-link" href="{!! action('Admin\RecipeController@add'); !!}">レシピ一覧</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">買い物メモ</a>
