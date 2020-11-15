@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RecipesiteController;
 use Illuminate\Http\Request;
 
 
-class HomeController extends RecipeController
+class HomeController extends RecipesiteController
 {
     
     /**
