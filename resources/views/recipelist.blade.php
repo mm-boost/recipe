@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>ニュース新規作成</h2>
+                <h2>レシピリスト</h2>
                 <form action="{{ action('Admin\RecipeController@add') }}" method="post" enctype="multipart/form-data">
                     
                     @if (count($errors) > 0)
@@ -16,24 +16,26 @@
                             @endforeach
                         </ul>
                     @endif
-                    <div class="form-group row">
-                        <label class="col-md-2" for="title">タイトル</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2" for="body">本文</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2" for="title">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                        </div>
-                    </div>
+                  <div class="category">
+                  <ul>
+　　　　　　　　　 <li class="categorypage">
+　　　　　　　　　　 <a class=categorylink href="./resipe1.html">お気に入り</a>
+　　　　　　　　　　 </li>
+                   <li class="categorypage">
+　　　　　　　　　　 <a class=categorylink href="./resipe2.html">和食</a>
+　　　　　　　　　　 </li>
+　　　　　　　　   <li class="categorypage">
+　　　　　　　　　　 <a class=categorylink href="./resipe3.html">洋食</a>
+　　　　　　　　　　 </li>
+　　　　　　　　   <li class="categorypage">
+　　　　　　　　　　 <a class=categorylink href="./resipe4.html">中華</a>
+　　　　　　　　　　 </li>
+　　　　　　　      <li class="categorypage">
+　　　　　　　　　　 <a class=categorylink href="./resipe5.html">デザート</a>
+　　　　　　　　　 </li>
+　　　　　　　　　</ul>
+　　　　　　　　</div>
+                    
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>

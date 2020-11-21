@@ -46,6 +46,7 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">買い物メモ</a>
+                      
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">設定</a>

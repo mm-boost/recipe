@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
   background-repeat: no-repeat;
   background-position: center;
@@ -73,5 +75,32 @@ nav a:hover {
 
 .login-body {
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+.category {
+  padding: 0;
+  position: relative;
+  /*位置の指定*/
+}
+
+.categorypage {
+  border-left: solid 8px orange;
+  /*左側の線*/
+  background: whitesmoke;
+  /*背景色*/
+  margin-bottom: 5px;
+  /*下のバーとの余白*/
+  line-height: 1.5;
+  border-radius: 0 15px 15px 0;
+  /*右側の角だけ丸く*/
+  padding: 0.5em;
+  list-style-type: none !important;
+}
+
+.categorylink {
+  position: relative;
+  right: 130px;
+  /*位置を指定　右側に130px分の空白*/
+  color: black;
 }
 
