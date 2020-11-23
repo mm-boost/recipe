@@ -49,7 +49,7 @@
                       
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">設定</a>
+                      <a class="nav-link" href="{!! action('Admin\SettingController@add'); !!}">設定</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">戻る</a>

@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 
 /**
  * レシピサイトコントローラー
+ * レシピサイト全体のコントローラー
  *
  * Class RecipesiteController
  *

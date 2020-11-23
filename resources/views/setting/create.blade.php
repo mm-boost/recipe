@@ -1,13 +1,13 @@
 {{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.profile')
-@section('title', 'プロフィール')
+@extends('layouts.admin')
+@section('title', 'プロフィール設定')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>Myプロフィール</h2>
-                <form action="{{ action('Admin\ProfileController@create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('Admin\SettingController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
                         <ul>

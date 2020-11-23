@@ -5,25 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class SettingController extends Controller
 {
     public function add()
     {
-        return view('admin.profile.create');
+        return view('setting/create');
     }
 
     public function create()
     {
-        return redirect('admin/profile/create');
+        return redirect('setting/create');
     }
 
     public function edit()
     {
-        return view('admin.profile.edit');
+        return view('setting/edit');
     }
 
     public function update()
     {
-        return redirect('admin/profile/edit');
+        return redirect('setting/edit');
     }
 }

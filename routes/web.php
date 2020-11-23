@@ -19,8 +19,11 @@ Route::get('/home', 'Admin\HomeController@home');
 
 
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('profile/create', 'Admin\ProfileController@add');
+Route::group(['prefix' => 'setting'], function() {
+    Route::get('/create', 'Admin\SettingController@add');
+    Route::post('/create','Admin\SettingController@create');
+    Route::get('/edit', 'Admin\SettingController@edit');
+    Route::post('/edit', 'Admin\SettingController@update');
 });
 
 
