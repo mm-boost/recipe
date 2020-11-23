@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- CSRF Token -->
-         {{-- 後の章で説明します --}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{-- 各ページごとにtitleタグを入れるために@yieldで空けておきます。 --}}
@@ -46,14 +45,18 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">買い物メモ</a>
-                      
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{!! action('Admin\SettingController@add'); !!}">設定</a>
                     </li>
+                    
                     <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">戻る</a>
+　　　　　　　　　　　 {{-- onclick処理 --}}
+　　　　　　　　　　　<onclick="history.back();">
+　　　　　　　　　　　 {{-- href属性に設定 --}}
+　　　　　　　　　　　<a class="nav-link" href="javascript:history.back()">戻る</a>
                     </li>
+                    
                   </ul>
                 </div>
               </div>
