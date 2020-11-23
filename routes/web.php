@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Route::get('/home', 'Admin\HomeController@home');
 
-
-
 Route::group(['prefix' => 'setting'], function() {
     Route::get('/create', 'Admin\SettingController@add');
     Route::post('/create','Admin\SettingController@create');
@@ -26,6 +24,7 @@ Route::group(['prefix' => 'setting'], function() {
     Route::post('/edit', 'Admin\SettingController@update');
 });
 
+Route::get('/shoppinglist', 'Admin\ShoppinglistController@add');
 
 Route::get('/recipelist', 'Admin\RecipeController@form');
 Route::post('/recipelist', 'Admin\RecipeController@add');

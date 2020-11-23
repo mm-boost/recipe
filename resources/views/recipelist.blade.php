@@ -1,6 +1,6 @@
 {{-- layouts/admin.blade.phpを読み込む --}}
 @extends('layouts.admin')
-@section('title', 'ニュースの新規作成')
+@section('title', 'レシピ一覧表')
 
 @section('content')
     <div class="container">
