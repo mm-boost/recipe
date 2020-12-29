@@ -20,7 +20,7 @@
 
                     <div class="form-group row">
                         <label class="cat">カテゴリ１ 料理のジャンル
-                            　<select name="category1" id="category1">
+                            　<select name="category" id="category">
                                <option value="">----選択してください----</option>
                                <option value="1">和食</option>
                                <option value="2">洋食</option>
@@ -38,11 +38,11 @@
 
                     <div class="form-group row">
                         <label class="cat">カテゴリ２ 調理法
-                            　<select name="category2" id="category2">
+                            　<select name="tool" id="tool">
                                <option value="">----選択してください----</option>
                                <option value="1">炊飯器</option>
                                <option value="2">電子レンジ</option>
-                               <option value="3">鍋料理</option>
+                               <option value="3">鍋</option>
                                <option value="4">フライパン</option>
                                <option value="5">トースター</option>
                                <option value="6">鉄板</option>
@@ -52,7 +52,7 @@
 
                     <div class="form-group row">
                         <label class="cat">カテゴリ3 キーワード
-                            　<select name="category3" id="category3">
+                            　<select name="keyword" id="keyword">
                                <option value="">----選択してください----</option>
                                <option value="1">お手軽</option>
                                <option value="2">作り置き</option>

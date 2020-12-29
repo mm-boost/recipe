@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Recipe;
 use Log;
+use App\RecipeHistory;
+use Carbon\Carbon;
 
 class RecipeController extends Controller
 {
@@ -39,8 +41,8 @@ class RecipeController extends Controller
         unset($form['image']);
 
         //データベースに保存する
-        //$recipe->fill($form);
-        //$recipe->save();
+        $recipe->fill($form);
+        $recipe->save();
         
         return redirect('recipe/create');
     }
@@ -56,7 +58,7 @@ class RecipeController extends Controller
         return view('recipe/edit',['recipe_form' => $recipe]);
     }
 
-    /*public function update(Request $request)
+    public function update(Request $request)
     {
         //validationをかける
         $this->validate($request, Recipe::$rules);
@@ -80,18 +82,32 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::find($request->id);
         $recipe->delete();
-        return redirect('recipe');
+
+        return redirect('recipe/display');
+    }
+
+    public function display(Request $request)
+    {
+        $posts = Recipe::all();
+
+        // $cond_menu = $request->menu;
+        // if ($cond_menu !='') {
+        //     $posts = Recipe::where('title',$cond_menu)->get();
+        // } else {
+        //     $posts = Recipe::all();
+        // }
+
+        return view('recipe/display',['posts' => $posts /*'cond_menu' => $cond_menu*/]);
     }
     public function index(Request $request)
     {
-        $cond_menu = $request->$cond_menu;
+        $cond_menu = $request->menu;
         if ($cond_menu !='') {
             $posts = Recipe::where('title',$cond_menu)->get();
         } else {
             $posts = Recipe::all();
         }
-        return index('recipe/index',['posts' => $posts,'cond_menu' => $cond_menu]);
-    }*/
-    
+        return view('recipe/index',['posts' => $posts,'cond_menu' => $cond_menu]);
+    }
 
   }

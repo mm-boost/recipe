@@ -38,13 +38,13 @@
                         </tr>
                         <tr>
                             <th scope="col">商品名</th>
-                            <th scope="col" >金額</th>
-                            <th scope="col" >個数</th>
-                            <th scope="col" >合計金額</th>
-                            <th scope="col" >分類</th>
-                            <th scope="col" >メモ</th>
+                            <th scope="col">金額</th>
+                            <th scope="col">個数</th>
+                            <th scope="col">合計金額</th>
+                            <th scope="col">分類</th>
+                            <th scope="col">メモ</th>
                             <th scope="col" >画像</th>
-                             <th scope="col">編集</th>
+                            <th scope="col">編集</th>
                         </tr>
                     </thead>
                     <tbody>

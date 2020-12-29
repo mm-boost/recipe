@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピ新規作成</h2>
-                <form action="{{ action('Admin\RecipeController@edit') }}" name="form1" method="post" enctype="multipart/form-data">
+                <form action="{{ action('Admin\RecipeController@update') }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>
                      @foreach($errors->all() as $e)
@@ -20,44 +20,47 @@
 
                     <div class="form-group row">
                         <label class="cat">カテゴリ１ 料理のジャンル
-                            　<select name="category1" id="category1">
-                               <option value="">----選択してください----</option>
-                               <option value="1">和食</option>
-                               <option value="2">洋食</option>
-                               <option value="3">中華</option>
-                               <option value="4">肉料理</option>
-                               <option value="5">野菜料理</option>
-                               <option value="6">デザート</option>
-                               <option value="7">ドリンク</option>
-                               <option value="8">アジア料理</option>
-                               <option value="9">ヨーロッパ料理</option>
-                               <option value="10">その他</option>
-                              </select>
-                        </label>
+                            　<select name="category" id="category">
+                                <?php $category = old('category' , $recipe_form->category); ?>
+                                <option value="">----選択してください----</option>
+                                <option value="1" @if($category =='1') selected="selected" @endif>和食</option>
+                                <option value="2" @if($category =='2') selected="selected" @endif>洋食</option>
+                                <option value="3" @if($category =='3') selected="selected" @endif>中華</option>
+                                <option value="4" @if($category =='4') selected="selected" @endif>肉料理</option>
+                                <option value="5" @if($category =='5') selected="selected" @endif>野菜料理</option>
+                                <option value="6" @if($category =='6') selected="selected" @endif>デザート</option>
+                                <option value="7" @if($category =='7') selected="selected" @endif>ドリンク</option>
+                                <option value="8" @if($category =='8') selected="selected" @endif>アジア料理</option>
+                                <option value="9" @if($category =='9') selected="selected" @endif>ヨーロッパ料理</option>
+                                <option value="10" @if($category =='10') selected="selected" @endif>その他</option>
+                               </select>
+                         </label>
                     </div>
 
                     <div class="form-group row">
                         <label class="cat">カテゴリ２ 調理法
-                            　<select name="category2" id="category2">
-                               <option value="">----選択してください----</option>
-                               <option value="1">炊飯器</option>
-                               <option value="2">電子レンジ</option>
-                               <option value="3">鍋料理</option>
-                               <option value="4">フライパン</option>
-                               <option value="5">トースター</option>
-                               <option value="6">鉄板</option>
+                            　<select name="tool" id="tool">
+                                <?php $tool = old('tool' , $recipe_form->tool); ?>
+                                <option value="">----選択してください----</option>
+                                <option value="1" @if($tool =='1') selected="selected" @endif>炊飯器</option>
+                                <option value="2" @if($tool =='2') selected="selected" @endif>電子レンジ</option>
+                                <option value="3" @if($tool =='3') selected="selected" @endif>鍋</option>
+                                <option value="4" @if($tool =='4') selected="selected" @endif>フライパン</option>
+                                <option value="5" @if($tool =='5') selected="selected" @endif>トースター</option>
+                                <option value="6" @if($tool =='6') selected="selected" @endif>鉄板</option>
                               </select>
                         </label>
                     </div>
 
                     <div class="form-group row">
                         <label class="cat">カテゴリ3 キーワード
-                            　<select name="category3" id="category3">
-                               <option value="">----選択してください----</option>
-                               <option value="1">お手軽</option>
-                               <option value="2">作り置き</option>
-                               <option value="3">低糖質・高タンパク</option>
-                               <option value="4">節約</option>
+                            　<select name="keyword" id="keyword">
+                                <?php $keyword = old('keyword' , $recipe_form->keyword); ?>
+                                <option value="">----選択してください----</option>
+                                <option value="1" @if($keyword =='1') selected="selected" @endif>お手軽</option>
+                                <option value="2" @if($keyword =='2') selected="selected" @endif>作り置き</option>
+                                <option value="3" @if($keyword =='3') selected="selected" @endif>低糖質・高タンパク</option>
+                                <option value="4" @if($keyword =='4') selected="selected" @endif>節約</option>
                         　　　　{{--@foreach ($keys as $key)
                         　　　　<option value="{{$key->id}}">{{ $key->keyname }}</option>
                         　　　　　@endforeach--}}
@@ -69,11 +72,11 @@
 
                     <div class="form-group row">
                         <label class="menu">メニュー名
-                            <input type="text" name="menu" size="50" value="{{ old('menu') }}"></label>
+                            <input type="text" name="menu" size="50" value="{{ old('menu', $recipe_form->menu) }}"></label>
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu" >材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
+                        <label class="menu">材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
                         <div class="col-md-10">
 						 <table class="foodtable" id="food_table">
 							<thead class="foodhead">
@@ -84,6 +87,7 @@
 								</tr>
 							</thead>
                             <tbody class="foodbody">
+                                @foreach ($foods as $food)
                                 <tr>
                                    <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
                                    <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
@@ -101,6 +105,7 @@
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
+                                @endforeach
                                 <tr>
                                    <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
                                    <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
@@ -161,7 +166,7 @@
                     <div class="form-group row">
                         <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{ old('howto') }}"></textarea></label>
+                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{ old('howto', $recipe_form->how) }}"></textarea></label>
                         </div>
                     </div>
 
@@ -169,10 +174,35 @@
                         <label class="cat">画像
                             <input type="file" class="form-control-file" name="image"></label>
                     </div>
-                    
-                    {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="追加">
+                            <div class="form-text text-info">
+                                設定中: {{ $recipe_form->image_path }}
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
+                                </label>
+                            </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-10">
+                        <input type="hidden" name="id" value="{{ $recipe_form->id }}">
+                            {{ csrf_field() }}
+                        <input type="submit" class="btn btn-primary" value="更新">
+                        </div>
+                    </div>
                 </form>
+                <div class="row mt-5">
+                    <div class="col-md-4 mx-auto">
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                            @if ($recipe_form->recipe_histories != NULL)
+                                @foreach ($recipe_form->recipe_histories as $resipe_history)
+                                    <li class="list-group-item">{{ $recipe_history->edited_at }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

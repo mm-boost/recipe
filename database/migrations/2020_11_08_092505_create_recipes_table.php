@@ -15,9 +15,9 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) { //ここのテーブル名の記述は重要。間違えば、間違った名前がデータベースに記述される
             $table->bigIncrements('id');
-            $table->integer('category1_id');
-            $table->integer('category2_id');  
-            $table->integer('category3_id'); 
+            $table->integer('category_id');
+            $table->integer('tool_id');  
+            $table->integer('keyword_id'); 
             $table->string('menu');   //メニュー名を保存するカラム
             $table->string('foodname');  //材料名を保存するカラム
             $table->string('foodnum')->nullable(); //数量を保存するカラム

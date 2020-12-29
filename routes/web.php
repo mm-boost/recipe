@@ -24,7 +24,7 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::get('/edit', 'Admin\RecipeController@edit');
     Route::post('/edit', 'Admin\RecipeController@update');
     Route::get('/delete', 'Admin\RecipeController@delete');
-    Route::get('/', 'Admin\RecipeController@contents');
+    Route::get('/display', 'Admin\RecipeController@display');
     Route::get('/index', 'Admin\RecipeController@index');
 });
 
