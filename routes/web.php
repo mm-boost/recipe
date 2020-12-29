@@ -26,6 +26,8 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::get('/delete', 'Admin\RecipeController@delete');
     Route::get('/display', 'Admin\RecipeController@display');
     Route::get('/index', 'Admin\RecipeController@index');
+    Route::get('/category', 'Admin\RecipeController@category');
+    Route::get('/category/category1', 'Admin\RecipeController@category1');
 });
 
 //買い物メモ

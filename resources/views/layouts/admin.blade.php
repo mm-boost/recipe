@@ -45,7 +45,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{!! action('Admin\RecipeController@index'); !!}">レシピ一覧<span class="caret"></span></a>
 			                <ul>
-				                 <li><a class="nav-link" href="#">ジャンル</a></li>
+				                 <li><a class="nav-link" href="{!! action('Admin\RecipeController@category'); !!}">ジャンル</a></li>
 				                 <li><a class="nav-link" href="#">調理法</a></li>
 				                 <li><a class="nav-link" href="#">キーワード</a></li>
 			                </ul>

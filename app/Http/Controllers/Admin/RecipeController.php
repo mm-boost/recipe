@@ -150,5 +150,25 @@ class RecipeController extends Controller
         }
         return view('recipe/index',['posts' => $posts,'cond_menu' => $cond_menu]);
     }
+    public function category(Request $request)
+    {
+        $cond_menu = $request->menu;
+        if ($cond_menu !='') {
+            $posts = Recipe::where('title',$cond_menu)->get();
+        } else {
+            $posts = Recipe::all();
+        }
+        return view('recipe/category',['posts' => $posts,'cond_menu' => $cond_menu]);
+    }
+    public function category1(Request $request)
+    {
+        $cond_menu = $request->menu;
+        if ($cond_menu !='') {
+            $posts = Recipe::where('title',$cond_menu)->get();
+        } else {
+            $posts = Recipe::all();
+        }
+        return view('recipe/category/category1',['posts' => $posts,'cond_menu' => $cond_menu]);
+    }
 
-  }
+}  
