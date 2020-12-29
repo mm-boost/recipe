@@ -33,18 +33,22 @@ class RecipeController extends Controller
         $recipe = new Recipe;
         $form = $request->all();
 
-        $id = $request->input('id');
-        $category = Category::find($id);
+        //$id = $request->input('id');
+        //$category = Category::find($id);
 
         $category = Category::find($form['category']);
         //dd($form['category']);
-
         $tool = Tool::find($form['tool']);
         $keyword = Keyword::find($form['keyword']);
-        $foodname = Food::find($form['foodname']);
-        $foodnum = Food::find($form['foodnum']);
-        $unit = Food::find($form['unit']);
+        //$foodname = Food::find($form['foodname']);
+        //$foodnum = Food::find($form['foodnum']);
+        //$unit = Food::find($form['unit']);
 
+        //foodモデル（１対多）の設定
+        $foods = Recipe::find(1)->foods;
+         foreach ($foods as $food) {} 
+        $food = Recipe::find(1)->foods()->where('foodname', 'foodnum', 'unit')->first();
+        
         // formに画像があれば、保存する
       if (isset($form['image'])) {
         $path = $request->file('image')->store('public/image');
@@ -67,9 +71,9 @@ class RecipeController extends Controller
         $recipe->category_id=$category->id;
         $recipe->tool_id=$tool->id;
         $recipe->keyword_id=$keyword->id;
-        $recipe->foodname_id=$foodname->id;
-        $recipe->foodnum_id=$foodnum->id;
-        $recipe->unit_id=$unit->id;
+        //$recipe->foodname_id=$foodname->id;
+        //$recipe->foodnum_id=$foodnum->id;
+        //$recipe->unit_id=$unit->id;
         $recipe->save();
         
         return redirect('recipe/display');

@@ -23,4 +23,9 @@ class Recipe extends Model
     {
         return $this->hasMany('App\RecipeHistory');
     }
+    // Foodモデルと関連モデルの紐付けを行う
+    public function foods()
+    {
+        return $this->hasMany('App\Food');
+    }
 }
