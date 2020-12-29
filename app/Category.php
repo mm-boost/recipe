@@ -10,5 +10,5 @@ class Category extends Model
     public static $rules = array(
         'category' => 'required',
     );
-    protected $table = 'categorys';
+    protected $table = 'categories';
 }

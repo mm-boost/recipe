@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // 各テーブルへのデータの流し込みを呼び出す
         // $this->call(UsersTableSeeder::class);
+        $this->call('CategoriesTableSeeder::class');
+        $this->call('ToolsTableSeeder::class');
+        $this->call('KeywordsTableSeeder::class');
+        $this->call('FoodsTableSeeder::class');
     }
 }

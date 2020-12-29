@@ -33,10 +33,17 @@ class RecipeController extends Controller
         $recipe = new Recipe;
         $form = $request->all();
 
+        $id = $request->input('id');
+        $category = Category::find($id);
+
         $category = Category::find($form['category']);
+        //dd($form['category']);
+
         $tool = Tool::find($form['tool']);
         $keyword = Keyword::find($form['keyword']);
-        $food = Food::find($form['food']);
+        $foodname = Food::find($form['foodname']);
+        $foodnum = Food::find($form['foodnum']);
+        $unit = Food::find($form['unit']);
 
         // formに画像があれば、保存する
       if (isset($form['image'])) {
@@ -51,14 +58,18 @@ class RecipeController extends Controller
         unset($form['category']);
         unset($form['tool']);
         unset($form['keyword']);
-        unset($form['food']);
+        unset($form['foodname']);
+        unset($form['foodnum']);
+        unset($form['unit']);
 
         //データベースに保存する
         $recipe->fill($form);
         $recipe->category_id=$category->id;
         $recipe->tool_id=$tool->id;
         $recipe->keyword_id=$keyword->id;
-        $recipe->food_id=$food->id;
+        $recipe->foodname_id=$foodname->id;
+        $recipe->foodnum_id=$foodnum->id;
+        $recipe->unit_id=$unit->id;
         $recipe->save();
         
         return redirect('recipe/display');
@@ -77,6 +88,7 @@ class RecipeController extends Controller
         $tools = Tool::all();
         $keywords = Keyword::all();
         $foods = Food::all();
+        
         return view('recipe/edit',['recipe_form' => $recipe,"categorys" => $categorys,"tools" => $tools,"keywords" => $keywords,"foods" => $foods]);
     }
 
