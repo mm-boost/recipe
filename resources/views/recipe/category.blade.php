@@ -7,18 +7,24 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピリスト</h2>
-                <form action="{{ action('Admin\RecipeController@category') }}" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-4">
                         <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">新規作成</a>
                      　　</div>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="cond_menu" value="{{ $cond_menu }}">
-                    </div>
-                    <div class="col-md-2">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-primary" value="検索">
+                        <form action="{{ action('Admin\RecipeController@category') }}" method="get">
+                            <div class="form-group row">
+                                <label class="col-md-2">メニュー</label>
+                                <div class="col-md-8">
+                                    <input type="text" size="30" name="cond_menu" value="{{ $cond_menu }}">
+                                </div>
+                                <div class="col-md-2">
+                                {{ csrf_field() }}
+                                    <input type="submit" class="btn btn-primary" value="検索">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 
                     @if (count($errors) > 0)
@@ -63,9 +69,8 @@
                         </ul>
                     </div>
             
-            {{ csrf_field() }}
+                {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
-                </form>
             </div>
         </div>
     </div>
