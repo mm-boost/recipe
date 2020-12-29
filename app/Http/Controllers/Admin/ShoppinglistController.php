@@ -22,8 +22,8 @@ class ShoppinglistController extends Controller
     {
         //validationを行う
         $this->validate($request, Shoppinglist::$rules);
-
         $form = $request->all();
+        
         $shop = Shop::find($form['retailer']);
         //店舗名設定　もしショップモデルが空なら、購入先IDを取得してセーブする
         if (is_null($shop)){
