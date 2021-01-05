@@ -19,7 +19,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">ニックネーム(nickname)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="nickname" value="{{ old('name') }}">
+                            <input type="text" class="form-control" size="30" name="nickname" value="{{ old('nickname') }}">
                         </div>
                     </div>
                      {{--  性別選択欄　ラジオボタン  --}}
@@ -47,6 +47,28 @@
                               </select>
                         </div>
                     </div>
+
+                     {{--  BMI計算 --}}
+                    <div class="form-group row">
+                        <label class="col-md-2">身長(height)</label>
+                        <div class="col-md-10">
+                            <input type="text" size="10" id="height" name="height" value="{{ old('height') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">体重(weight)</label>
+                        <div class="col-md-10">
+                            <input type="text" size="10" id="weight" name="weight" value="{{ old('weight') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">BMI計算(bmi)</label>
+                        <div class="col-md-10">
+                            <input type="text" size="10" id="bmi" name="bmi" value="{{ old('bmi') }}">
+                            <input type="button" value="BMI計算">
+                        </div>
+                    </div>
+
                      {{--  目標選択　ラジオボタン  --}}
                     <div class="form-group row">
                         <label class="col-md-2">目標(aim)</label>

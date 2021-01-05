@@ -31,12 +31,20 @@ class RecipeController extends Controller
     {
         //validationを行う
         $this->validate($request, Recipe::$rules);
+        // 配列のvalidation 記述方法：Validator::make('値の配列', '検証ルールの配列');
+        $validation = Food::make($request->all(), [
+            'foodname' => 'required',
+            'foodnum' => 'integer',
+            'unit' => 'required',
+            ]);
+
         //$foodnames = $form['foodname'];
         //$foodnums=$form['foodnum'];
         //$units = $form['unit'];
 
 try {
-        // DB transaction begin
+        // DB transaction 始める
+        DB::beginTransaction();
 
         $recipe = new Recipe;
         $form = $request->all();
@@ -107,15 +115,19 @@ try {
         } 
         // db commit
 
-// is develop
+        // is develop
 exit;
         //$foods = Recipe::find("1")->foods;  
         //$food = Recipe::find(1)->foods()->where('foodname', 'foodnum', 'unit')->first();
 
         return redirect('recipe/index');
-
+    
+        // レシピの材料（food）登録処理
+        $food = Recipe::find()->foods()->where('foodname', 'foodnum', 'unit')->first();
+        DB::commit();    
     } catch (Exception $e) {
         // DB rollback
+        DB::rollBack();
         
         echo '捕捉した例外: ',  $e->getMessage(), "\n";
 
