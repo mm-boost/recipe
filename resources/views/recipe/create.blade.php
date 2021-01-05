@@ -85,10 +85,10 @@
 							</thead>
                             <tbody class="foodbody">
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -102,10 +102,10 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -119,10 +119,10 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -136,10 +136,10 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>

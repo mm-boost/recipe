@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu">材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
+                        <label class="menu" >材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
                         <div class="col-md-10">
 						 <table class="foodtable" id="food_table">
 							<thead class="foodhead">
@@ -87,30 +87,11 @@
 								</tr>
 							</thead>
                             <tbody class="foodbody">
-                                @foreach ($foods as $food)
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
-                                        <option value="">単位</option>
-                                        <option value="1">cc</option>
-                                        <option value="2">ml</option>
-                                        <option value="3">g</option>
-                                        <option value="4">本</option>
-                                        <option value="5">個</option>
-                                        <option value="6">枚</option>
-                                        <option value="7">房</option>
-                                        <option value="8">適量</option>
-                        　　　　         </select></td>
-                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
-                                </tr>
-                                @endforeach
-                                <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
-                                   <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -124,10 +105,10 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -141,10 +122,10 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
-                                        <select name="unit">
+                                        <select name="unit[]">
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -157,8 +138,25 @@
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
-                                </tbody>
-                        </table>
+                                <tr>
+                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
+                                   <td class="foodunit">
+                                        <select name="unit[]">
+                                        <option value="">単位</option>
+                                        <option value="1">cc</option>
+                                        <option value="2">ml</option>
+                                        <option value="3">g</option>
+                                        <option value="4">本</option>
+                                        <option value="5">個</option>
+                                        <option value="6">枚</option>
+                                        <option value="7">房</option>
+                                        <option value="8">適量</option>
+                        　　　　         </select></td>
+                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
+                                </tr>
+                            </tbody>
+                        　</table>
                              <button type="button" id="food_cre">追加</button></label>
                         </div>
                     </div>                     

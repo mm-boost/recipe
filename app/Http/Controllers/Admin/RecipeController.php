@@ -11,6 +11,7 @@ use App\Keyword;
 use App\Food;
 use App\RecipeHistory;
 use Carbon\Carbon;
+use Exception;
 
 class RecipeController extends Controller
 {
@@ -30,6 +31,13 @@ class RecipeController extends Controller
     {
         //validationを行う
         $this->validate($request, Recipe::$rules);
+        //$foodnames = $form['foodname'];
+        //$foodnums=$form['foodnum'];
+        //$units = $form['unit'];
+
+try {
+        // DB transaction begin
+
         $recipe = new Recipe;
         $form = $request->all();
 
@@ -37,26 +45,27 @@ class RecipeController extends Controller
         //$category = Category::find($id);
 
         $category = Category::find($form['category']);
+        //dd($category);
         //dd($form['category']);
         $tool = Tool::find($form['tool']);
         $keyword = Keyword::find($form['keyword']);
         //$foodname = Food::find($form['foodname']);
         //$foodnum = Food::find($form['foodnum']);
         //$unit = Food::find($form['unit']);
-
-        //foodモデル（１対多）の設定
-        $foods = Recipe::find(1)->foods;
-         foreach ($foods as $food) {} 
-        $food = Recipe::find(1)->foods()->where('foodname', 'foodnum', 'unit')->first();
         
-        // formに画像があれば、保存する
-      if (isset($form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $recipe->image_path = basename($path);
-      } else {
-          $recipe->image_path = null;
-      }
-        //フォームから送信されてきた_tokenを削除する
+    // formに画像があれば、保存する
+        if (isset($form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $recipe->image_path = basename($path);
+        } else {
+            $recipe->image_path = null;
+        }
+      //unsetの前に配列のカラムを一時的に分ける
+        $foodnames = $form['foodname'];
+        $foodnums=$form['foodnum'];
+        $units = $form['unit'];
+
+      //フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
         unset($form['image']);
         unset($form['category']);
@@ -75,9 +84,44 @@ class RecipeController extends Controller
         //$recipe->foodnum_id=$foodnum->id;
         //$recipe->unit_id=$unit->id;
         $recipe->save();
+   
+        //foodモデル（１対多）の設定
+        //セーブしたidをすぐに取り出す
+        $recipe_id = $recipe->id;
         
-        return redirect('recipe/display');
+        foreach ($foodnames as $key => $foodname) {
+            if (null !== $foodname) {
+                var_dump($foodnames[$key]);
+                var_dump($foodnums[$key]);
+                var_dump($units[$key]);
+
+                $food = new Food();
+                $food->recipe_id = 	$recipe_id;
+                $food->foodname = $foodnames[$key];
+                $food->foodnum = $foodnums[$key];
+                $food->unit = $units[$key];
+
+                // foos DB SAVE
+                $food->save();
+            }
+        } 
+        // db commit
+
+// is develop
+exit;
+        //$foods = Recipe::find("1")->foods;  
+        //$food = Recipe::find(1)->foods()->where('foodname', 'foodnum', 'unit')->first();
+
+        return redirect('recipe/index');
+
+    } catch (Exception $e) {
+        // DB rollback
+        
+        echo '捕捉した例外: ',  $e->getMessage(), "\n";
+
+        // redirect -> erroe message エラー処理
     }
+}
     
     public function edit(Request $request)
     {
