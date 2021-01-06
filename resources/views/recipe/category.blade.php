@@ -34,40 +34,16 @@
                             @endforeach
                         </ul>
                     @endif
+
+                    @foreach($categories as $category)
                     <div class="category">
                         <ul>
                             <li class="categorypage">
-                                <a class=categorylink href="{{ action('Admin\RecipeController@list', ['id' => 1]) }}">和食</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe2.html">洋食</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe3.html">中華</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe4.html">肉料理</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe5.html">野菜料理</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe1.html">デザート</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe2.html">ドリンク</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe3.html">アジア料理</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe4.html">ヨーロッパ料理</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe5.html">その他</a>
+                            <a class=categorylink href="{{ route('recipe.category.list', ['id' => 1]) }}" >{{ $category->category }}</a>
                             </li>
                         </ul>
                     </div>
+                    @endforeach    
             
                 {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">

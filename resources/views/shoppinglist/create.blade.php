@@ -33,14 +33,14 @@
                     <div class="form-group row">
                         <label class="col-md-2">商品名</label>
                         <div class="col-md-10">
-                            <input type="text" name="productname" size="25" value="{{ old('productname') }}"></input>
+                            <input type="text" name="productname" size="25" value="{{ old('productname') }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" id="amount" name="amount" size="10" value="{{ old('amount') }}" onkeyup="inputCheck()"></input>
+                            <input type="text" id="amount" name="amount" size="10" value="{{ old('amount') }}" onkeyup="inputCheck()">
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@
 　　　　　　　　　　　　<div class="form-group row">
                         <label class="col-md-2">合計金額</label>
                         <div class="col-md-10">
-                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal') }}"></input>
+                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal') }}">
                         </div>
                     </div>
 

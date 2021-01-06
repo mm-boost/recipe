@@ -29,7 +29,11 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::get('/category', 'Admin\RecipeController@category');
     Route::get('/tool', 'Admin\RecipeController@tool');
     Route::get('/keyword', 'Admin\RecipeController@keyword');
-    Route::get('/list/{id}', 'Admin\RecipeController@list')->name('recipe.list');
+});
+Route::group(['prefix' => 'recipe'], function($id) {
+    Route::get('/category/list/{id}', 'Admin\RecipeController@list')->name('recipe.category.list');
+    Route::get('/tool/list/{id}', 'Admin\RecipeController@list')->name('recipe.tool.list');
+    Route::get('/keyword/list/{id}', 'Admin\RecipeController@list')->name('recipe.keyword.list');
 });
 
 //買い物メモ

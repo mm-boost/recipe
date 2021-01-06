@@ -92,7 +92,7 @@
                                     <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
                                     <td class="foodunit">
                                         <select name="unit[]">
-                                        <?php $keyword = old('unit'); ?>
+                                        <?php $unit = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -110,7 +110,7 @@
                                     <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
                                     <td class="foodunit">
                                         <select name="unit[]">
-                                        <?php $keyword = old('unit'); ?>
+                                        <?php $unit = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -128,7 +128,7 @@
                                     <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
                                     <td class="foodunit">
                                         <select name="unit[]">
-                                        <?php $keyword = old('unit'); ?>
+                                        <?php $unit = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -146,7 +146,7 @@
                                     <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
                                     <td class="foodunit">
                                         <select name="unit[]">
-                                        <?php $keyword = old('unit'); ?>
+                                        <?php $unit = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>

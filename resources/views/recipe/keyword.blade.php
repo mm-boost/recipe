@@ -34,25 +34,17 @@
                             @endforeach
                         </ul>
                     @endif
+
+                    @foreach($keywords as $keyword)
                     <div class="category">
                         <ul>
                             <li class="categorypage">
-                            <a class=categorylink href="{{ action('Admin\RecipeController@list', ['id' => 1]) }}" >お手軽</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe3.html">作り置き</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe4.html">低糖質・高タンパク</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe5.html">節約</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe1.html"></a>
+                            <a class=categorylink href="{{ route('recipe.keyword.list', ['id' => 1]) }}">{{ $keyword->keyword }}</a>
                             </li>
                         </ul>
                     </div>
+                    @endforeach    
+
             
                 {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">

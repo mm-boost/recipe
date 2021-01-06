@@ -34,28 +34,16 @@
                             @endforeach
                         </ul>
                     @endif
+
+                    @foreach($tools as $tool)
                     <div class="category">
                         <ul>
                             <li class="categorypage">
-                                <a class=categorylink href="./resipe2.html">炊飯器</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe2.html">電子レンジ</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe3.html">鍋</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe4.html">フライパン</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe5.html">トースター</a>
-                            </li>
-                            <li class="categorypage">
-                                <a class=categorylink href="./resipe1.html">鉄板</a>
+                            <a class=categorylink href="{{ route('recipe.tool.list', ['id' => 1]) }}" >{{ $tool->tool }}</a>
                             </li>
                         </ul>
                     </div>
+                    @endforeach    
             
                 {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">

@@ -10,7 +10,8 @@ class Recipe extends Model
 
     //Validation設定を行う　必須項目設定
     public static $rules = array(
-        'menu' => 'required',
+        'menu' => 'required|string|max:20',
+        'howto' => 'max:300',
     );
 
     //$fillableで複数代入指定　更新しても良い項目を指定する

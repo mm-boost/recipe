@@ -33,9 +33,9 @@ class RecipeController extends Controller
         $this->validate($request, Recipe::$rules);
         // 配列のvalidation 
         $validatedData = $request->validate([
-            'foodname' => 'required',
-            'foodnum' => 'required',
-            'unit' => 'required',
+                'foodname' => 'required|string|max:20',
+                'foodnum' => 'required|regex:/^[!-~]+$/|max:10',
+                'unit' => 'required',
             ]);
 
 try {
@@ -108,7 +108,7 @@ try {
         DB::commit();    
 
         // is develop
-exit;
+//exit;
          
         return redirect('recipe/index');
     
@@ -215,43 +215,52 @@ exit;
 
     public function category(Request $request)
     {
+        $categories = Category::all();   // Eloquent"category"で全データ取得
         $cond_menu = $request->menu;
         if ($cond_menu !='') {
             $posts = Recipe::where('title',$cond_menu)->get();
         } else {
             $posts = Recipe::all();
         }
-        return view('recipe/category',['posts' => $posts,'cond_menu' => $cond_menu]);
+        return view('recipe/category',["categories" => $categories,'posts' => $posts,'cond_menu' => $cond_menu]);
     }
 
     public function tool(Request $request)
     {
+        $tools = Tool::all();   // Eloquent"tool"で全データ取得
         $cond_menu = $request->menu;
         if ($cond_menu !='') {
             $posts = Recipe::where('title',$cond_menu)->get();
         } else {
             $posts = Recipe::all();
         }
-        return view('recipe/tool',['posts' => $posts,'cond_menu' => $cond_menu]);
+        return view('recipe/tool',["tools" => $tools,'posts' => $posts,'cond_menu' => $cond_menu]);
     }
 
     public function keyword(Request $request)
-    {
+    {   
+        $keywords = Keyword::all();   // Eloquent"keyword"で全データ取得
         $cond_menu = $request->menu;
         if ($cond_menu !='') {
             $posts = Recipe::where('title',$cond_menu)->get();
         } else {
             $posts = Recipe::all();
         }
-        return view('recipe/keyword',['posts' => $posts,'cond_menu' => $cond_menu]);
+        return view('recipe/keyword',["keywords" => $keywords,'posts' => $posts,'cond_menu' => $cond_menu]);
     }
     
     public function list(Request $request,$id) //ルートで設定したidを取得
     {
         var_dump($id);
         exit;
-        $users = DB::table('users')
-                ->whereColumn('updated_id', '=', 'created_at')
+        $categories = DB::table('categories')
+                ->whereColumn('updated_id', '=', 'created_id')
+                ->get();
+        $tools = DB::table('tools')
+                ->whereColumn('updated_id', '=', 'created_id')
+                ->get();
+        $keywords = DB::table('keywords')
+                ->whereColumn('updated_id', '=', 'created_id')
                 ->get();
 
         //return view('recipe/',['posts' => $posts]);
