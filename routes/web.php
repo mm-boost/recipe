@@ -27,6 +27,8 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::get('/display', 'Admin\RecipeController@display');
     Route::get('/index', 'Admin\RecipeController@index');
     Route::get('/category', 'Admin\RecipeController@category');
+    Route::get('/tool', 'Admin\RecipeController@tool');
+    Route::get('/keyword', 'Admin\RecipeController@keyword');
     Route::get('/category/category1', 'Admin\RecipeController@category1');
 });
 

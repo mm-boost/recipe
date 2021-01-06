@@ -93,7 +93,8 @@ try {
         //foodモデル（１対多）の設定
         //セーブしたidをすぐに取り出す
         $recipe_id = $recipe->id;
-        
+
+        //recipeに保存したfoodのidをfoodテーブルへ移す
         foreach ($foodnames as $key => $foodname) {
             if (null !== $foodname) {
                 var_dump($foodnames[$key]);
@@ -110,25 +111,21 @@ try {
                 $food->save();
             }
         } 
-        // レシピの材料（food）登録処理
-        //$food = Recipe::find()->foods()->where('foodname', 'foodnum', 'unit')->first();
-
-        // db commit
+        // db commit　データベースの更新内容を確定。
         DB::commit('recipes');    
 
         // is develop
-exit;
+//exit;
          
         return redirect('recipe/index');
     
     } catch (Exception $e) {
-        // DB rollback
+        // db rollback　エラーが発生したら処理を取り消し。
         DB::rollBack('recipes');
-        echo '捕捉した例外: ',  $e->getMessage(), "\n";
-
         // redirect -> erroe message エラー処理
+        echo '捕捉した例外: ',  $e->getMessage(), "\n";
     }
-}
+    }
     
     public function edit(Request $request)
     {
@@ -193,6 +190,7 @@ exit;
 
         return redirect('recipe/edit');
     }
+
     public function delete(Request $request)
     {
         $recipe = Recipe::find($request->id);
@@ -207,6 +205,7 @@ exit;
 
         return view('recipe/display',['posts' => $posts]);
     }
+
     public function index(Request $request)
     {
         $cond_menu = $request->menu;
@@ -217,6 +216,7 @@ exit;
         }
         return view('recipe/index',['posts' => $posts,'cond_menu' => $cond_menu]);
     }
+
     public function category(Request $request)
     {
         $cond_menu = $request->menu;
@@ -227,6 +227,29 @@ exit;
         }
         return view('recipe/category',['posts' => $posts,'cond_menu' => $cond_menu]);
     }
+
+    public function tool(Request $request)
+    {
+        $cond_menu = $request->menu;
+        if ($cond_menu !='') {
+            $posts = Recipe::where('title',$cond_menu)->get();
+        } else {
+            $posts = Recipe::all();
+        }
+        return view('recipe/tool',['posts' => $posts,'cond_menu' => $cond_menu]);
+    }
+
+    public function keyword(Request $request)
+    {
+        $cond_menu = $request->menu;
+        if ($cond_menu !='') {
+            $posts = Recipe::where('title',$cond_menu)->get();
+        } else {
+            $posts = Recipe::all();
+        }
+        return view('recipe/keyword',['posts' => $posts,'cond_menu' => $cond_menu]);
+    }
+    
     public function category1(Request $request)
     {
         $cond_menu = $request->menu;
