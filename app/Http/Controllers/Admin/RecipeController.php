@@ -12,7 +12,7 @@ use App\Food;
 use App\RecipeHistory;
 use Carbon\Carbon;
 use Exception;
-
+use Illuminate\Support\Facades\DB;
 class RecipeController extends Controller
 {
     public function form()
@@ -31,8 +31,8 @@ class RecipeController extends Controller
     {
         //validationを行う
         $this->validate($request, Recipe::$rules);
-        // 配列のvalidation 記述方法：Validator::make('値の配列', '検証ルールの配列');
-        $validator = Food::make($request->all(), [           
+        // 配列のvalidation 
+        $validatedData = $request->validate([
             'foodname' => 'required',
             'foodnum' => 'required',
             'unit' => 'required',
@@ -48,9 +48,6 @@ try {
 
         $recipe = new Recipe;
         $form = $request->all();
-
-        //$id = $request->input('id');
-        //$category = Category::find($id);
 
         $category = Category::find($form['category']);
         //dd($category);
@@ -68,7 +65,7 @@ try {
         } else {
             $recipe->image_path = null;
         }
-      //unsetの前に配列のカラムを一時的に分ける
+      //unset()の前に配列のカラムを一時的に分ける
         $foodnames = $form['foodname'];
         $foodnums=$form['foodnum'];
         $units = $form['unit'];
@@ -114,7 +111,7 @@ try {
             }
         } 
         // レシピの材料（food）登録処理
-        $food = Recipe::find()->foods()->where('foodname', 'foodnum', 'unit')->first();
+        //$food = Recipe::find()->foods()->where('foodname', 'foodnum', 'unit')->first();
 
         // db commit
         DB::commit('recipes');    

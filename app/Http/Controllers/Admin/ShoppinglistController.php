@@ -61,11 +61,11 @@ class ShoppinglistController extends Controller
     public function edit(Request $request)
     {
         $shoppinglist = Shoppinglist::find($request->id);
-        Log::debug('ショッピングリスト取得結果', compact('shoppinglist'));
+        //Log::debug('ショッピングリスト取得結果', compact('shoppinglist'));
         
         if(empty($shoppinglist)) {
 
-            Log::debug('リストが取得できなかった為「404」を返す');
+            //Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
         }
         $shops = Shop::all();
