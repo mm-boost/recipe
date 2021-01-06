@@ -9,7 +9,7 @@
                 <h2>レシピリスト</h2>
                     <div class="row">
                         <div class="col-md-4">
-                        <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+                        <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">レシピ作成</a>
                      　　</div>
                     </div>
                     <div class="col-md-8">

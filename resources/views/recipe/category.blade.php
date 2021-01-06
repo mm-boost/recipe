@@ -9,7 +9,7 @@
                 <h2>レシピリスト</h2>
                     <div class="row">
                         <div class="col-md-4">
-                        <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+                        <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">レシピ作成</a>
                      　　</div>
                     </div>
                     <div class="col-md-8">
@@ -37,7 +37,7 @@
                     <div class="category">
                         <ul>
                             <li class="categorypage">
-                                <a class=categorylink href="{{ action('Admin\RecipeController@category1') }}">和食</a>
+                                <a class=categorylink href="{{ action('Admin\RecipeController@list', ['id' => 1]) }}">和食</a>
                             </li>
                             <li class="categorypage">
                                 <a class=categorylink href="./resipe2.html">洋食</a>

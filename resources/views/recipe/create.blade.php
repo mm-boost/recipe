@@ -4,6 +4,7 @@
 @section('title', 'レシピリスト')
 {{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
@@ -16,10 +17,11 @@
                      @endforeach
                         </ul>
                     @endif
-
+                    
                     <div class="form-group row">
                         <label class="cat">カテゴリ１ 料理のジャンル
                             　<select name="category" id="category">
+                                <?php $category = old('category'); ?>
                                <option value="">----選択してください----</option>
                                <option value="1">和食</option>
                                <option value="2">洋食</option>
@@ -38,6 +40,7 @@
                     <div class="form-group row">
                         <label class="cat">カテゴリ２ 調理法
                             　<select name="tool" id="tool">
+                                <?php $tool = old('tool'); ?>
                                <option value="">----選択してください----</option>
                                <option value="1">炊飯器</option>
                                <option value="2">電子レンジ</option>
@@ -52,6 +55,7 @@
                     <div class="form-group row">
                         <label class="cat">カテゴリ3 キーワード
                             　<select name="keyword" id="keyword">
+                                <?php $keyword = old('keyword'); ?>
                                <option value="">----選択してください----</option>
                                <option value="1">お手軽</option>
                                <option value="2">作り置き</option>
@@ -68,7 +72,7 @@
 
                     <div class="form-group row">
                         <label class="menu">メニュー名
-                            <input type="text" name="menu" size="50" value="{{ old('menu') }}"></label>
+                            <input type="text" name="menu" size="50" value="{{old('menu')}}"></label>
                     </div>
 
                     <div class="form-group row">
@@ -84,10 +88,11 @@
 							</thead>
                             <tbody class="foodbody">
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
-                                   <td class="foodunit">
+                                    <td class="foodname"><input class=foodtex value="{{ old('foodname') }}" name="foodname[]" type="text" placeholder="食材名"></td>
+                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
+                                    <td class="foodunit">
                                         <select name="unit[]">
+                                        <?php $keyword = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -101,10 +106,11 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
-                                   <td class="foodunit">
+                                    <td class="foodname"><input class=foodtex value="{{ old('foodname') }}" name="foodname[]" type="text" placeholder="食材名"></td>
+                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
+                                    <td class="foodunit">
                                         <select name="unit[]">
+                                        <?php $keyword = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -118,10 +124,11 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
-                                   <td class="foodunit">
+                                    <td class="foodname"><input class=foodtex value="{{ old('foodname') }}" name="foodname[]" type="text" placeholder="食材名"></td>
+                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
+                                    <td class="foodunit">
                                         <select name="unit[]">
+                                        <?php $keyword = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -135,10 +142,11 @@
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="" name="foodname[]" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="" name="foodnum[]" type="text" placeholder="数量"></td>
-                                   <td class="foodunit">
+                                    <td class="foodname"><input class=foodtex value="{{ old('foodname') }}" name="foodname[]" type="text" placeholder="食材名"></td>
+                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum') }}" name="foodnum[]" type="text" placeholder="数量"></td>
+                                    <td class="foodunit">
                                         <select name="unit[]">
+                                        <?php $keyword = old('unit'); ?>
                                         <option value="">単位</option>
                                         <option value="1">cc</option>
                                         <option value="2">ml</option>
@@ -160,7 +168,7 @@
                     <div class="form-group row">
                         <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{ old('howto') }}"></textarea></label>
+                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{old('howto')}}"></textarea></label>
                         </div>
                     </div>
 

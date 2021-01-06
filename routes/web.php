@@ -19,7 +19,7 @@ Route::get('/home', 'Admin\HomeController@home');
 
 //レシピ
 Route::group(['prefix' => 'recipe'], function() {
-    Route::get('/create', 'Admin\RecipeController@add');
+    Route::get('/create', 'Admin\RecipeController@add')->name('recipe.create');
     Route::post('/create','Admin\RecipeController@create');
     Route::get('/edit', 'Admin\RecipeController@edit');
     Route::post('/edit', 'Admin\RecipeController@update');
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::get('/category', 'Admin\RecipeController@category');
     Route::get('/tool', 'Admin\RecipeController@tool');
     Route::get('/keyword', 'Admin\RecipeController@keyword');
-    Route::get('/category/category1', 'Admin\RecipeController@category1');
+    Route::get('/list/{id}', 'Admin\RecipeController@list')->name('recipe.list');
 });
 
 //買い物メモ

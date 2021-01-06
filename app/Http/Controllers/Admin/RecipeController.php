@@ -38,13 +38,9 @@ class RecipeController extends Controller
             'unit' => 'required',
             ]);
 
-        //$foodnames = $form['foodname'];
-        //$foodnums=$form['foodnum'];
-        //$units = $form['unit'];
-
 try {
         // DB transaction 始める
-        DB::beginTransaction('recipes');
+        DB::beginTransaction();
 
         $recipe = new Recipe;
         $form = $request->all();
@@ -85,9 +81,6 @@ try {
         $recipe->category_id=$category->id;
         $recipe->tool_id=$tool->id;
         $recipe->keyword_id=$keyword->id;
-        //$recipe->foodname_id=$foodname->id;
-        //$recipe->foodnum_id=$foodnum->id;
-        //$recipe->unit_id=$unit->id;
         $recipe->save();
    
         //foodモデル（１対多）の設定
@@ -112,18 +105,21 @@ try {
             }
         } 
         // db commit　データベースの更新内容を確定。
-        DB::commit('recipes');    
+        DB::commit();    
 
         // is develop
-//exit;
+exit;
          
         return redirect('recipe/index');
     
     } catch (Exception $e) {
         // db rollback　エラーが発生したら処理を取り消し。
-        DB::rollBack('recipes');
+        DB::rollBack();
         // redirect -> erroe message エラー処理
-        echo '捕捉した例外: ',  $e->getMessage(), "\n";
+        //echo '捕捉した例外: ',  $e->getMessage(), "\n";
+        Log::error($e->getMessage());
+        //前の画面に戻る
+        return redirect()->back()->withErrors($validatedData)->withInput($request->all); 
     }
     }
     
@@ -250,15 +246,15 @@ try {
         return view('recipe/keyword',['posts' => $posts,'cond_menu' => $cond_menu]);
     }
     
-    public function category1(Request $request)
+    public function list(Request $request,$id) //ルートで設定したidを取得
     {
-        $cond_menu = $request->menu;
-        if ($cond_menu !='') {
-            $posts = Recipe::where('title',$cond_menu)->get();
-        } else {
-            $posts = Recipe::all();
-        }
-        return view('recipe/category/category1',['posts' => $posts,'cond_menu' => $cond_menu]);
+        var_dump($id);
+        exit;
+        $users = DB::table('users')
+                ->whereColumn('updated_id', '=', 'created_at')
+                ->get();
+
+        //return view('recipe/',['posts' => $posts]);
     }
 
 }  
