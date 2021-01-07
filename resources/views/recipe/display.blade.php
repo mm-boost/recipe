@@ -7,11 +7,6 @@
             <div class="col-md-8 mx-auto">
                 <h2>レシピリスト</h2>
                 <form action="{{ action('Admin\RecipeController@display') }}" method="get">
-                    <div class="row">
-                        <div class="col-md-4">
-                        <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">新規作成</a>
-                     　　</div>
-                    </div>
                  <div class="row">
                     <div class="list-shopping col-md-12 mx-auto">
                     <table class="menutable">

@@ -21,19 +21,17 @@
                     <div class="form-group row">
                         <label class="cat">カテゴリ１ 料理のジャンル
                             　<select name="category" id="category">
-                                <?php $category = old('category' , $recipe_form->category); ?>
-                                <option value="">----選択してください----</option>
-                                <option value="1" @if($category =='1') selected="selected" @endif>和食</option>
-                                <option value="2" @if($category =='2') selected="selected" @endif>洋食</option>
-                                <option value="3" @if($category =='3') selected="selected" @endif>中華</option>
-                                <option value="4" @if($category =='4') selected="selected" @endif>肉料理</option>
-                                <option value="5" @if($category =='5') selected="selected" @endif>野菜料理</option>
-                                <option value="6" @if($category =='6') selected="selected" @endif>デザート</option>
-                                <option value="7" @if($category =='7') selected="selected" @endif>ドリンク</option>
-                                <option value="8" @if($category =='8') selected="selected" @endif>アジア料理</option>
-                                <option value="9" @if($category =='9') selected="selected" @endif>ヨーロッパ料理</option>
-                                <option value="10" @if($category =='10') selected="selected" @endif>その他</option>
-                               </select>
+                                <option value="1" @if(old('category', '')=='1') selected @endif>和食</option>
+                                <option value="2" @if(old('category', '')=='2') selected @endif>洋食</option>
+                                <option value="3" @if(old('category', '')=='3') selected @endif>中華</option>
+                                <option value="4" @if(old('category', '')=='4') selected @endif>肉料理</option>
+                                <option value="5" @if(old('category', '')=='5') selected @endif>野菜料理</option>
+                                <option value="6" @if(old('category', '')=='6') selected @endif>デザート</option>
+                                <option value="7" @if(old('category', '')=='7') selected @endif>ドリンク</option>
+                                <option value="8" @if(old('category', '')=='8') selected @endif>アジア料理</option>
+                                <option value="9" @if(old('category', '')=='9') selected @endif>ヨーロッパ料理</option>
+                                <option value="10" @if(old('category', '')=='10') selected @endif>その他</option>
+                                </select>
                          </label>
                     </div>
 
@@ -87,12 +85,13 @@
 								</tr>
 							</thead>
                             <tbody class="foodbody">
+                                @foreach ($foods as $food)
                                 <tr>
-                                   <td class="foodname"><input class=foodtex value="{{ old('foodname.0', $recipe_form->foodname) }}" name="foodname[]" type="text" placeholder="食材名"></td>
-                                   <td class="foodnum"><input class=food_num value="{{ old('foodnum.0', $recipe_form->foodnum) }}" name="foodnum[]" type="text" placeholder="数量"></td>
+                                   <td class="foodname"><input class=foodtex value="{{ old('foodname.0', $food->foodname) }}" name="foodname[]" type="text" placeholder="食材名"></td>
+                                   <td class="foodnum"><input class=food_num value="{{ old('foodnum.0', $food->foodnum) }}" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
                                         <select name="unit[]">
-                                        <?php $keyword = old('unit.0' , $recipe_form->unit); ?>
+                                        <?php $keyword = old('unit.0' , $food->unit); ?>
                                         <option value="">単位</option>
                                         <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
                                         <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
@@ -105,60 +104,7 @@
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
-                                <tr>
-                                    <td class="foodname"><input class=foodtex value="{{ old('foodname.1', $recipe_form->foodname) }}" name="foodname[]" type="text" placeholder="食材名"></td>
-                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum.1', $recipe_form->foodnum) }}" name="foodnum[]" type="text" placeholder="数量"></td>
-                                    <td class="foodunit">
-                                        <select name="unit[]">
-                                        <?php $keyword = old('unit.1' , $recipe_form->unit); ?>
-                                        <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>房</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>適量</option>
-                        　　　　         </select></td>
-                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="foodname"><input class=foodtex value="{{ old('foodname.2', $recipe_form->foodname) }}" name="foodname[]" type="text" placeholder="食材名"></td>
-                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum.2', $recipe_form->foodnum) }}" name="foodnum[]" type="text" placeholder="数量"></td>
-                                    <td class="foodunit">
-                                        <select name="unit[]">
-                                        <?php $keyword = old('unit.2' , $recipe_form->unit); ?>
-                                        <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>房</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>適量</option>
-                        　　　　         </select></td>
-                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
-                                </tr>
-                                <tr>
-                                    <td class="foodname"><input class=foodtex value="{{ old('foodname.3', $recipe_form->foodname) }}" name="foodname[]" type="text" placeholder="食材名"></td>
-                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum.3', $recipe_form->foodnum) }}" name="foodnum[]" type="text" placeholder="数量"></td>
-                                    <td class="foodunit">
-                                        <select name="unit[]">
-                                        <?php $keyword = old('unit.3' , $recipe_form->unit); ?>
-                                        <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>房</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>適量</option>
-                        　　　　         </select></td>
-                                   <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         　</table>
                              <button type="button" id="food_cre">追加</button></label>

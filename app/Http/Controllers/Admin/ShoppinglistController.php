@@ -112,7 +112,6 @@ try {
 
         //送信されてきたフォームデータを格納する
         $shoppinglist_form = $request->all();
-    
         if ($request->remove == 'true') {
             $shoppinglist_form['image_path'] = null;
         } elseif ($request->file('image')) {

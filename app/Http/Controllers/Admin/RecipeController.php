@@ -109,9 +109,6 @@ try {
         // db commit　データベースの更新内容を確定。
         DB::commit();    
 
-        // is develop
-//exit;
-         
         return redirect('recipe/index');
     
     } catch (Exception $e) {
@@ -128,71 +125,122 @@ try {
     public function edit(Request $request)
     {
         $recipe = Recipe::find($request->id);
-        Log::debug('設定取得結果', compact('recipe'));
-        
-        if(empty($recipe)) {
+        $category = Category::all();
+        $tool = Tool::all();
+        $keyword = Keyword::all();
+        $food = Food::all();
+
+        /*if(empty($recipe)) {
+            Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
-        }
+        }*/
         
-        $categorys = Category::all();
-        $tools = Tool::all();
-        $keywords = Keyword::all();
-        $foods = Food::all();
-        
-        return view('recipe/edit',['recipe_form' => $recipe,"categorys" => $categorys,"tools" => $tools,"keywords" => $keywords,"foods" => $foods]);
+        return view('recipe/edit',['recipe_form' => $recipe,"categorys" => $category,"tools" => $tool,"keywords" => $keyword,"foods" => $food]);
     }
 
     public function update(Request $request)
     {
         //validationをかける
         $this->validate($request, Recipe::$rules);
-        $recipe = Recipe::find($request->id);
+        // 配列のvalidation 
+        $validatedData = $request->validate([
+                'foodname.*' => 'nullable|string|max:20',
+                'foodnum.*' => 'required_with:foodname.*,foodnum.*|max:10',
+                'unit.*' => 'required_with:foodname.*,unit.*',
+            ]);
 
+try {
+        // DB transaction 始める
+        DB::beginTransaction();
+
+        $form = $request->all();
         $category = Category::find($form['category']);
         $tool = Tool::find($form['tool']);
         $keyword = Keyword::find($form['keyword']);
-        $food = Food::find($form['food']);
+
+        // Recipe Modelからデータを受け取る
+        $recipe = Recipe::find($request->id);
 
         //送信されてきたフォームデータを格納する
         $recipe_form = $request->all();
-            if ($request->remove == 'true') {
-                $recipe_form['image_path'] = null;
-            } elseif ($request->file('image')) {
-                $path = $request->file('image')->store('public/image');
-                $recipe_form['image_path'] = basename($path);
-            } else {
-                $recipet_form['image_path'] = $recipe->image_path;
-            }
-
+        if ($request->remove == 'true') {
+            $recipe_form['image_path'] = null;
+        } elseif ($request->file('image')) {
+            $path = $request->file('image')->store('public/image');
+            $recipe_form['image_path'] = basename($path);
+        } else {
+            $recipet_form['image_path'] = $recipe->image_path;
+        }
+              
+        //unset()の前に配列のカラムを一時的に分ける
+        $foodnames = $form['foodname'];
+        $foodnums=$form['foodnum'];
+        $units = $form['unit'];
+      
         //送信されてきたフォームデータを格納する
         $recipe_form = $request->all();
         unset($recipe_form['remove']);
         unset($recipe_form['_token']);
+        unset($recipe_form['image']);
         unset($recipe_form['category']);
         unset($recipe_form['tool']);
         unset($recipe_form['keyword']);
-        unset($recipe_form['food']);
+        unset($recipe_form['foodname']);
+        unset($recipe_form['foodnum']);
+        unset($recipe_form['unit']);
         
         //該当するデータを上書きして保存する
         $recipe->fill($recipe_form);
         $recipe->category_id=$category->id;
         $recipe->tool_id=$tool->id;
         $recipe->keyword_id=$keyword->id;
-        $recipe->food_id=$food->id;
         $recipe->save();
-        
+
+        //foodモデル（１対多）の設定
+        //セーブしたidをすぐに取り出す
+        $recipe_id = $recipe->id;
+
+        //recipeに保存したfoodのidをfoodテーブルへ移す
+        foreach ($foodnames as $key => $foodname) {
+            if (null !== $foodname) {
+                var_dump($foodnames[$key]);
+                var_dump($foodnums[$key]);
+                var_dump($units[$key]);
+
+                $food = new Food();
+                $food->recipe_id = 	$recipe_id;
+                $food->foodname = $foodnames[$key];
+                $food->foodnum = $foodnums[$key];
+                $food->unit = $units[$key];
+
+                // foos DB SAVE
+                $food->save();
+            }
+        } 
+
         $recipe_history = new RecipeHistory;
         $recipe_history->recipe_id = $recipe->id;
         $recipe_history->edited_at = Carbon::now();
         $recipe_history->save();
 
-        return redirect('recipe/edit');
+        // db commit　データベースの更新内容を確定。
+        DB::commit();    
+
+        return redirect()->back()->withInput($request->all);
+        
+    } catch (Exception $e) {
+
+            DB::rollBack();
+            Log::error($e->getMessage());
+            //前の画面に戻る
+            return redirect()->back()->withErrors($validatedData)->withInput($request->all); 
+    }
     }
 
     public function delete(Request $request)
     {
         $recipe = Recipe::find($request->id);
-        $recipe->delete();
+        $recipe->food()->delete();
 
         return redirect()->back();
     }
@@ -253,19 +301,17 @@ try {
     
     public function list($id) //ルートで設定したidを取得
     {
-        $tools = Tool::all(); 
-        $posts = Recipe::all();  
+        $posts = Recipe::all();
         /*$categories = DB::table('categories')
                 ->whereColumn('updated_id', '=', 'created_id')
                 ->get();
         $keywords = DB::table('keywords')
                 ->whereColumn('updated_id', '=', 'created_id')
                 ->get();
-        $tools = DB::table('tools')
-                ->whereColumn('updated_id', '=', 'created_id')
-                ->get();*/
+        $posts = Recipe::where('id', '1')->where('menu', '')
+                ->first();*/
 
-        return view('recipe/tool/list',["tools" => $tools,'posts' => $posts,'id' => $id]);
+        return view('recipe/tool/list',['posts' => $posts,'id' => $id]);
     }
 
 }  
