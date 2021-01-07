@@ -13,6 +13,7 @@ use App\RecipeHistory;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
+
 class RecipeController extends Controller
 {
     public function form()

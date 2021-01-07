@@ -9,6 +9,7 @@ use Log;
 use App\Shop;
 use App\ShoppingHistory;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ShoppinglistController extends Controller
 {
@@ -22,8 +23,13 @@ class ShoppinglistController extends Controller
     {
         //validationを行う
         $this->validate($request, Shoppinglist::$rules);
+try {
+         // DB transaction 始める
+        DB::beginTransaction();
+
+        $shoppinglist = new ShoppingList;
         $form = $request->all();
-        
+        //shopモデル内のフォーム送信された'retailer'(店舗名)を取り出す
         $shop = Shop::find($form['retailer']);
         //店舗名設定　もしショップモデルが空なら、購入先IDを取得してセーブする
         if (is_null($shop)){
@@ -31,7 +37,6 @@ class ShoppinglistController extends Controller
             $shop->name=$form['retailer'];
             $shop->save();
         }
-        $shoppinglist = new ShoppingList;
         //＄関数名内のデータを確認
         //dd($form); 
         
@@ -42,10 +47,10 @@ class ShoppinglistController extends Controller
         } else {
           $shoppinglist->image_path = null;
        }
-        
-        //フォームから送信されてきた_tokenを削除する
+
+        //フォームから送信されてきた不必要なデータ（_token,imageなど）を削除する
+        //リレーション時には、主モデルに余計なデータが保存されないように、削除指定をする        
         unset($form['_token']);
-        // フォームから送信されてきたimageを削除する
         unset($form['image']);
         unset($form['retailer']);
         unset($form['shop']);
@@ -55,17 +60,32 @@ class ShoppinglistController extends Controller
         $shoppinglist->shop_id=$shop->id;
         $shoppinglist->save();
 
+        // db commit　データベースの更新内容を確定。
+        DB::commit(); 
+
         return redirect('shoppinglist/index');
+
+    } catch (Exception $e) {
+        // db rollback　エラーが発生したら処理を取り消し。
+        DB::rollBack();
+        //echo '捕捉した例外: ',  $e->getMessage(), "\n";
+        Log::error($e->getMessage());
+        //入力内容を保持したまま前の画面に戻る
+        return redirect()->back()->withErrors()->withInput($request->all); 
+    }
     }
 
     public function edit(Request $request)
     {
+        // Shoppinglist Modelからデータを受け取る
         $shoppinglist = Shoppinglist::find($request->id);
         //Log::debug('ショッピングリスト取得結果', compact('shoppinglist'));
         
+        //emptyは変数の中身を確認する関数
+        //もし$shoppinglistが空ならエラーを返す
         if(empty($shoppinglist)) {
 
-            //Log::debug('リストが取得できなかった為「404」を返す');
+            Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
         }
         $shops = Shop::all();
@@ -76,6 +96,9 @@ class ShoppinglistController extends Controller
     {
         //validationをかける
         $this->validate($request, Shoppinglist::$rules);
+
+ try {
+        DB::beginTransaction();
         $form = $request->all();
         $shop = Shop::find($form['retailer']);
         //店舗名設定　もしショップモデルが空なら、購入先IDを取得してセーブする
@@ -89,6 +112,7 @@ class ShoppinglistController extends Controller
 
         //送信されてきたフォームデータを格納する
         $shoppinglist_form = $request->all();
+    
         if ($request->remove == 'true') {
             $shoppinglist_form['image_path'] = null;
         } elseif ($request->file('image')) {
@@ -98,12 +122,12 @@ class ShoppinglistController extends Controller
             $shoppinglist_form['image_path'] = $shoppinglist->image_path;
         }
 
+        //不必要なデータを削除
         unset($shoppinglist_form['retailer']);
         unset($shoppinglist_form['shop']);
         unset($shoppinglist_form['image']);
         unset($shoppinglist_form['remove']);
         unset($shoppinglist_form['_token']);
-        
         
         //該当するデータを上書きして保存する
         $shoppinglist->fill($shoppinglist_form);
@@ -114,8 +138,17 @@ class ShoppinglistController extends Controller
         $shoppinglist_history->shoppinglist_id = $shoppinglist->id;
         $shoppinglist_history->edited_at = Carbon::now();
         $shoppinglist_history->save();
+        DB::commit(); 
 
         return redirect('shoppinglist/index');
+
+    } catch (Exception $e) {
+        DB::rollBack();
+        //echo '捕捉した例外: ',  $e->getMessage(), "\n";
+        Log::error($e->getMessage());
+        //入力内容を保持したまま前の画面に戻る
+        return redirect()->back()->withErrors()->withInput($request->all); 
+    }
     }
 
     public function index(Request $request)
