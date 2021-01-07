@@ -194,7 +194,7 @@ try {
         $recipe = Recipe::find($request->id);
         $recipe->delete();
 
-        return redirect('recipe/display');
+        return redirect()->back();
     }
 
     public function display(Request $request)
@@ -251,20 +251,21 @@ try {
         return view('recipe/keyword',["keywords" => $keywords,'posts' => $posts,'cond_menu' => $cond_menu]);
     }
     
-    public function list(Request $request,$id) //ルートで設定したidを取得
+    public function list($id) //ルートで設定したidを取得
     {
- 
-        $categories = DB::table('categories')
-                ->whereColumn('updated_id', '=', 'created_id')
-                ->get();
-        $tools = DB::table('tools')
+        $tools = Tool::all(); 
+        $posts = Recipe::all();  
+        /*$categories = DB::table('categories')
                 ->whereColumn('updated_id', '=', 'created_id')
                 ->get();
         $keywords = DB::table('keywords')
                 ->whereColumn('updated_id', '=', 'created_id')
                 ->get();
+        $tools = DB::table('tools')
+                ->whereColumn('updated_id', '=', 'created_id')
+                ->get();*/
 
-        //return view('recipe/',['posts' => $posts]);
+        return view('recipe/tool/list',["tools" => $tools,'posts' => $posts,'id' => $id]);
     }
 
 }  
