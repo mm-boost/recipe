@@ -100,7 +100,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">メモ</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="memo" style="width:400px; height:70px;">{{ $shoppinglist_form->memo }}</textarea>
+                            <textarea class="form-control" name="memo" style="width:400px; height:70px;">{{ old('memo', $shoppinglist_form->memo) }}</textarea>
                         </div>
                     </div>
 

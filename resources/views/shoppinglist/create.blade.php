@@ -48,17 +48,18 @@
                         <label class="col-md-2">品数</label>
                         <div class="col-sm-10">
                             　<select name="num" id="num" onchange="inputCheck()">
+                              <?php $num = old('num', ''); ?>
                                <option value="">選択してください</option>
-                               <option value="1">1</option>
-                               <option value="2">2</option>
-                               <option value="3">3</option>
-                               <option value="4">4</option>
-                               <option value="5">5</option>
-                               <option value="6">6</option>
-                               <option value="7">7</option>
-                               <option value="8">8</option>
-                               <option value="9">9</option>
-                               <option value="10">10</option>
+                               <option value="1" @if($num =='1') selected="selected" @endif>1</option>
+                               <option value="2" @if($num =='2') selected="selected" @endif>2</option>
+                               <option value="3" @if($num =='3') selected="selected" @endif>3</option>
+                               <option value="4" @if($num =='4') selected="selected" @endif>4</option>
+                               <option value="5" @if($num =='5') selected="selected" @endif>5</option>
+                               <option value="6" @if($num =='6') selected="selected" @endif>6</option>
+                               <option value="7" @if($num =='7') selected="selected" @endif>7</option>
+                               <option value="8" @if($num =='8') selected="selected" @endif>8</option>
+                               <option value="9" @if($num =='9') selected="selected" @endif>9</option>
+                               <option value="10" @if($num =='10') selected="selected" @endif>10</option>
                               </select>
                         </div>
                     </div>
@@ -75,16 +76,16 @@
                         <div class="col-sm-10">
                             　<select name="genre">
                                <option value="">選択してください</option>
-                               <option value="米、パン類">米、パン類</option>
-                               <option value="野菜類">野菜類</option>
-                               <option value="果物類">果物類</option>
-                               <option value="肉類">肉類</option>
-                               <option value="魚介類">魚介類</option>
-                               <option value="卵、豆類">卵、豆類</option>
-                               <option value="乳製品">乳製品</option>
-                               <option value="飲料">飲料</option>
-                               <option value="嗜好品">嗜好品</option>
-                               <option value="その他">その他</option>
+                               <option value="米、パン類" @if(old('genre', '')=='米、パン類') selected @endif>米、パン類</option>
+                               <option value="野菜類" @if(old('genre', '')=='野菜類') selected @endif>野菜類</option>
+                               <option value="果物類" @if(old('genre', '')=='果物類') selected @endif>果物類</option>
+                               <option value="肉類" @if(old('genre', '')=='肉類') selected @endif>肉類</option>
+                               <option value="魚介類" @if(old('genre', '')=='魚介類') selected @endif>魚介類</option>
+                               <option value="卵、豆類" @if(old('genre', '')=='卵、豆類') selected @endif>卵、豆類</option>
+                               <option value="乳製品" @if(old('genre', '')=='乳製品') selected @endif>乳製品</option>
+                               <option value="飲料" @if(old('genre', '')=='飲料') selected @endif>飲料</option>
+                               <option value="嗜好品" @if(old('genre', '')=='嗜好品') selected @endif>嗜好品</option>
+                               <option value="その他" @if(old('genre', '')=='その他') selected @endif>その他</option>
                               </select>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">メモ</label>
                         <div class="col-md-10">
-                            <textarea name="memo" style="width:400px; height:70px;" value="{{ old('memo') }}"></textarea>
+                            <textarea name="memo" style="width:400px; height:70px;">{{ old('memo', '') }}</textarea>
                         </div>
                     </div>
 

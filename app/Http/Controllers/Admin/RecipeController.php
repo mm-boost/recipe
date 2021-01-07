@@ -32,10 +32,11 @@ class RecipeController extends Controller
         //validationを行う
         $this->validate($request, Recipe::$rules);
         // 配列のvalidation 
+
         $validatedData = $request->validate([
-                'foodname' => 'required|string|max:20',
-                'foodnum' => 'required|regex:/^[!-~]+$/|max:10',
-                'unit' => 'required',
+                'foodname.*' => 'nullable|string|max:20',
+                'foodnum.*' => 'required_with:foodname.*,foodnum.*|max:10',
+                'unit.*' => 'required_with:foodname.*,unit.*',
             ]);
 
 try {
@@ -251,8 +252,7 @@ try {
     
     public function list(Request $request,$id) //ルートで設定したidを取得
     {
-        var_dump($id);
-        exit;
+ 
         $categories = DB::table('categories')
                 ->whereColumn('updated_id', '=', 'created_id')
                 ->get();

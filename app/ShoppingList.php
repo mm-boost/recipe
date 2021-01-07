@@ -8,8 +8,9 @@ class ShoppingList extends Model
 {
     //Validation設定を行う　必須項目設定
     public static $rules = array(
-        'retailer' => 'required',
-        'productname' => 'required',
+        'retailer' => 'required|string|max:20',
+        'productname' => 'required|string|max:20',
+        'memo' => 'max:200',
     );
 
     //$fillableで複数代入指定　更新しても良い項目を指定する

@@ -39,7 +39,7 @@
                     <div class="category">
                         <ul>
                             <li class="categorypage">
-                            <a class=categorylink href="{{ route('recipe.tool.list', ['id' => 1]) }}" >{{ $tool->tool }}</a>
+                            <a class=categorylink href="{{ route('recipe.tool.list', ['id' => $tool]) }}" >{{ $tool->tool }}</a>
                             </li>
                         </ul>
                     </div>

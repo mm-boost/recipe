@@ -8,9 +8,9 @@ class Food extends Model
 {
     protected $guarded = array('id');
     public static $rules = array(
-        'foodname' => 'required',
-        'foodnum' => 'required',
-        'unit' => 'required',
-    );
+        'foodname.*' => 'string|max:20',
+        'foodnum.*' => 'required_if:foodname|max:10',
+        'unit.*' => 'required_if:foodname',
+        );
     protected $table = 'foods';
 }
