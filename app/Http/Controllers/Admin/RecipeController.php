@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection; 
 use Illuminate\Http\Request;
 use App\Recipe;
 use Log;
@@ -237,11 +238,10 @@ try {
     }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $recipe = Recipe::find($request->id);
-        $recipe->food()->delete();
-
+        $recipe = Recipe::where('id', $id)->first();
+        $recipe->delete();
         return redirect()->back();
     }
 

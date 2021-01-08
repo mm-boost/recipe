@@ -24,18 +24,21 @@ class Recipe extends Model
     {
         return $this->hasMany('App\RecipeHistory');
     }
-    // Foodモデルと関連モデルの紐付けを行う
+    //  1 対 多 の１側
     public function foods()
     {
         return $this->hasMany('App\Food');
     }
-    //レシピ削除されれば、関連モデルのFoodも連動して削除される
+    //レシピが削除されれば、関連モデルのFoodも連動して削除される
     //boot()メソッドはレコードの登録や削除の際にコールされるイベントリスナ
     public static function boot()
   {
     parent::boot();
     static::deleting(function($recipes) {
-      $recipes->food()->delete();
+      $foods = $recipes->food()->get();
+      foreach ($foods as $food) {
+        $food->delete();
+        }
     });
     }
 }

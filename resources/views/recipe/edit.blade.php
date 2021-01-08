@@ -99,8 +99,12 @@
                                         <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
                                         <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
                                         <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>房</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>適量</option>
+                                        <option value="7" @if($unit =='7') selected="selected" @endif>束</option>
+                                        <option value="8" @if($unit =='8') selected="selected" @endif>缶</option>
+                                        <option value="9" @if($unit =='9') selected="selected" @endif>袋</option>
+                                        <option value="10" @if($unit =='10') selected="selected" @endif>房</option>
+                                        <option value="11" @if($unit =='11') selected="selected" @endif>切</option>
+                                        <option value="12" @if($unit =='12') selected="selected" @endif>適量</option>
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
