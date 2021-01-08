@@ -26,14 +26,14 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::get('/delete', 'Admin\RecipeController@delete');
     Route::get('/display', 'Admin\RecipeController@display');
     Route::get('/index', 'Admin\RecipeController@index');
-    Route::get('/category', 'Admin\RecipeController@category');
-    Route::get('/tool', 'Admin\RecipeController@tool');
-    Route::get('/keyword', 'Admin\RecipeController@keyword');
+    Route::get('/category', 'Admin\CategoriesController@index');
+    Route::get('/tool', 'Admin\ToolController@index');
+    Route::get('/keyword', 'Admin\KeywordController@index');
 });
 Route::group(['prefix' => 'recipe'], function($id) {
-    Route::get('/category/list/{id}', 'Admin\RecipeController@list')->name('recipe.category.list');
-    Route::get('/tool/list/{id}', 'Admin\RecipeController@list')->name('recipe.tool.list');
-    Route::get('/keyword/list/{id}', 'Admin\RecipeController@list')->name('recipe.keyword.list');
+    Route::get('/category/list/{id}', 'Admin\CategoriesController@list')->name('recipe.category.list');
+    Route::get('/tool/list/{id}', 'Admin\ToolController@list')->name('recipe.tool.list');
+    Route::get('/keyword/list/{id}', 'Admin\KeywordController@list')->name('recipe.keyword.list');
 });
 
 //買い物メモ

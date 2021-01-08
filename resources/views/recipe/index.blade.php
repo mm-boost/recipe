@@ -37,11 +37,11 @@
 
                 <div class="recipe_index">
                     <h3 class="recipe_page">
-                        <a class="recipe_link" href="{!! action('Admin\RecipeController@category'); !!}">カテゴリー</a></h3>
+                        <a class="recipe_link" href="{!! action('Admin\CategoriesController@index'); !!}">カテゴリー</a></h3>
                     <h3 class="recipe_page">
-                        <a class="recipe_link" href="{!! action('Admin\RecipeController@tool'); !!}">調理法</a></h3>
+                        <a class="recipe_link" href="{!! action('Admin\ToolController@index'); !!}">調理法</a></h3>
                     <h3 class="recipe_page">
-                        <a class="recipe_link" href="{!! action('Admin\RecipeController@keyword'); !!}">キーワード</a></h3>
+                        <a class="recipe_link" href="{!! action('Admin\KeywordController@index'); !!}">キーワード</a></h3>
                 </div>
             </div>
         </div>

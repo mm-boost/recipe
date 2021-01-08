@@ -42,9 +42,9 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{!! action('Admin\RecipeController@index'); !!}">レシピ一覧<span class="caret"></span></a>
                         <ul>
-                          <li><a class="nav-link" href="{!! action('Admin\RecipeController@category'); !!}">ジャンル</a></li>
-                          <li><a class="nav-link" href="{!! action('Admin\RecipeController@tool'); !!}">調理法</a></li>
-                          <li><a class="nav-link" href="{!! action('Admin\RecipeController@keyword'); !!}">キーワード</a></li>
+                          <li><a class="nav-link" href="{!! action('Admin\CategoriesController@index'); !!}">ジャンル</a></li>
+                          <li><a class="nav-link" href="{!! action('Admin\ToolController@index'); !!}">調理法</a></li>
+                          <li><a class="nav-link" href="{!! action('Admin\KeywordController@index'); !!}">キーワード</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

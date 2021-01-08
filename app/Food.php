@@ -8,10 +8,10 @@ class Food extends Model
 {
     protected $guarded = array('id');
     public static $rules = array(
-        'foodname.*' => 'string|max:20',
-        'foodnum.*' => 'max:10',
-        'unit.*' => 'required_if:foodname',
-        );
+        'foodname.*' => 'nullable|string|max:20',
+        'foodnum.*' => 'nullable|max:10',
+        'unit.*' => 'required_with:foodname.*',
+);
     protected $table = 'foods';
 
     // 1 対 多 の多側
