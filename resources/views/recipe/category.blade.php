@@ -25,7 +25,7 @@
                     <div class="category">
                         <ul>
                             <li class="categorypage">
-                            <a class=categorylink href="{{ route('recipe.category.list', ['id' => 1]) }}" >{{ $category->category }}</a>
+                            <a class=categorylink href="{{ action('Admin\CategoriesController@list', $category->id) }}">{{ $category->category }}</a>
                             </li>
                         </ul>
                     </div>
