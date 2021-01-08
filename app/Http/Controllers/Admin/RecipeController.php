@@ -54,9 +54,6 @@ class RecipeController extends Controller
             //dd($form['category']);
             $tool = Tool::find($form['tool']);
             $keyword = Keyword::find($form['keyword']);
-            //$foodname = Food::find($form['foodname']);
-            //$foodnum = Food::find($form['foodnum']);
-            //$unit = Food::find($form['unit']);
         
             // formに画像があれば、保存する
             if (isset($form['image'])) {
@@ -126,17 +123,14 @@ class RecipeController extends Controller
     public function edit(Request $request,$id)
     {
         $recipe = Recipe::find($request->id);
-        $category = Category::all();
-        $tool = Tool::all();
-        $keyword = Keyword::all();
-        $food = Food::all();
+        $food = Food::where('recipe_id', $id)->get();
 
         /*if(empty($recipe)) {
             Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
         }*/
         
-        return view('recipe/edit', ['recipe_form' => $recipe,"categorys" => $category,"tools" => $tool,"keywords" => $keyword,"foods" => $food]);
+        return view('recipe/edit', ['recipe_form' => $recipe, "foods" => $food]);
     }
 
     public function update(Request $request)
@@ -145,9 +139,9 @@ class RecipeController extends Controller
         $this->validate($request, Recipe::$rules);
         // 配列のvalidation
         $validatedData = $request->validate([
-                'foodname.*' => 'nullable|string|max:20',
-                'foodnum.*' => 'required_with:foodname.*,foodnum.*|max:10',
-                'unit.*' => 'required_with:foodname.*,unit.*',
+            'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
+            'foodnum.*' => 'nullable|max:10',
+            'unit.*' => 'required_with:foodname.*',
             ]);
 
         try {
@@ -162,7 +156,7 @@ class RecipeController extends Controller
             // Recipe Modelからデータを受け取る
             $recipe = Recipe::find($request->id);
 
-            //送信されてきたフォームデータを格納する
+            //送信されてきた画像データを格納する
             $recipe_form = $request->all();
             if ($request->remove == 'true') {
                 $recipe_form['image_path'] = null;
@@ -227,7 +221,7 @@ class RecipeController extends Controller
             // db commit　データベースの更新内容を確定。
             DB::commit();
 
-            return redirect()->back()->withInput($request->all);
+            return redirect()->back();
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
@@ -246,7 +240,7 @@ class RecipeController extends Controller
 
     }
 
-    public function display(Request $request)
+    public function show(Request $request)
     {
         $posts = Recipe::all();
 

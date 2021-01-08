@@ -189,7 +189,7 @@
                     <div class="form-group row">
                         <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{ old('howto', '') }}"></textarea></label>
+                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="">{{ old('howto', '') }}</textarea></label>
                         </div>
                     </div>
 

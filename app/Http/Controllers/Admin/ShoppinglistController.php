@@ -71,7 +71,7 @@ try {
         //echo '捕捉した例外: ',  $e->getMessage(), "\n";
         Log::error($e->getMessage());
         //入力内容を保持したまま前の画面に戻る
-        return redirect()->back()->withErrors()->withInput($request->all); 
+        return redirect()->back()->withInput($request->all); 
     }
     }
 
@@ -110,7 +110,7 @@ try {
         // Shoppinglist Modelからデータを受け取る
         $shoppinglist = Shoppinglist::find($request->id);
 
-        //送信されてきたフォームデータを格納する
+        //送信されてきた画像データを格納する
         $shoppinglist_form = $request->all();
         if ($request->remove == 'true') {
             $shoppinglist_form['image_path'] = null;
@@ -146,7 +146,7 @@ try {
         //echo '捕捉した例外: ',  $e->getMessage(), "\n";
         Log::error($e->getMessage());
         //入力内容を保持したまま前の画面に戻る
-        return redirect()->back()->withErrors()->withInput($request->all); 
+        return redirect()->back()->withInput($request->all); 
     }
     }
 

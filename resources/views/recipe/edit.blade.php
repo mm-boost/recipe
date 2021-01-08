@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>レシピ新規作成</h2>
-                <form action="{{ action('Admin\RecipeController@update', ['id' => $recipe->id]) }}" name="form1" method="post" enctype="multipart/form-data">
+                <h2>レシピ編集画面</h2>
+                <form action="{{ action('Admin\RecipeController@update') }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>
                      @foreach($errors->all() as $e)
@@ -21,16 +21,17 @@
                     <div class="form-group row">
                         <label class="cat">カテゴリ１ 料理のジャンル
                             　<select name="category" id="category">
-                                <option value="1" @if(old('category', '')=='1') selected @endif>和食</option>
-                                <option value="2" @if(old('category', '')=='2') selected @endif>洋食</option>
-                                <option value="3" @if(old('category', '')=='3') selected @endif>中華</option>
-                                <option value="4" @if(old('category', '')=='4') selected @endif>肉料理</option>
-                                <option value="5" @if(old('category', '')=='5') selected @endif>野菜料理</option>
-                                <option value="6" @if(old('category', '')=='6') selected @endif>デザート</option>
-                                <option value="7" @if(old('category', '')=='7') selected @endif>ドリンク</option>
-                                <option value="8" @if(old('category', '')=='8') selected @endif>アジア料理</option>
-                                <option value="9" @if(old('category', '')=='9') selected @endif>ヨーロッパ料理</option>
-                                <option value="10" @if(old('category', '')=='10') selected @endif>その他</option>
+                                <option value="">----選択してください----</option>
+                                <option value="1" @if(old('category', $recipe_form->category_id)=='1') selected @endif>和食</option>
+                                <option value="2" @if(old('category', $recipe_form->category_id)=='2') selected @endif>洋食</option>
+                                <option value="3" @if(old('category', $recipe_form->category_id)=='3') selected @endif>中華</option>
+                                <option value="4" @if(old('category', $recipe_form->category_id)=='4') selected @endif>肉料理</option>
+                                <option value="5" @if(old('category', $recipe_form->category_id)=='5') selected @endif>野菜料理</option>
+                                <option value="6" @if(old('category', $recipe_form->category_id)=='6') selected @endif>デザート</option>
+                                <option value="7" @if(old('category', $recipe_form->category_id)=='7') selected @endif>ドリンク</option>
+                                <option value="8" @if(old('category', $recipe_form->category_id)=='8') selected @endif>アジア料理</option>
+                                <option value="9" @if(old('category', $recipe_form->category_id)=='9') selected @endif>ヨーロッパ料理</option>
+                                <option value="10" @if(old('category', $recipe_form->category_id)=='10') selected @endif>その他</option>
                                 </select>
                          </label>
                     </div>
@@ -38,7 +39,7 @@
                     <div class="form-group row">
                         <label class="cat">カテゴリ２ 調理法
                             　<select name="tool" id="tool">
-                                <?php $tool = old('tool' , $recipe_form->tool); ?>
+                                <?php $tool = old('tool', $recipe_form->tool_id); ?>
                                 <option value="">----選択してください----</option>
                                 <option value="1" @if($tool =='1') selected="selected" @endif>炊飯器</option>
                                 <option value="2" @if($tool =='2') selected="selected" @endif>電子レンジ</option>
@@ -53,7 +54,7 @@
                     <div class="form-group row">
                         <label class="cat">カテゴリ3 キーワード
                             　<select name="keyword" id="keyword">
-                                <?php $keyword = old('keyword' , $recipe_form->keyword); ?>
+                                <?php $keyword = old('keyword' , $recipe_form->keyword_id); ?>
                                 <option value="">----選択してください----</option>
                                 <option value="1" @if($keyword =='1') selected="selected" @endif>お手軽</option>
                                 <option value="2" @if($keyword =='2') selected="selected" @endif>作り置き</option>
@@ -63,8 +64,8 @@
                         　　　　<option value="{{$key->id}}">{{ $key->keyname }}</option>
                         　　　　　@endforeach--}}
                         　　　　</select>
-                        　　　　<input type="text" name="key" value="">
-                        　　　　<input type="button" name="key" value="項目追加" onClick="addSelectItem()">
+                        　　　　{{--<input type="text" name="key" value="">
+                        　　　　<input type="button" name="key" value="項目追加" onClick="addSelectItem()">--}}
                         </label>
                     </div>
 
@@ -91,7 +92,7 @@
                                    <td class="foodnum"><input class=food_num value="{{ old('foodnum.0', $food->foodnum) }}" name="foodnum[]" type="text" placeholder="数量"></td>
                                    <td class="foodunit">
                                         <select name="unit[]">
-                                        <?php $keyword = old('unit.0' , $food->unit); ?>
+                                        <?php $unit = old('unit.0' , $food->unit); ?>
                                         <option value="">単位</option>
                                         <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
                                         <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
@@ -118,7 +119,7 @@
                     <div class="form-group row">
                         <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="{{ old('howto', $recipe_form->howto) }}"></textarea></label>
+                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="">{{ old('howto', $recipe_form->howto) }}</textarea></label>
                         </div>
                     </div>
 
