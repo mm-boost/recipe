@@ -25,19 +25,16 @@ class ToolController extends Controller
     public function list($id) //ルートで設定したidを取得
     {
         //dd($id);
-        $posts = Recipe::all();
+        $tools = Tool::get();
         //調理方法の値を実際に取得しビューに渡す処理を記述する．
         //$tool = Tool::where('id', $id)->first();
 
         /*$categories = DB::table('categories')
                 ->whereColumn('updated_id', '=', 'created_id')
                 ->get();
-        $keywords = DB::table('keywords')
-                ->whereColumn('updated_id', '=', 'created_id')
-                ->get();
         $posts = Recipe::where('id', '1')->where('menu', '')
                 ->first();*/
 
-        return view('recipe.tool.list',['posts' => $posts,'id' => $id]);    
+        return view('recipe.tool.list',["tools" => $tools,'id' => $id]);    
     }
 }

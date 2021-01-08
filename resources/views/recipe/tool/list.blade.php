@@ -31,15 +31,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($posts as $recipe)
+                    @foreach($tools as $tool)
                         <tr>
-                            <th data-label="メニュー名">{{ \Str::limit($recipe->menu, 30) }}</th>
+                            <th data-label="メニュー名">{{ \Str::limit($tool->tool, 30) }}</th>
                             <th data-label="編集">
-                            <div class="link-a">
+                           {{-- <div class="link-a">
                                 <a href="{{ action('Admin\RecipeController@edit', ['id' => $recipe->id]) }}">編集/</a>
                                 <a href="{{ action('Admin\RecipeController@delete', ['id' => $recipe->id]) }}">削除</a>
                             </div>
-                            </th>
+                            </th>--}}
                         </tr>
                     @endforeach 
                 </tbody>
