@@ -11,4 +11,10 @@ class Tool extends Model
         'tool' => 'required',
     );
     protected $table = 'tools';
+
+    public function recipes()
+  {
+    // Recipeモデルのデータを引っ張てくる
+    return $this->belongsTo('App\Recipe');
+  }
 }

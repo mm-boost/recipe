@@ -24,8 +24,6 @@ class ToolController extends Controller
         //dd($id);
         //toolのidと一致するレシピテーブルのtool_idのデータを全て取得
         $recipes = Recipe::where('tool_id', $id)->get();
-        //編集、削除のためのid取得
-        //$posts = Recipe::select('id')->get();
 
         return view('recipe.tool.list',["recipes" => $recipes,'id' => $id]);    
     }

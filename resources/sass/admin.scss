@@ -190,8 +190,47 @@ table.foodtable td.food_del{
   top: auto;
   display: block;
   }
-
-  //shoppinglist.index
+//recipe.show
+.recipe1 {
+  font-size: 18px;
+  }
+.recipe2 {
+  width: 330px;
+  background: #f0f1e9;
+  font-size: 18px;
+  font-weight: bold;
+  }
+.recipe3 {
+    width: 680px;
+    background: #f0f1e9;
+    font-size: 17px;
+  }
+  .recipe4 {
+    width: 350px;
+    background: #f0f1e9;
+    font-size: 15px;
+  }
+.showtable {
+  width: 640px;
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  background-color: #f0f1e9;
+  font-size: 18px;
+  }
+  .recipe_th {
+  padding: 10px;
+  font-weight: bold;  //フォントの太さを指定
+  border-bottom: 2px solid #fff;
+  background-color: #f0f1e9;
+  }
+ .recipe_td {
+    padding: 10px;
+    border-bottom: 2px solid #fff;
+    background-color: #f0f1e9;
+  }
+  
+//shoppinglist.index
   table {
   border-collapse: collapse;
   display: table;

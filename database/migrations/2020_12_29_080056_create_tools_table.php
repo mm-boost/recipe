@@ -17,6 +17,10 @@ class CreateToolsTable extends Migration
             $table->bigIncrements('id');
             $table->string('tool');
             $table->timestamps();
+            //recipeテーブルと連動削除設定 foreign；外部DBのテーブルと連動。recipeテーブルのidカラムを参照するテーブルのrecipe_id
+            $table->foreign('recipe_id')->references('id')->on('recipes')
+            //カスケード削除
+            ->onDelete('cascade');
         });
     }
 

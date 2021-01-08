@@ -11,4 +11,9 @@ class Category extends Model
         'category' => 'required',
     );
     protected $table = 'categories';
+    public function recipes()
+    {
+      // Recipeモデルのデータを引っ張てくる
+      return $this->belongsTo('App\Recipe');
+    }
 }

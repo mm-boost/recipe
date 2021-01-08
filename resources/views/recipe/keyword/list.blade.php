@@ -33,7 +33,9 @@
                     <tbody>
                     @foreach($recipes as $recipe)
                         <tr>
-                            <th data-label="メニュー名">{{ \Str::limit($recipe->menu, 30) }}</th>
+                            <th data-label="メニュー名">
+                                <a href="{{ action('Admin\RecipeController@show', ['id' => $recipe->id]) }}">{{ \Str::limit($recipe->menu, 30) }}</a>
+                            </th>
                             <th data-label="編集">
                             <div class="link-l">
                                 <a href="{{ action('Admin\RecipeController@edit', ['id' => $recipe->id]) }}">編集/</a>

@@ -23,7 +23,6 @@ Route::group(['prefix' => 'recipe'], function() {
     Route::post('/create','Admin\RecipeController@create');
     Route::get('/edit', 'Admin\RecipeController@edit');
     Route::post('/edit', 'Admin\RecipeController@update');
-    Route::get('/display', 'Admin\RecipeController@display');
     Route::get('/index', 'Admin\RecipeController@index');
     Route::post('/edit', 'Admin\RecipeController@update');
     Route::get('/category', 'Admin\CategoriesController@index');
@@ -36,6 +35,7 @@ Route::group(['prefix' => 'recipe'], function($id) {
     Route::get('/keyword/list/{id}', 'Admin\KeywordController@list')->name('recipe.keyword.list');
     Route::get('/delete/{id}', 'Admin\RecipeController@delete');
     Route::get('/edit/{id}', 'Admin\RecipeController@edit')->name('recipe.edit');
+    Route::get('/show/{id}', 'Admin\RecipeController@show')->name('recipe.show');
 });
 
 //買い物メモ

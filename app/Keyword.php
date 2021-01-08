@@ -11,4 +11,10 @@ class Keyword extends Model
         'keyword' => 'required',
     );
     protected $table = 'keywords';
+    public function recipes()
+    {
+      // Recipeモデルのデータを引っ張てくる
+      return $this->belongsTo('App\Recipe');
+    }
+  
 }

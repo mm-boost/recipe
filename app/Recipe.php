@@ -24,7 +24,20 @@ class Recipe extends Model
     {
         return $this->hasMany('App\RecipeHistory');
     }
-    //  1 対 多 の１側
+    //１対１のリレーション
+    public function categores()
+    {
+      return $this->hasOne('App\Category');
+    }
+    public function tools()
+    {
+      return $this->hasOne('App\Tool');
+    }
+    public function keywords()
+    {
+      return $this->hasOne('App\Keyword');
+    }
+    //  単 対 多 の単側
     public function foods()
     {
         return $this->hasMany('App\Food');

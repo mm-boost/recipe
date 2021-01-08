@@ -66,6 +66,7 @@ class SettingController extends Controller
 
     public function index(Request $request)
     {
+        $posts = Setting::all();
         return view('setting',['posts' => $posts]);
     }
     

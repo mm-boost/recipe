@@ -240,11 +240,13 @@ class RecipeController extends Controller
 
     }
 
-    public function show(Request $request)
+    public function show(Request $request,$id)
     {
-        $posts = Recipe::all();
+        $recipe = Recipe::find($request->id);
 
-        return view('recipe/display', ['posts' => $posts]);
+        $food = Food::where('recipe_id', $id)->get();
+
+        return view('recipe.show', ['recipe_form' => $recipe, "foods" => $food, 'id' => $id]);
     }
 
     public function index()

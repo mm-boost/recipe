@@ -28,10 +28,10 @@
                             <input type="submit" value=表示>
                         </td>
                         <td colspan="7">
-                        お気に入り ： <select name="favorite">
+                        {{--お気に入り ： <select name="favorite">
                                     <option>チェックあり</option>
                                     <option>チェックなし</option>
-                                    </select>
+                                    </select>--}}
                          {{ csrf_field() }}
                             <input type="submit" value=表示></form>
                         </td>
