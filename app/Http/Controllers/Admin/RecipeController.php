@@ -123,7 +123,7 @@ class RecipeController extends Controller
         }
     }
     
-    public function edit(Request $request)
+    public function edit(Request $request,$id)
     {
         $recipe = Recipe::find($request->id);
         $category = Category::all();
@@ -238,9 +238,12 @@ class RecipeController extends Controller
 
     public function delete($id)
     {
-        $recipe = Recipe::where('id', $id)->first();
-        $recipe->delete();
+        $recipe = Recipe::where('id', $id);
+        DB::transaction(function () use ($recipe) {
+            $recipe->delete();
+        });
         return redirect()->back();
+
     }
 
     public function display(Request $request)
@@ -250,14 +253,10 @@ class RecipeController extends Controller
         return view('recipe/display', ['posts' => $posts]);
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $cond_menu = $request->menu;
-        if ($cond_menu !='') {
-            $posts = Recipe::where('title', $cond_menu)->get();
-        } else {
-            $posts = Recipe::all();
-        }
-        return view('recipe/index', ['posts' => $posts,'cond_menu' => $cond_menu]);
+        $posts = Recipe::all();
+
+        return view('recipe/index', ['posts' => $posts]);
     }
 }

@@ -184,6 +184,13 @@ table.foodtable td.food_del{
    color: black;
   }
 
+  //レシピリスト　編集リンクの位置調整
+ .link-l {
+  position: relative;
+  top: auto;
+  display: block;
+  }
+
   //shoppinglist.index
   table {
   border-collapse: collapse;
@@ -219,7 +226,7 @@ table tbody th {
   text-align: left;
   vertical-align:　middle;
 }
-//リンクの位置調整
+//買い物メモ　編集リンクの位置調整
 .link-a {
   position: relative;
   top: -20px;

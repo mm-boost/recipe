@@ -224,6 +224,12 @@ table.foodtable td.food_del {
   color: black;
 }
 
+.link-l {
+  position: relative;
+  top: auto;
+  display: block;
+}
+
 table {
   border-collapse: collapse;
   display: table;

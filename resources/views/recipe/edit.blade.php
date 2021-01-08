@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピ新規作成</h2>
-                <form action="{{ action('Admin\RecipeController@update') }}" name="form1" method="post" enctype="multipart/form-data">
+                <form action="{{ action('Admin\RecipeController@update', ['id' => $recipe->id]) }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>
                      @foreach($errors->all() as $e)

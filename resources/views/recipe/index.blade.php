@@ -12,20 +12,6 @@
                         <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">レシピ作成</a>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <form action="{{ action('Admin\RecipeController@index') }}" method="get">
-                        <div class="form-group row">
-                            <label class="col-md-2">メニュー</label>
-                            <div class="col-md-8">
-                                <input type="text" size="30" name="cond_menu" value="{{ $cond_menu }}">
-                            </div>
-                            <div class="col-md-2">
-                            {{ csrf_field() }}
-                                <input type="submit" class="btn btn-primary" value="検索">
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 
             @if (count($errors) > 0)
                 <ul>
