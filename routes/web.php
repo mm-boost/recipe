@@ -52,7 +52,7 @@ Route::group(['prefix' => 'shoppinglist'], function() {
 Route::group(['prefix' => 'setting'], function() {
     Route::get('/create', 'Admin\SettingController@add');
     Route::post('/create','Admin\SettingController@create');
-    Route::get('/edit', 'Admin\SettingController@edit');
+    Route::get('/edit', 'Admin\SettingController@edit')->name('setting.edit');
     Route::post('/edit', 'Admin\SettingController@update');
-    Route::get('/', 'Admin\SettingController@index');
+    Route::get('/show', 'Admin\SettingController@show');
 });

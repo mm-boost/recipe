@@ -33,7 +33,8 @@
                                     <option>チェックなし</option>
                                     </select>--}}
                          {{ csrf_field() }}
-                            <input type="submit" value=表示></form>
+                            <input type="submit" value=表示>
+                            </form>
                         </td>
                         </tr>
                         <tr>

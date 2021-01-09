@@ -237,7 +237,6 @@ class RecipeController extends Controller
             $recipe->delete();
         });
         return redirect()->back();
-
     }
 
     public function show(Request $request,$id)

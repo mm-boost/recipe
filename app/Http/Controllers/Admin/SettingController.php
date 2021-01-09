@@ -28,18 +28,18 @@ class SettingController extends Controller
         $setting->fill($form);
         $setting->save();
         
-        return redirect('setting/create');
+        return redirect('setting/show');
     }
 
-    public function edit(Request $request)
+    public function edit()
     {
-        $setting = Setting::find($request->id);
-        Log::debug('設定取得結果', compact('setting'));
+        $id = 1;
+        $setting = Setting::find($id);
         
         if(empty($setting)) {
             abort(404);
         }
-        return view('setting/edit',['setting_form' => $setting]);
+        return view('setting.edit',['setting_form' => $setting]);
     }
 
     public function update(Request $request)
@@ -55,19 +55,15 @@ class SettingController extends Controller
         
         //該当するデータを上書きして保存する
         $setting->fill($setting_form)->save();
-        
-        $setting_history = new SettingHistory;
-        $setting_history->setting_id = $setting->id;
-        $setting_history->edited_at = Carbon::now();
-        $setting_history->save();
 
-        return redirect('setting/edit');
+        return redirect('setting/show');
     }
 
-    public function index(Request $request)
+    public function show()
     {
-        $posts = Setting::all();
-        return view('setting',['posts' => $posts]);
+        $id = 1;
+        $setting = Setting::find($id);
+        return view('setting/show',['setting' => $setting]);
     }
     
     public function delete(Request $request)

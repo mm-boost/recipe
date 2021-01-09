@@ -26,8 +26,8 @@
                     <div class="form-group row">
                         <label class="col-md-2">性別(gender)</label>
                         <div class="col-sm-10" name=gender>
-                            　<input type="radio" name="gender" checked="checked" value="man">男性
-                            　<input type="radio" name="gender" value="woman">女性
+                            　<input type="radio" name="gender" checked="checked" value="男性">男性
+                            　<input type="radio" name="gender" value="女性">女性
                         </div>
                     </div>
                      {{--  年代選択設定　ドロップダウン  --}}
@@ -48,8 +48,7 @@
                         </div>
                     </div>
 
-                     {{--  BMI計算 --}}
-                    <div class="form-group row">
+                    {{--<div class="form-group row">
                         <label class="col-md-2">身長(height)</label>
                         <div class="col-md-10">
                             <input type="text" size="10" id="height" name="height" value="{{ old('height') }}">
@@ -61,20 +60,21 @@
                             <input type="text" size="10" id="weight" name="weight" value="{{ old('weight') }}">
                         </div>
                     </div>
+                      BMI計算                    
                     <div class="form-group row">
                         <label class="col-md-2">BMI計算(bmi)</label>
                         <div class="col-md-10">
                             <input type="text" size="10" id="bmi" name="bmi" value="{{ old('bmi') }}">
                             <input type="button" value="BMI計算">
                         </div>
-                    </div>
+                    </div>--}} 
 
                      {{--  目標選択　ラジオボタン  --}}
                     <div class="form-group row">
                         <label class="col-md-2">目標(aim)</label>
                         <div class="col-md-10" name=aim>
-                            <input type="radio" name="aim" value="1" checked="checked">健康維持
-                            <input type="radio" name="aim" value="2">ダイエット・身体づくり
+                            <input type="radio" name="aim" value="健康維持" checked="checked">健康維持
+                            <input type="radio" name="aim" value="ダイエット・身体づくり">ダイエット・身体づくり
                         </div>
                     </div>
                     {{ csrf_field() }}
