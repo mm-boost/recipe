@@ -19,6 +19,7 @@ class CreateRecipesTable extends Migration
             $table->integer('tool_id');  
             $table->integer('keyword_id'); 
             $table->string('menu');   //メニュー名を保存するカラム
+            $table->integer('people');  //人数を保存するカラム
             $table->integer('foodname_id')->nullable();  //材料名を保存するカラム
             $table->integer('foodnum_id')->nullable(); //数量を保存するカラム
             $table->integer('unit_id')->nullable();  //単位を保存するカラム

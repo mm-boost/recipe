@@ -14,7 +14,7 @@ class ShoppingList extends Model
     );
 
     //$fillableで複数代入指定　更新しても良い項目を指定する
-    protected $fillable = ['retailer','shopname','productname','amount','num','amounttotal','genre','favorite','image_path','memo'];
+    protected $fillable = ['retailer','shopname','productname','amount','num','amounttotal','genre','image_path','memo'];
     
     protected $guarded = array('id');
 

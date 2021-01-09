@@ -94,13 +94,6 @@
                         </div>
                     </div>
 
-　　　　　　　　　　　　<div class="form-group row">
-                        <label class="col-md-2">お気に入り</label>
-                      <div class="col-md-10">
-                        <input type="checkbox" name=“favorite” id="favorite">
-                      </div>
-                    </div>
-
                     <div class="form-group row">
                         <label class="col-md-2">メモ</label>
                         <div class="col-md-10">

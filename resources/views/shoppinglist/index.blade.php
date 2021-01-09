@@ -27,16 +27,7 @@
                                  </select>
                             {{ csrf_field() }}
                             <input type="submit" value=表示>
-                        </td>
-                        <td colspan="7">
-                        {{--お気に入り ： <select name="favorite">
-                                    <option>チェックあり</option>
-                                    <option>チェックなし</option>
-                                    </select>
-                         {{ csrf_field() }}
-                            <input type="submit" value=表示>--}}
-                            </form>
-                        </td>
+                        </td></form>
                         </tr>
                         <tr>
                             <th scope="col">商品名</th>

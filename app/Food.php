@@ -8,7 +8,7 @@ class Food extends Model
 {
     protected $guarded = array('id');
     public static $rules = array(
-        'foodname.*' => 'nullable|string|max:20',
+        'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
         'foodnum.*' => 'nullable|max:10',
         'unit.*' => 'required_with:foodname.*',
 );

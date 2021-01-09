@@ -53,7 +53,10 @@
             </label>
         </div>
         <div>
-            <label class="recipe3">材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
+            <label class="recipe3">材料<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
+                <div>
+                    <input type="text" name="people" size="5" value="{{ old('people',$recipe_form->people) }}">人分
+                </div>
                 <div>
                     <table class="showtable">
                             <tr>

@@ -21,7 +21,6 @@ class CreateShoppingListsTable extends Migration
             $table->string('num')->nullable();  // 品数を保存するカラム
             $table->string('amounttotal')->nullable();  //合計金額を保存するカラム
             $table->string('genre')->nullable();    //分類を保存するカラム
-            $table->string('favorite')->default(false);  // お気に入りか否かを保存するカラム.デフォルト値を設定。
             $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
             $table->string('memo')->nullable();  //メモを保存するカラム
 

@@ -69,12 +69,7 @@
                                <option value="3" @if($keyword =='3') selected="selected" @endif>低糖質・高タンパク</option>
                                <option value="4" @if($keyword =='4') selected="selected" @endif>節約</option>
                                <option value="5" @if($keyword =='5') selected="selected" @endif>その他</option>
-                               　　　　{{--@foreach ($keys as $key)
-                        　　　　<option value="{{$key->id}}">{{ $key->keyname }}</option>
-                        　　　　　@endforeach--}}
                         　　　　</select>
-                        　　　　{{--<input type="text" name="key" value="">
-                        　　　　<input type="button" name="key" value="項目追加" onClick="addSelectItem()">--}}
                         </label>
                     </div>
 
@@ -84,8 +79,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu" >材料（1人分)<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
-                        <div class="col-md-10">
+                        <label class="menu" >材料<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
+                            <div>
+                                <input type="text" name="people" size="5" value="{{ old('people', '') }}">人分
+                            </div>
+                            <div class="col-md-10">
 						 <table class="foodtable" id="food_table">
 							<thead class="foodhead">
 								<tr>
