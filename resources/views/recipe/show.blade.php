@@ -49,7 +49,9 @@
 
         <div>
             <label class="recipe2">メニュー名
-                <div>[{{ \Str::limit($recipe_form->menu, 80) }}]</div>
+                <div>
+                    <input type="text" name="menu" size="25" value="{{ \Str::limit($recipe_form->menu, 80) }}">
+                </div>
             </label>
         </div>
         <div>
@@ -77,7 +79,9 @@
         </div>
         <div class="recipe4">
             <label>作り方
-                <div>{{ \Str::limit($recipe_form->howto, 500) }}</div>
+                <div class="col-md-10">
+                    <textarea name="howto" cols="70" rows="6" maxlength="400" value="">{{ \Str::limit($recipe_form->howto, 500) }}</textarea>
+                </div>
             </label>
         </div>
         <div class="recipe1">
