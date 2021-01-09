@@ -53,7 +53,7 @@
                         <div class="col-sm-10">
                             　<select name="num" id="num" onchange="inputCheck()">
                               <?php $num = old('num' , $shoppinglist_form->num); ?>
-                               <option value="">選択してください</option>
+                               <option value="">-選択してください-</option>
                                <option value="1" @if($num =='1') selected="selected" @endif>1</option>
                                <option value="2" @if($num =='2') selected="selected" @endif>2</option>
                                <option value="3" @if($num =='3') selected="selected" @endif>3</option>
@@ -80,7 +80,7 @@
                         <div class="col-sm-10">
                             　<select name="genre">
                                <?php $genre = old('gender' , $shoppinglist_form->genre); ?>
-                               <option value="">選択してください</option>
+                               <option value="">-選択してください-</option>
                                <option value="米、パン類" @if($genre =='米、パン類') selected="selected" @endif>米、パン類</option>
                                <option value="野菜類" @if($genre =='野菜類') selected="selected" @endif>野菜類</option>
                                <option value="果物類" @if($genre =='果物類') selected="selected" @endif>果物類</option>

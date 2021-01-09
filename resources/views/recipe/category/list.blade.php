@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピリスト</h2>
+                <h4>レシピの種類別のカテゴリーが表示されます</h4>
                     <div class="row">
                         <div class="col-md-4">
                         <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">レシピ作成</a>

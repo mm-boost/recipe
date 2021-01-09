@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu" >材料<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）][0.5合約90ml（cc）]</span>
+                        <label class="menu" >材料<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]</span>
                             <div>
                                 <input type="text" name="people" size="5" value="{{ old('people',$recipe_form->people) }}">人分
                             </div>
@@ -106,7 +106,8 @@
                                         <option value="9" @if($unit =='9') selected="selected" @endif>袋</option>
                                         <option value="10" @if($unit =='10') selected="selected" @endif>房</option>
                                         <option value="11" @if($unit =='11') selected="selected" @endif>切</option>
-                                        <option value="12" @if($unit =='12') selected="selected" @endif>適量</option>
+                                        <option value="12" @if($unit =='12') selected="selected" @endif>合</option>
+                                        <option value="13" @if($unit =='13') selected="selected" @endif>適量</option>
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>

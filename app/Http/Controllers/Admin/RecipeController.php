@@ -206,12 +206,14 @@ class RecipeController extends Controller
                     $food->foodname = $foodnames[$key];
                     $food->foodnum = $foodnums[$key];
                     $food->unit = $units[$key];
-
                     // foos DB SAVE
                     $food->save();
+                    var_dump($food);
+                    exit;        
                 }
             }
-
+            var_dump($recipe);
+            exit;        
             $recipe_history = new RecipeHistory;
             $recipe_history->recipe_id = $recipe->id;
             $recipe_history->edited_at = Carbon::now();
