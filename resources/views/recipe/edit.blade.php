@@ -9,6 +9,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピ編集画面</h2>
+                <h5>作成したレシピの編集ができます</h5>
                 <form action="{{ action('Admin\RecipeController@update') }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>

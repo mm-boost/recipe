@@ -7,6 +7,9 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピカテゴリータグ一覧</h2>
+                <h5>レシピの作成、編集、閲覧ができるページです</h5>
+                <h5>レシピは料理のジャンル、主な調理器具、キーワードのカテゴリーを設定できます</h5>
+            
                 <div class="row">
                     <div class="col-md-4">
                         <a href="{{ action('Admin\RecipeController@add') }}" role="button" class="btn btn-primary">レシピ作成</a>
@@ -23,7 +26,7 @@
 
                 <div class="recipe_index">
                     <h3 class="recipe_page">
-                        <a class="recipe_link" href="{!! action('Admin\CategoriesController@index'); !!}">カテゴリー</a></h3>
+                        <a class="recipe_link" href="{!! action('Admin\CategoriesController@index'); !!}">ジャンルカテゴリー</a></h3>
                     <h3 class="recipe_page">
                         <a class="recipe_link" href="{!! action('Admin\ToolController@index'); !!}">調理法</a></h3>
                     <h3 class="recipe_page">

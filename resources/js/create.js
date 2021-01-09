@@ -23,3 +23,30 @@ $(document).on('click', '.fooddel',function(){
   $(row).remove();
   });
 });
+
+//shopping 買い物メモの金額自動計算設定
+function addSelectItem(){
+  itemStr = document.form1.shop.value;
+  len = document.form1.retailer.options.length;
+  document.form1.retailer.options[len] = new Option(itemStr,itemStr);
+  }  
+
+function inputCheck(){
+  // 2つの入力フォームの値を取得
+  //document（資料）オブジェクトは、ブラウザ上で表示されたドキュメントを操作できます
+  var amount = document.getElementById("amount").value;
+  var num = document.getElementById("num").value;
+  //乗算の設定
+  var mul = parseFloat(amount, 10) * parseFloat(num, 10);
+  //デバックの設定
+  console.log(mul);
+  // 計算結果を表示
+  var amounttotal = document.getElementById("amounttotal");
+  if(isNaN){
+  amounttotal.value = mul;
+      } else {
+  amounttotal.value = 0;
+      }    
+  }  
+  
+

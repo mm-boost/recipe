@@ -8,8 +8,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>マイページ</h2>
-                <p>{{ $userInfo['nick_name'] }}</p>
+                <h1>レシピ記録アプリ</h1>
+                <h3>レシピの作成や、必要な材料を記録するアプリです</h3>
+                <h3>ユーザー名：{{ \Str::limit($setting->nickname, 10) }}</h3>
             </div>
         </div>
     </div>

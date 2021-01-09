@@ -9,6 +9,10 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>買い物リスト</h2>
+                <h5>購入したい商品を新しく設定できます</h5>
+                <h5>購入先の入力画面に店舗名を入力しボタンを押すとセレクトボックスに追加されます</h5>
+                <h5>セレクトボックスに選択されている店舗が商品の購入先として登録されます</h5>
+                
                 <form action="{{ action('Admin\ShoppinglistController@create') }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>

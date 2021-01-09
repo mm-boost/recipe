@@ -6,6 +6,8 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール編集</h2>
+                <h4>作成したユーザー情報の編集ができます</h4>
+
                 <form action="{{ action('Admin\SettingController@update') }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>

@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>レシピ新規作成</h2>
+                <h5>レシピを新しく作成できます</h5>
                 <form action="{{ action('Admin\RecipeController@create') }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
                         <ul>

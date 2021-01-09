@@ -7,6 +7,8 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール</h2>
+                <h4>作成できる人数は1人までです</h4>
+                
                 <form action="{{ action('Admin\SettingController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)

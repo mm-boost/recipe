@@ -3,9 +3,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <h2>買い物リスト</h2>
-    </div>
+    <h2>買い物リスト</h2>
+    <h5>レシピに必要な材料を記録するページです</h5>
+    <h5>購入先の項目を選択すると、設定した店舗で購入できる商品が表示されます</h5>
+
     <div class="row">
         <div class="col-md-4">
         <a href="{{ action('Admin\ShoppinglistController@add') }}" role="button" class="btn btn-primary">新規作成</a>
@@ -31,9 +32,9 @@
                         {{--お気に入り ： <select name="favorite">
                                     <option>チェックあり</option>
                                     <option>チェックなし</option>
-                                    </select>--}}
+                                    </select>
                          {{ csrf_field() }}
-                            <input type="submit" value=表示>
+                            <input type="submit" value=表示>--}}
                             </form>
                         </td>
                         </tr>

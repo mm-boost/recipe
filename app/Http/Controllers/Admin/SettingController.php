@@ -11,7 +11,12 @@ class SettingController extends Controller
 {
     public function add()
     {
-        return view('setting/create');
+        $id = Setting::first();
+        if (empty($id)) {    //プロフィールが作成済の場合はリダイレクト
+            return view('setting/create');        
+        } else {
+            echo 'プロフィールは作成済みです';
+        }
     }
 
     public function create(Request $request)
