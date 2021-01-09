@@ -12,6 +12,7 @@ class ToolsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('tools')->delete();
         $tools = ['炊飯器','電子レンジ','鍋','フライパン','トースター','その他'];
         foreach($tools as $tool){
             Tool::create(["tool"=>$tool]);

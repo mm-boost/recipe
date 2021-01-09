@@ -14,16 +14,15 @@ class CreateFoodsTable extends Migration
     public function up()
     {
         Schema::create('foods', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->bigInteger('recipe_id')->unsigned()->nullable();
+            $table->bigInteger('recipe_id')->unsigned();
             $table->string('foodname')->nullable();
             $table->string('foodnum')->nullable();
             $table->string('unit')->nullable();
             $table->timestamps();
             //recipeテーブルと連動削除設定 foreign；外部DBのテーブルと連動。recipeテーブルのidカラムを参照するfoodテーブルのrecipe_id
-            $table->foreign('recipe_id')->references('id')->on('recipes')
-            //カスケード削除
-            ->onDelete('cascade');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
         });
     }
 

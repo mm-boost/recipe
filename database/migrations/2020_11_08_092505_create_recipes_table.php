@@ -14,7 +14,7 @@ class CreateRecipesTable extends Migration
     public function up()
     {
         Schema::create('recipes', function (Blueprint $table) { //ここのテーブル名の記述は重要。間違えば、間違った名前がデータベースに記述される
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unique();
             $table->integer('category_id');
             $table->integer('tool_id');  
             $table->integer('keyword_id'); 

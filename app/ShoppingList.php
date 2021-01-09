@@ -23,4 +23,9 @@ class ShoppingList extends Model
     {
         return $this->hasMany('App\SoppingHistory');
     }
+    //１対１のリレーション
+    public function shops()
+    {
+        return $this->hasOne('App\Shop');
+    }
 }

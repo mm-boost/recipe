@@ -23,6 +23,7 @@
                         <label class="col-md-2">購入先</label>
                         <div class="col-md-10">
                         <select name="retailer" id="retailer" required>
+                        <option value="">-購入先を選択してください-</option>
                         @foreach ($shops as $shop)
                         <option value="{{$shop->id}}">{{ $shop->name }}</option>
                         @endforeach

@@ -12,7 +12,7 @@ class Recipe extends Model
     public static $rules = array(
         'menu' => 'required|string|max:20',
         'people' => 'required|integer|max:5',
-        'howto' => 'max:300',
+        'howto' => 'max:600',
     );
 
     //$fillableで複数代入指定　更新しても良い項目を指定する

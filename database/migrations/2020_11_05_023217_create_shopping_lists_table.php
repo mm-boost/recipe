@@ -23,7 +23,7 @@ class CreateShoppingListsTable extends Migration
             $table->string('genre')->nullable();    //分類を保存するカラム
             $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
             $table->string('memo')->nullable();  //メモを保存するカラム
-
+            
             $table->timestamps();
         });
     }
