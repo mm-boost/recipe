@@ -221,12 +221,13 @@ class RecipeController extends Controller
             // db commit　データベースの更新内容を確定。
             DB::commit();
 
-            return redirect()->back();
+            return redirect('recipe/index');
+            
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
             //前の画面に戻る
-            return redirect()->back()->withErrors($validatedData)->withInput($request->all);
+            return redirect()->back()->withErrors($validatedData)->withInput();
         }
     }
 

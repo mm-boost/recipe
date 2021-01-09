@@ -17,6 +17,9 @@ class HomeController extends RecipesiteController
     {
         $id = 1;
         $setting = Setting::find($id);
+        if (empty($setting)) {    //プロフィールが未設定の場合はリダイレクト
+            return redirect('setting/create');        
+        } 
         return view('home', ['setting' => $setting]);
     }
 }

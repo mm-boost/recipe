@@ -12,7 +12,7 @@ class ToolsTableSeeder extends Seeder
      */
     public function run()
     {
-        $tools = ['炊飯器','電子レンジ','鍋','フライパン','トースター'];
+        $tools = ['炊飯器','電子レンジ','鍋','フライパン','トースター','その他'];
         foreach($tools as $tool){
             Tool::create(["tool"=>$tool]);
         }    

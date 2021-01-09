@@ -68,7 +68,11 @@ class SettingController extends Controller
     {
         $id = 1;
         $setting = Setting::find($id);
-        return view('setting/show',['setting' => $setting]);
+    
+        if (empty($setting)) {    //プロフィールが未設定の場合はリダイレクト
+            return redirect('setting/create');        
+        } 
+        return view('setting/show', ['setting' => $setting]);
     }
     
     public function delete(Request $request)

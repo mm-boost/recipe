@@ -52,9 +52,6 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{!! action('Admin\SettingController@show'); !!}">プロフィール</a>
-                      <ul>
-                        <li><a class="nav-link" href="{!! action('Admin\SettingController@add'); !!}">新規作成</a></li>
-                      </ul>
                     </li>
                     <li class="nav-item">
                     {{-- href属性に設定 --}}

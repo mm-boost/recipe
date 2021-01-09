@@ -54,7 +54,8 @@
                                <option value="4" @if($tool =='4') selected="selected" @endif>フライパン</option>
                                <option value="5" @if($tool =='5') selected="selected" @endif>トースター</option>
                                <option value="6" @if($tool =='6') selected="selected" @endif>鉄板</option>
-                              </select>
+                               <option value="7" @if($tool =='7') selected="selected" @endif>その他</option>
+                            </select>
                         </label>
                     </div>
 
@@ -67,7 +68,8 @@
                                <option value="2" @if($keyword =='2') selected="selected" @endif>作り置き</option>
                                <option value="3" @if($keyword =='3') selected="selected" @endif>低糖質・高タンパク</option>
                                <option value="4" @if($keyword =='4') selected="selected" @endif>節約</option>
-                        　　　　{{--@foreach ($keys as $key)
+                               <option value="5" @if($keyword =='5') selected="selected" @endif>その他</option>
+                               　　　　{{--@foreach ($keys as $key)
                         　　　　<option value="{{$key->id}}">{{ $key->keyname }}</option>
                         　　　　　@endforeach--}}
                         　　　　</select>
