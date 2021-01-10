@@ -100,19 +100,19 @@
                                         <select name="unit[]">
                                         <?php $unit = old('unit.0'); ?>
                                         <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>束</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>缶</option>
-                                        <option value="9" @if($unit =='9') selected="selected" @endif>袋</option>
-                                        <option value="10" @if($unit =='10') selected="selected" @endif>房</option>
-                                        <option value="11" @if($unit =='11') selected="selected" @endif>切</option>
-                                        <option value="12" @if($unit =='12') selected="selected" @endif>合</option>
-                                        <option value="13" @if($unit =='13') selected="selected" @endif>適量</option>
+                                        <option value="cc" @if($unit =='cc') selected="selected" @endif>cc</option>
+                                        <option value="ml" @if($unit =='ml') selected="selected" @endif>ml</option>
+                                        <option value="g" @if($unit =='g') selected="selected" @endif>g</option>
+                                        <option value="本" @if($unit =='本') selected="selected" @endif>本</option>
+                                        <option value="個" @if($unit =='個') selected="selected" @endif>個</option>
+                                        <option value="枚" @if($unit =='枚') selected="selected" @endif>枚</option>
+                                        <option value="束" @if($unit =='束') selected="selected" @endif>束</option>
+                                        <option value="袋" @if($unit =='袋') selected="selected" @endif>袋</option>
+                                        <option value="缶" @if($unit =='缶') selected="selected" @endif>缶</option>
+                                        <option value="房" @if($unit =='房') selected="selected" @endif>房</option>
+                                        <option value="切" @if($unit =='切') selected="selected" @endif>切</option>
+                                        <option value="合" @if($unit =='合') selected="selected" @endif>合</option>
+                                        <option value="適量" @if($unit =='適量') selected="selected" @endif>適量</option>
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
@@ -123,19 +123,19 @@
                                         <select name="unit[]">
                                         <?php $unit = old('unit.1'); ?>
                                         <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>束</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>缶</option>
-                                        <option value="9" @if($unit =='9') selected="selected" @endif>袋</option>
-                                        <option value="10" @if($unit =='10') selected="selected" @endif>房</option>
-                                        <option value="11" @if($unit =='11') selected="selected" @endif>切</option>
-                                        <option value="12" @if($unit =='12') selected="selected" @endif>合</option>
-                                        <option value="13" @if($unit =='13') selected="selected" @endif>適量</option>
+                                        <option value="cc" @if($unit =='cc') selected="selected" @endif>cc</option>
+                                        <option value="ml" @if($unit =='ml') selected="selected" @endif>ml</option>
+                                        <option value="g" @if($unit =='g') selected="selected" @endif>g</option>
+                                        <option value="本" @if($unit =='本') selected="selected" @endif>本</option>
+                                        <option value="個" @if($unit =='個') selected="selected" @endif>個</option>
+                                        <option value="枚" @if($unit =='枚') selected="selected" @endif>枚</option>
+                                        <option value="束" @if($unit =='束') selected="selected" @endif>束</option>
+                                        <option value="袋" @if($unit =='袋') selected="selected" @endif>袋</option>
+                                        <option value="缶" @if($unit =='缶') selected="selected" @endif>缶</option>
+                                        <option value="房" @if($unit =='房') selected="selected" @endif>房</option>
+                                        <option value="切" @if($unit =='切') selected="selected" @endif>切</option>
+                                        <option value="合" @if($unit =='合') selected="selected" @endif>合</option>
+                                        <option value="適量" @if($unit =='適量') selected="selected" @endif>適量</option>
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
@@ -146,19 +146,19 @@
                                         <select name="unit[]">
                                         <?php $unit = old('unit.2'); ?>
                                         <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>束</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>缶</option>
-                                        <option value="9" @if($unit =='9') selected="selected" @endif>袋</option>
-                                        <option value="10" @if($unit =='10') selected="selected" @endif>房</option>
-                                        <option value="11" @if($unit =='11') selected="selected" @endif>切</option>
-                                        <option value="12" @if($unit =='12') selected="selected" @endif>合</option>
-                                        <option value="13" @if($unit =='13') selected="selected" @endif>適量</option>
+                                        <option value="cc" @if($unit =='cc') selected="selected" @endif>cc</option>
+                                        <option value="ml" @if($unit =='ml') selected="selected" @endif>ml</option>
+                                        <option value="g" @if($unit =='g') selected="selected" @endif>g</option>
+                                        <option value="本" @if($unit =='本') selected="selected" @endif>本</option>
+                                        <option value="個" @if($unit =='個') selected="selected" @endif>個</option>
+                                        <option value="枚" @if($unit =='枚') selected="selected" @endif>枚</option>
+                                        <option value="束" @if($unit =='束') selected="selected" @endif>束</option>
+                                        <option value="袋" @if($unit =='袋') selected="selected" @endif>袋</option>
+                                        <option value="缶" @if($unit =='缶') selected="selected" @endif>缶</option>
+                                        <option value="房" @if($unit =='房') selected="selected" @endif>房</option>
+                                        <option value="切" @if($unit =='切') selected="selected" @endif>切</option>
+                                        <option value="合" @if($unit =='合') selected="selected" @endif>合</option>
+                                        <option value="適量" @if($unit =='適量') selected="selected" @endif>適量</option>
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
@@ -169,19 +169,19 @@
                                         <select name="unit[]">
                                         <?php $unit = old('unit.3'); ?>
                                         <option value="">単位</option>
-                                        <option value="1" @if($unit =='1') selected="selected" @endif>cc</option>
-                                        <option value="2" @if($unit =='2') selected="selected" @endif>ml</option>
-                                        <option value="3" @if($unit =='3') selected="selected" @endif>g</option>
-                                        <option value="4" @if($unit =='4') selected="selected" @endif>本</option>
-                                        <option value="5" @if($unit =='5') selected="selected" @endif>個</option>
-                                        <option value="6" @if($unit =='6') selected="selected" @endif>枚</option>
-                                        <option value="7" @if($unit =='7') selected="selected" @endif>束</option>
-                                        <option value="8" @if($unit =='8') selected="selected" @endif>缶</option>
-                                        <option value="9" @if($unit =='9') selected="selected" @endif>袋</option>
-                                        <option value="10" @if($unit =='10') selected="selected" @endif>房</option>
-                                        <option value="11" @if($unit =='11') selected="selected" @endif>切</option>
-                                        <option value="12" @if($unit =='12') selected="selected" @endif>合</option>
-                                        <option value="13" @if($unit =='13') selected="selected" @endif>適量</option>
+                                        <option value="cc" @if($unit =='cc') selected="selected" @endif>cc</option>
+                                        <option value="ml" @if($unit =='ml') selected="selected" @endif>ml</option>
+                                        <option value="g" @if($unit =='g') selected="selected" @endif>g</option>
+                                        <option value="本" @if($unit =='本') selected="selected" @endif>本</option>
+                                        <option value="個" @if($unit =='個') selected="selected" @endif>個</option>
+                                        <option value="枚" @if($unit =='枚') selected="selected" @endif>枚</option>
+                                        <option value="束" @if($unit =='束') selected="selected" @endif>束</option>
+                                        <option value="袋" @if($unit =='袋') selected="selected" @endif>袋</option>
+                                        <option value="缶" @if($unit =='缶') selected="selected" @endif>缶</option>
+                                        <option value="房" @if($unit =='房') selected="selected" @endif>房</option>
+                                        <option value="切" @if($unit =='切') selected="selected" @endif>切</option>
+                                        <option value="合" @if($unit =='合') selected="selected" @endif>合</option>
+                                        <option value="適量" @if($unit =='適量') selected="selected" @endif>適量</option>
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>

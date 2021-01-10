@@ -10,11 +10,10 @@
             <div class="col-md-8 mx-auto">
                 <h1>レシピ記録アプリ</h1>
                 <h3>レシピの作成や、必要な材料を記録するアプリです</h3>
-                <h3>ユーザー名：{{ \Str::limit($setting->nickname, 10) }}</h3>
+                <h3>ユーザー名：{{ \Str::limit($setting->nickname) }}</h3>
             </div>
         </div>
     </div>
 @endsection
-
 
 

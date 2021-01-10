@@ -10,7 +10,6 @@ class Food extends Model
     public static $rules = array(
         'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
         'foodnum.*' => 'nullable|max:10',
-        'unit.*' => 'required_with:foodname.*',
 );
     protected $table = 'foods';
 

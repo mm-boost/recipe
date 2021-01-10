@@ -38,7 +38,6 @@ class RecipeController extends Controller
         $validatedData = $request->validate([
             'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
             'foodnum.*' => 'nullable|max:10',
-            'unit.*' => 'required_with:foodname.*',
             ]);
 
         try {
@@ -83,9 +82,8 @@ class RecipeController extends Controller
             $recipe->keyword_id=$keyword->id;
             $recipe->save();
    
-            //foodモデル（１対多）の設定
-            //セーブしたidをすぐに取り出す
-            $recipe_id = $recipe->id;
+            //foodモデル（１対多）の設定。
+            $recipe->recipe_id = $recipe->id;
 
             //recipeに保存したfoodのidをfoodテーブルへ移す
             foreach ($foodnames as $key => $foodname) {
@@ -124,10 +122,10 @@ class RecipeController extends Controller
         $recipe = Recipe::find($request->id);
         $food = Food::where('recipe_id', $id)->get();
 
-        /*if(empty($recipe)) {
+        if(empty($recipe)) {
             Log::debug('リストが取得できなかった為「404」を返す');
             abort(404);
-        }*/
+        }
         
         return view('recipe/edit', ['recipe_form' => $recipe, "foods" => $food]);
     }
@@ -140,23 +138,22 @@ class RecipeController extends Controller
         $validatedData = $request->validate([
             'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
             'foodnum.*' => 'nullable|max:10',
-            'unit.*' => 'required_with:foodname.*',
             ]);
 
         try {
             // DB transaction 始める
             DB::beginTransaction();
-
-            $form = $request->all();
-            $category = Category::find($form['category']);
-            $tool = Tool::find($form['tool']);
-            $keyword = Keyword::find($form['keyword']);
+    
+            //$recipe_formにリクエストデータ全てを格納する
+            $recipe_form = $request->all();
 
             // Recipe Modelからデータを受け取る
             $recipe = Recipe::find($request->id);
+            $category = Category::find($recipe_form['category']);
+            $tool = Tool::find($recipe_form['tool']);
+            $keyword = Keyword::find($recipe_form['keyword']);
 
             //送信されてきた画像データを格納する
-            $recipe_form = $request->all();
             if ($request->remove == 'true') {
                 $recipe_form['image_path'] = null;
             } elseif ($request->file('image')) {
@@ -165,14 +162,8 @@ class RecipeController extends Controller
             } else {
                 $recipet_form['image_path'] = $recipe->image_path;
             }
-              
-            //unset()の前に配列のカラムを一時的に分ける
-            $foodnames = $form['foodname'];
-            $foodnums=$form['foodnum'];
-            $units = $form['unit'];
-      
-            //送信されてきたフォームデータを格納する
-            $recipe_form = $request->all();
+          
+            //送信されてきたフォームデータを削除する
             unset($recipe_form['remove']);
             unset($recipe_form['_token']);
             unset($recipe_form['image']);
@@ -182,17 +173,13 @@ class RecipeController extends Controller
             unset($recipe_form['foodname']);
             unset($recipe_form['foodnum']);
             unset($recipe_form['unit']);
-        
+            
             //該当するデータを上書きして保存する
             $recipe->fill($recipe_form);
             $recipe->category_id=$category->id;
             $recipe->tool_id=$tool->id;
             $recipe->keyword_id=$keyword->id;
             $recipe->save();
-
-            //foodモデル（１対多）の設定
-            //セーブしたidをすぐに取り出す
-            $recipe_id = $recipe->id;
 
             //recipeに保存したfoodのidをfoodテーブルへ移す
             foreach ($foodnames as $key => $foodname) {
@@ -208,12 +195,10 @@ class RecipeController extends Controller
                     $food->unit = $units[$key];
                     // foos DB SAVE
                     $food->save();
-                    var_dump($food);
-                    exit;        
                 }
             }
-            var_dump($recipe);
-            exit;        
+    
+            //更新履歴
             $recipe_history = new RecipeHistory;
             $recipe_history->recipe_id = $recipe->id;
             $recipe_history->edited_at = Carbon::now();
@@ -223,7 +208,7 @@ class RecipeController extends Controller
             DB::commit();
 
             return redirect('recipe/index');
-            
+
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());

@@ -109,9 +109,10 @@ try {
         }
         // Shoppinglist Modelからデータを受け取る
         $shoppinglist = Shoppinglist::find($request->id);
+        //$shoppinglist_formにリクエストデータ全てを格納する
+        $shoppinglist_form = $request->all();
 
         //送信されてきた画像データを格納する
-        $shoppinglist_form = $request->all();
         if ($request->remove == 'true') {
             $shoppinglist_form['image_path'] = null;
         } elseif ($request->file('image')) {
