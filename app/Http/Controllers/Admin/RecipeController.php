@@ -34,10 +34,11 @@ class RecipeController extends Controller
         //validationを行う
         $this->validate($request, Recipe::$rules);
         // 配列のvalidation
-        //required_with 指定の項目（foodname）に値が入力されている場合は対象の項目も必須にする
+        //required_with もし分量か単位が入力されていたら、指定の項目（foodname）も入力必須にする
         $validatedData = $request->validate([
             'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
             'foodnum.*' => 'nullable|max:10',
+            'unit.*' => 'nullable',
             ]);
 
         try {
@@ -62,7 +63,7 @@ class RecipeController extends Controller
             }
             //unset()の前に配列のカラムを一時的に分ける
             $foodnames = $form['foodname'];
-            $foodnums=$form['foodnum'];
+            $foodnums = $form['foodnum'];
             $units = $form['unit'];
 
             //フォームから送信されてきた_tokenを削除する
@@ -81,9 +82,9 @@ class RecipeController extends Controller
             $recipe->tool_id=$tool->id;
             $recipe->keyword_id=$keyword->id;
             $recipe->save();
-   
-            //foodモデル（１対多）の設定。
-            $recipe->recipe_id = $recipe->id;
+
+            //セーブしたidをすぐに取り出す	         
+            $recipe_id = $recipe->id;
 
             //recipeに保存したfoodのidをfoodテーブルへ移す
             foreach ($foodnames as $key => $foodname) {
@@ -138,20 +139,22 @@ class RecipeController extends Controller
         $validatedData = $request->validate([
             'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
             'foodnum.*' => 'nullable|max:10',
+            'unit.*' => 'nullable',
             ]);
 
         try {
             // DB transaction 始める
             DB::beginTransaction();
     
-            //$recipe_formにリクエストデータ全てを格納する
+            //$recipe_formにリクエストデータ全てを格納する。リレーションモデルのデータを分ける
             $recipe_form = $request->all();
-
-            // Recipe Modelからデータを受け取る
-            $recipe = Recipe::find($request->id);
             $category = Category::find($recipe_form['category']);
             $tool = Tool::find($recipe_form['tool']);
             $keyword = Keyword::find($recipe_form['keyword']);
+
+            // Recipe Modelからデータを受け取る
+            $recipe = Recipe::find($request->id);
+            $food = Food::where('recipe_id', $request->id)->get();
 
             //送信されてきた画像データを格納する
             if ($request->remove == 'true') {
@@ -162,6 +165,10 @@ class RecipeController extends Controller
             } else {
                 $recipet_form['image_path'] = $recipe->image_path;
             }
+            //unset()の前に配列のカラムを一時的に分ける	           
+            $foodnames = $recipet_form['foodname'];	
+            $foodnums = $recipet_form['foodnum'];	
+            $units = $recipet_form['unit'];
           
             //送信されてきたフォームデータを削除する
             unset($recipe_form['remove']);
@@ -180,6 +187,8 @@ class RecipeController extends Controller
             $recipe->tool_id=$tool->id;
             $recipe->keyword_id=$keyword->id;
             $recipe->save();
+            //セーブしたidをすぐに取り出す	         
+            $recipe_id = $recipe->id;
 
             //recipeに保存したfoodのidをfoodテーブルへ移す
             foreach ($foodnames as $key => $foodname) {
@@ -188,7 +197,6 @@ class RecipeController extends Controller
                     var_dump($foodnums[$key]);
                     var_dump($units[$key]);
 
-                    $food = new Food();
                     $food->recipe_id = 	$recipe_id;
                     $food->foodname = $foodnames[$key];
                     $food->foodnum = $foodnums[$key];

@@ -185,7 +185,7 @@
                         　　　　         </select></td>
                                    <td class="food_del"><button class="fooddel" name="del">✖︎</button></td>
                                 </tr>
-                                </tbody>
+                            </tbody>
                         </table>
                              <button type="button" id="food_cre">追加</button></label>
                         </div>
