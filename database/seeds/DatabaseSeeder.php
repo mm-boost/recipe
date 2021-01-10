@@ -13,13 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         // 各テーブルへのデータの流し込みを呼び出す
         // $this->call(UsersTableSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
-        $this->call(ToolsTableSeeder::class);
-        $this->call(KeywordsTableSeeder::class);
-        $this->call(FoodsTableSeeder::class);
-        $this->call(RecipesTableSeeder::class);
-        $this->call(FoodsTableSeeder::class);
-        $this->call(Shopping_listsTableSeeder::class);
-        $this->call(ShopsTableSeeder::class);
+        $this->call([
+            RecipesTableSeeder::class,
+            CategoriesTableSeeder::class,
+            ToolsTableSeeder::class,
+            KeywordsTableSeeder::class,
+            FoodsTableSeeder::class,
+            Shopping_listsTableSeeder::class,
+            ShopsTableSeeder::class,
+        ]);
     }
 }
