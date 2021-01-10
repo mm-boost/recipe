@@ -20,11 +20,6 @@ class Recipe extends Model
     
     protected $guarded = array('id');
 
-    // Historyモデルと関連モデルの紐付けを行う
-    public function histories()
-    {
-        return $this->hasMany('App\RecipeHistory');
-    }
     //１対１のリレーション
     public function categores()
     {

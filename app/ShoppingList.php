@@ -18,11 +18,6 @@ class ShoppingList extends Model
     
     protected $guarded = array('id');
 
-    // Shoppinglistモデルと関連モデルの紐付けを行う
-    public function histories()
-    {
-        return $this->hasMany('App\SoppingHistory');
-    }
     //１対１のリレーション
     public function shops()
     {

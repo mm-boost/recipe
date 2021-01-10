@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\ShoppingList;
 use Log;
 use App\Shop;
-use App\ShoppingHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -134,10 +133,6 @@ try {
         $shoppinglist->shop_id=$shop->id;
         $shoppinglist->save();
         
-        $shoppinglist_history = new ShoppingHistory;
-        $shoppinglist_history->shoppinglist_id = $shoppinglist->id;
-        $shoppinglist_history->edited_at = Carbon::now();
-        $shoppinglist_history->save();
         DB::commit(); 
 
         return redirect('shoppinglist/index');

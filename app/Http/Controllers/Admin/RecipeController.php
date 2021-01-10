@@ -10,7 +10,6 @@ use App\Category;
 use App\Tool;
 use App\Keyword;
 use App\Food;
-use App\RecipeHistory;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -146,15 +145,14 @@ class RecipeController extends Controller
             // DB transaction 始める
             DB::beginTransaction();
     
-            //$recipe_formにリクエストデータ全てを格納する。リレーションモデルのデータを分ける
+            //$recipe_formにリクエストデータ全てを格納する。
             $recipe_form = $request->all();
+            //リレーション先のモデルからデータを取得。各関数にcreate時の値がある状態。
             $category = Category::find($recipe_form['category']);
             $tool = Tool::find($recipe_form['tool']);
             $keyword = Keyword::find($recipe_form['keyword']);
-
-            // Recipe Modelからデータを受け取る
+            // RecipeModelもcreate時の値を受け取る。各リレーション先のidがある。
             $recipe = Recipe::find($request->id);
-            $food = Food::where('recipe_id', $request->id)->get();
 
             //送信されてきた画像データを格納する
             if ($request->remove == 'true') {
@@ -165,10 +163,19 @@ class RecipeController extends Controller
             } else {
                 $recipet_form['image_path'] = $recipe->image_path;
             }
-            //unset()の前に配列のカラムを一時的に分ける	           
-            $foodnames = $recipet_form['foodname'];	
-            $foodnums = $recipet_form['foodnum'];	
-            $units = $recipet_form['unit'];
+
+             //unset()の前にフォーム送信データの配列カラムを各関数に一時的に分ける
+            if (isset($_POST["foodname"])) {
+                $foodnames = $recipe_form['foodname'];           
+             }
+             if (isset($_POST["foodnum"])) {
+                $foodnums = $recipe_form['foodnum'];	
+            }
+             if (isset($_POST["unit"])) {
+                $units = $recipe_form['unit'];
+            }
+            //dd($foodnums);
+            //exit;
           
             //送信されてきたフォームデータを削除する
             unset($recipe_form['remove']);
@@ -180,23 +187,31 @@ class RecipeController extends Controller
             unset($recipe_form['foodname']);
             unset($recipe_form['foodnum']);
             unset($recipe_form['unit']);
+
+            //この段階で$recipe_formの中身は「メニュー」「人数」「作り方」「id」のみ
+            //dd($recipe_form);
+            //exit;
             
-            //該当するデータを上書きして保存する
+            //該当するデータを上書きして保存する。Recipe主テーブルと各カテゴリーテーブルの更新が完了
             $recipe->fill($recipe_form);
             $recipe->category_id=$category->id;
             $recipe->tool_id=$tool->id;
             $recipe->keyword_id=$keyword->id;
             $recipe->save();
-            //セーブしたidをすぐに取り出す	         
+
+            //セーブしたidをすぐに取り出す。$recipe_idにはレシピテーブルのidが有る	         
             $recipe_id = $recipe->id;
+            //データが重複しないように、事前に元のテーブルデータを削除する
+            Food::where('recipe_id', $recipe_id)->delete();
 
             //recipeに保存したfoodのidをfoodテーブルへ移す
-            foreach ($foodnames as $key => $foodname) {
-                if (null !== $foodname) {
+            foreach ($foodnames as $key => $value) {
+                if (null !== $value) {
                     var_dump($foodnames[$key]);
                     var_dump($foodnums[$key]);
                     var_dump($units[$key]);
 
+                    $food = new Food();
                     $food->recipe_id = 	$recipe_id;
                     $food->foodname = $foodnames[$key];
                     $food->foodnum = $foodnums[$key];
@@ -205,14 +220,10 @@ class RecipeController extends Controller
                     $food->save();
                 }
             }
-    
-            //更新履歴
-            $recipe_history = new RecipeHistory;
-            $recipe_history->recipe_id = $recipe->id;
-            $recipe_history->edited_at = Carbon::now();
-            $recipe_history->save();
+            //dd($food);
+            //exit;
 
-            // db commit　データベースの更新内容を確定。
+            //db commit　データベースの更新内容を確定。
             DB::commit();
 
             return redirect('recipe/index');
