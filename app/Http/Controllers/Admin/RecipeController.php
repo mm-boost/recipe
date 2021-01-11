@@ -57,7 +57,7 @@ class RecipeController extends Controller
         
             // フォームから画像が送信されてきたら、保存して、$recipe->image_path に画像のパスを保存する            
             if (isset($form['image'])) {
-                $path = $request->file('image')->store('public/image');
+                $path = $request->file('image')->store('image/');
                  // パスから、最後の「ファイル名.拡張子」の部分だけ取得します 例)sample.jpg
                 $recipe->image_path = basename($path);
                 } else {
@@ -162,14 +162,10 @@ class RecipeController extends Controller
             $recipe = Recipe::find($request->id);
 
             //送信されてきた画像データを格納する
-            //もしチェックボタン（画像を削除）に値が入っていたら'image_path'をnullで返す
-            if ($request->remove == 'true') {
-                $recipe_form['image_path'] = null;
-            } elseif ($request->file('image')) {
+            if($request->file('image')) {
+                Storage::disk('public')->delete('image/' . $recipe->image_path); //元の画像を削除
                 $path = $request->file('image')->store('public/image');
-                $recipe_form['image_path'] = basename($path);
-            } else {
-                $recipe_form['image_path'] = $recipe->image_path;
+                $recipe_form['image'] = basename($path);
             }
 
              //unset()の前にフォーム送信データの配列カラムを各関数に一時的に分ける
@@ -250,11 +246,14 @@ class RecipeController extends Controller
         foreach ($recipes as $recipe) {
             $delFileName = $recipe->image_path;
         }
+        
         //画像ファイルを削除する
-        Storage::delete('/public/public/image/'.$delFileName);
-        dd($delFileName);
-        exit;
+        //Storage::disk('public')->delete('image/'. $delFileName);
+        $delImg = storage_path('app/public/image/'.$delFileName);
+        //dd($delImg);
+        //exit;
 
+        Storage::disk('public')->delete($delImg);  
         $recipes = Recipe::where('id', $id);
         DB::transaction(function () use ($recipes) {
             $recipes->delete();

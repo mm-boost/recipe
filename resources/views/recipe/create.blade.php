@@ -200,7 +200,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="cat">画像
+                        <label class="ima">画像
                             <input type="file" class="form-control-file" name="image"></label>
                     </div>
                     

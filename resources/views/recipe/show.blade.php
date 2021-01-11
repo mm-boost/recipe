@@ -85,8 +85,8 @@
             </label>
         </div>
         <div class="recipe1">
-            <label class="cat">画像
-            <img src="{{ asset('/storage/public/image/' . $recipe_form->image_path) }}" width="600px" height="300px">
+            <label class="ima2">画像
+            <img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="300px">
             </label>
         </div>
 

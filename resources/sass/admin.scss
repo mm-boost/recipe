@@ -131,7 +131,15 @@ body {
   padding: 0.3em;
   background: #e9e4d4;
 }
-  table.foodtable td.foodname {
+label.ima {
+  display: block; //widthの使用に大切 
+  width: 420px;
+  margin: 5px 0;
+  padding: 0.3em;
+  background: #fcdeca;
+}
+
+table.foodtable td.foodname {
   width: 280px;
   background: #e9e4d4;
  }
@@ -190,6 +198,7 @@ table.foodtable td.food_del{
   top: auto;
   display: block;
   }
+
 //recipe.show
 .recipe1 {
   font-size: 18px;
@@ -206,9 +215,23 @@ table.foodtable td.food_del{
     font-size: 17px;
   }
   .recipe4 {
-    width: 350px;
+    width: 600px;
     background: #f0f1e9;
     font-size: 15px;
+  }
+  label.how {
+    display: block; //widthの使用に大切 
+    width: 600px;
+    margin: 8px 0;
+    padding: 0.3em;
+    background: #f0f1e9;
+  }
+  label.ima2 {
+    display: block; //widthの使用に大切 
+    width: 580px;
+    margin: 8px 0;
+    padding: 0.3em;
+    background: #fcdeca;
   }
 .showtable {
   width: 640px;

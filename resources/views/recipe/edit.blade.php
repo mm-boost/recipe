@@ -127,15 +127,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="cat">画像
+                        <label class="ima2">画像
                             <input type="file" class="form-control-file" name="image">
-                            <div>設定中: {{ $recipe_form->image_path }}</div>
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <label class="cat">
-                            <input type="checkbox" class="form-check-input" name="remove" value="true">設定中の画像を削除
+                            <div>
+                                設定中:<img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="300px">
+                            </div>
                         </label>
                     </div>
 

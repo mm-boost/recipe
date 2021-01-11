@@ -42,24 +42,16 @@ return [
     */
 
     'disks' => [
-        'ftp' => [
-            'driver' => 'ftp',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-        ],
-        
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-        ],
+         ],
 
         's3' => [
             'driver' => 's3',

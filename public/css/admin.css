@@ -157,6 +157,14 @@ label.menu {
   background: #e9e4d4;
 }
 
+label.ima {
+  display: block;
+  width: 420px;
+  margin: 5px 0;
+  padding: 0.3em;
+  background: #fcdeca;
+}
+
 table.foodtable td.foodname {
   width: 280px;
   background: #e9e4d4;
@@ -248,9 +256,25 @@ table.foodtable td.food_del {
 }
 
 .recipe4 {
-  width: 350px;
+  width: 600px;
   background: #f0f1e9;
   font-size: 15px;
+}
+
+label.how {
+  display: block;
+  width: 600px;
+  margin: 8px 0;
+  padding: 0.3em;
+  background: #f0f1e9;
+}
+
+label.ima2 {
+  display: block;
+  width: 580px;
+  margin: 8px 0;
+  padding: 0.3em;
+  background: #fcdeca;
 }
 
 .showtable {
