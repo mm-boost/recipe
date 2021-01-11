@@ -36,21 +36,11 @@ try {
             $shop->name=$form['retailer'];
             $shop->save();
         }
-        //＄関数名内のデータを確認
         //dd($form); 
-        
-        // フォームから画像が送信されてきたら、保存して、$shoppinglist->image_path に画像のパスを保存する
-        if (isset($form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $shoppinglist->image_path = basename($path);
-        } else {
-          $shoppinglist->image_path = null;
-       }
 
         //フォームから送信されてきた不必要なデータ（_token,imageなど）を削除する
         //リレーション時には、主モデルに余計なデータが保存されないように、削除指定をする        
         unset($form['_token']);
-        unset($form['image']);
         unset($form['retailer']);
         unset($form['shop']);
 
@@ -111,20 +101,9 @@ try {
         //$shoppinglist_formにリクエストデータ全てを格納する
         $shoppinglist_form = $request->all();
 
-        //送信されてきた画像データを格納する
-        if ($request->remove == 'true') {
-            $shoppinglist_form['image_path'] = null;
-        } elseif ($request->file('image')) {
-            $path = $request->file('image')->store('public/image');
-            $shoppinglist_form['image_path'] = basename($path);
-        } else {
-            $shoppinglist_form['image_path'] = $shoppinglist->image_path;
-        }
-
         //不必要なデータを削除
         unset($shoppinglist_form['retailer']);
         unset($shoppinglist_form['shop']);
-        unset($shoppinglist_form['image']);
         unset($shoppinglist_form['remove']);
         unset($shoppinglist_form['_token']);
         
@@ -154,12 +133,6 @@ try {
         } else {
             $posts = Shoppinglist::all();
         }
-
-        /*$cond_favorite = $request->favorite;
-        if ($cond_favorite !='') {
-            $posts = Shoppinglist::where('favorite_id',$cond_favorite)->get();
-        } else {
-            $posts = Shoppinglist::all();}*/
 
         $shops = Shop::all();
         //'cond_shopname' => $cond_shopname検索設定

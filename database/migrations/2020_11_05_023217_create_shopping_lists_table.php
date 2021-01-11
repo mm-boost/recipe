@@ -17,11 +17,10 @@ class CreateShoppingListsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('shop_id');  //新しい購入先を保存するカラム integer=整数型
             $table->string('productname');    //商品名を保存するカラム
-            $table->string('amount')->nullable();  //金額を保存するカラム
-            $table->string('num')->nullable();  // 品数を保存するカラム
-            $table->string('amounttotal')->nullable();  //合計金額を保存するカラム
+            $table->integer('amount')->nullable();  //金額を保存するカラム
+            $table->integer('num')->nullable();  // 品数を保存するカラム
+            $table->integer('amounttotal')->nullable();  //合計金額を保存するカラム
             $table->string('genre')->nullable();    //分類を保存するカラム
-            $table->string('image_path')->nullable();  // 画像のパスを保存するカラム
             $table->string('memo')->nullable();  //メモを保存するカラム
             
             $table->timestamps();

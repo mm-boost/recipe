@@ -42,7 +42,13 @@ return [
     */
 
     'disks' => [
-
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+        ],
+        
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -64,6 +70,11 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+
+        'links' => [
+            public_path('storage') => storage_path('app/public'),
+            public_path('images') => storage_path('app/images'), //追加
+       ],
 
     ],
 

@@ -6,9 +6,10 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>買い物リスト</h2>
-                <h5>商品の情報を編集できます</h5>
-                <h5>購入先の入力画面に店舗名を入力しボタンを押すとセレクトボックスに追加されます</h5>
-                <h5>セレクトボックスに選択されている店舗が商品の購入先として登録されます</h5>
+                <h6>購入したい商品を新しく設定できます</h6>
+                <h6>購入先の入力画面に店舗名を入力しボタンを押すとセレクトボックスに追加されます</h6>
+                <h6>セレクトボックスに選択されている店舗が商品の購入先として登録されます</h6>
+                <h6>合計金額は料金と品数を入力すると自動的に表示されます。また合計金額のみの入力は可能です</h6>
 
                 <form action="{{ action('Admin\ShoppinglistController@update') }}" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
@@ -20,10 +21,10 @@
                     @endif
 
                     <div class="form-group row">
-                        <label class="col-md-2">購入先</label>
+                        <label class="col-md-2">購入先<br>（必須）</label>
                         <div class="col-md-10">
                         <select name="retailer" id="retailer" required>
-                        <option value="">-購入先を選択してください-</option>
+                        <option value="">-購入先を選択してください（必須）</option>
                         @foreach ($shops as $shop)
                         <option value="{{$shop->id}}">{{ $shop->name }}</option>
                         @endforeach
@@ -35,16 +36,16 @@
                     
 
                     <div class="form-group row">
-                        <label class="col-md-2">商品名</label>
+                        <label class="col-md-2">商品名<br>（必須）</label>
                         <div class="col-md-10">
-                            <input type="text" name="productname" size="25" value="{{ old('productname', $shoppinglist_form->productname) }}"></input>
+                            <input type="text" name="productname" size="25" value="{{ old('productname', $shoppinglist_form->productname) }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" id="amount" name="amount" size="10" value="{{ old('amount', $shoppinglist_form->amount) }}" onkeyup="inputCheck()"></input>
+                            <input type="text" id="amount" name="amount" size="10" value="{{ old('amount', $shoppinglist_form->amount) }}" onkeyup="inputCheck()">円
                         </div>
                     </div>
 
@@ -69,9 +70,9 @@
                     </div>
 
 　　　　　　　　　　　　<div class="form-group row">
-                        <label class="col-md-2">合計金額</label>
+                        <label class="col-md-2">合計金額<br>(自動表示)</label>
                         <div class="col-md-10">
-                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal', $shoppinglist_form->amounttotal) }}"></input>
+                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal', $shoppinglist_form->amounttotal) }}">円
                         </div>
                     </div>
 
@@ -101,22 +102,6 @@
                             <textarea class="form-control" name="memo" style="width:400px; height:70px;">{{ old('memo', $shoppinglist_form->memo) }}</textarea>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-2" for="image">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                            <div class="form-text text-info">
-                                設定中: {{ $shoppinglist_form->image_path }}
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group row">
                         <div class="col-md-10">
                             <input type="hidden" name="id" value="{{ $shoppinglist_form->id }}">
@@ -151,20 +136,6 @@
                           }    
                         }  
                 </script>
-
-                <div class="row mt-5">
-                     <div class="col-md-4 mx-auto">
-                        <h2>編集履歴</h2>
-                        <ul class="list-group">
-                           @if ($shoppinglist_form->shoppinglist_histories!= NULL)
-                             @foreach ($shoppinglist_form->shoppinglist_histories as $shoppinglist_history)
-                               <li class="list-group-item">{{ $shoppinglist_history->edited_at }}</li>
-                             @endforeach
-                           @endif
-                        </ul>
-                     </div>
-                </div>
-
             </div>
         </div>
     </div>

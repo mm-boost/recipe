@@ -19,14 +19,14 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">ニックネーム(nickname)</label>
+                        <label class="col-md-2">ニックネーム(nickname)<br>（必須項目）</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" size="30" name="nickname" value="{{ old('nickname') }}">
                         </div>
                     </div>
                      {{--  性別選択欄　ラジオボタン  --}}
                     <div class="form-group row">
-                        <label class="col-md-2">性別(gender)</label>
+                        <label class="col-md-2">性別(gender)<br>（必須項目）</label>
                         <div class="col-sm-10" name=gender>
                             　<input type="radio" name="gender" checked="checked" value="男性">男性
                             　<input type="radio" name="gender" value="女性">女性
@@ -34,7 +34,7 @@
                     </div>
                      {{--  年代選択設定　ドロップダウン  --}}
                     <div class="form-group row">
-                        <label class="col-md-2">年齢(age)</label>
+                        <label class="col-md-2">年齢(age)<br>（必須項目）</label>
                         <div class="col-sm-10">
                             　<select name="age">
                                <option value="">選択してください</option>
@@ -73,7 +73,7 @@
 
                      {{--  目標選択　ラジオボタン  --}}
                     <div class="form-group row">
-                        <label class="col-md-2">目標(aim)</label>
+                        <label class="col-md-2">目標(aim)<br>（必須項目）</label>
                         <div class="col-md-10" name=aim>
                             <input type="radio" name="aim" value="健康維持" checked="checked">健康維持
                             <input type="radio" name="aim" value="ダイエット・身体づくり">ダイエット・身体づくり

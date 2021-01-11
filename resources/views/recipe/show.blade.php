@@ -80,13 +80,13 @@
         <div class="recipe4">
             <label>作り方
                 <div class="col-md-10">
-                    <textarea name="howto" cols="70" rows="6" maxlength="400" value="">{{ \Str::limit($recipe_form->howto, 500) }}</textarea>
+                    <textarea name="howto" cols="70" rows="6" value="">{{ \Str::limit($recipe_form->howto, 500) }}</textarea>
                 </div>
             </label>
         </div>
         <div class="recipe1">
             <label class="cat">画像
-                <div>{{ \Str::limit($recipe_form->image, 250) }}</div>
+            <img src="{{ asset('/storage/public/image/' . $recipe_form->image_path) }}" width="600px" height="300px">
             </label>
         </div>
 

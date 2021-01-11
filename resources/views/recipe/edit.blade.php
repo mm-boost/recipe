@@ -20,7 +20,7 @@
                     @endif
 
                     <div class="form-group row">
-                        <label class="cat">カテゴリ１ 料理のジャンル
+                        <label class="cat">カテゴリ１ 料理のジャンル（必須）
                             　<select name="category" id="category">
                                 <option value="">----選択してください----</option>
                                 <option value="1" @if(old('category', $recipe_form->category_id)=='1') selected @endif>和食</option>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="cat">カテゴリ２ 調理法
+                        <label class="cat">カテゴリ２ 調理法（必須）
                             　<select name="tool" id="tool">
                                 <?php $tool = old('tool', $recipe_form->tool_id); ?>
                                 <option value="">----選択してください----</option>
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="cat">カテゴリ3 キーワード
+                        <label class="cat">カテゴリ3 キーワード（必須）
                             　<select name="keyword" id="keyword">
                                 <?php $keyword = old('keyword' , $recipe_form->keyword_id); ?>
                                 <option value="">----選択してください----</option>
@@ -68,12 +68,13 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu">メニュー名
+                        <label class="menu">メニュー名（必須）
                             <input type="text" name="menu" size="50" value="{{ old('menu', $recipe_form->menu) }}"></label>
                     </div>
 
                     <div class="form-group row">
                         <label class="menu" >材料<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]</span>
+                            <div>※分量・単位入力時は材料名の入力必須</div>
                             <div>
                                 <input type="text" name="people" size="5" value="{{ old('people',$recipe_form->people) }}">人分
                             </div>
@@ -121,22 +122,22 @@
                     <div class="form-group row">
                         <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="">{{ old('howto', $recipe_form->howto) }}</textarea></label>
+                        <textarea name="howto" cols="70" rows="6" value="">{{ old('howto', $recipe_form->howto) }}</textarea></label>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="cat">画像
-                            <input type="file" class="form-control-file" name="image"></label>
+                            <input type="file" class="form-control-file" name="image">
+                            <div>設定中: {{ $recipe_form->image_path }}</div>
+                        </label>
                     </div>
-                            <div class="form-text text-info">
-                                設定中: {{ $recipe_form->image_path }}
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
-                                </label>
-                            </div>
+
+                    <div class="form-check">
+                        <label class="cat">
+                            <input type="checkbox" class="form-check-input" name="remove" value="true">設定中の画像を削除
+                        </label>
+                    </div>
 
                     <div class="form-group row">
                         <div class="col-md-10">

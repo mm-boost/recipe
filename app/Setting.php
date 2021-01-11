@@ -8,7 +8,7 @@ class Setting extends Model
 {
     //以下、名前(nickname)、性別(gender)、年齢(age)、目標(aim)のValidation設定を行う
     public static $rules = array(
-        'nickname' => 'required|string|max:15',
+        'nickname' => 'required|string|max:10',
         'gender' => 'required',
         'age' => 'required',
         'aim' => 'required',

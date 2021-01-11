@@ -10,9 +10,9 @@ use App\Category;
 use App\Tool;
 use App\Keyword;
 use App\Food;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
@@ -32,6 +32,9 @@ class RecipeController extends Controller
     {
         //validationを行う
         $this->validate($request, Recipe::$rules);
+        $this->validate($request, Category::$rules);
+        $this->validate($request, Tool::$rules);
+        $this->validate($request, Keyword::$rules);
         // 配列のvalidation
         //required_with もし分量か単位が入力されていたら、指定の項目（foodname）も入力必須にする
         $validatedData = $request->validate([
@@ -44,28 +47,29 @@ class RecipeController extends Controller
             // DB transaction 始める
             DB::beginTransaction();
 
-            $recipe = new Recipe;
             $form = $request->all();
-
+            $recipe = new Recipe;
             $category = Category::find($form['category']);
             //dd($category);
             //dd($form['category']);
             $tool = Tool::find($form['tool']);
             $keyword = Keyword::find($form['keyword']);
         
-            // formに画像があれば、保存する
+            // フォームから画像が送信されてきたら、保存して、$recipe->image_path に画像のパスを保存する            
             if (isset($form['image'])) {
                 $path = $request->file('image')->store('public/image');
+                 // パスから、最後の「ファイル名.拡張子」の部分だけ取得します 例)sample.jpg
                 $recipe->image_path = basename($path);
-            } else {
-                $recipe->image_path = null;
+                } else {
+                $recipe->image_path = null; //Recipeテーブルのimage_pathカラムにnullを代入する
             }
+
             //unset()の前に配列のカラムを一時的に分ける
             $foodnames = $form['foodname'];
             $foodnums = $form['foodnum'];
             $units = $form['unit'];
 
-            //フォームから送信されてきた_tokenを削除する
+            //フォームから送信されてきた余分なデータを削除する
             unset($form['_token']);
             unset($form['image']);
             unset($form['category']);
@@ -132,8 +136,11 @@ class RecipeController extends Controller
 
     public function update(Request $request)
     {
-        //validationをかける
+        //validationを行う
         $this->validate($request, Recipe::$rules);
+        $this->validate($request, Category::$rules);
+        $this->validate($request, Tool::$rules);
+        $this->validate($request, Keyword::$rules);
         // 配列のvalidation
         $validatedData = $request->validate([
             'foodname.*' => 'nullable|required_with:foodnum.*,unit.*|string|max:20',
@@ -155,13 +162,14 @@ class RecipeController extends Controller
             $recipe = Recipe::find($request->id);
 
             //送信されてきた画像データを格納する
+            //もしチェックボタン（画像を削除）に値が入っていたら'image_path'をnullで返す
             if ($request->remove == 'true') {
                 $recipe_form['image_path'] = null;
             } elseif ($request->file('image')) {
                 $path = $request->file('image')->store('public/image');
                 $recipe_form['image_path'] = basename($path);
             } else {
-                $recipet_form['image_path'] = $recipe->image_path;
+                $recipe_form['image_path'] = $recipe->image_path;
             }
 
              //unset()の前にフォーム送信データの配列カラムを各関数に一時的に分ける
@@ -238,20 +246,29 @@ class RecipeController extends Controller
 
     public function delete($id)
     {
-        $recipe = Recipe::where('id', $id);
-        DB::transaction(function () use ($recipe) {
-            $recipe->delete();
+        $recipes = Recipe::where('id', $id)->get();
+        foreach ($recipes as $recipe) {
+            $delFileName = $recipe->image_path;
+        }
+        //画像ファイルを削除する
+        Storage::delete('/public/public/image/'.$delFileName);
+        dd($delFileName);
+        exit;
+
+        $recipes = Recipe::where('id', $id);
+        DB::transaction(function () use ($recipes) {
+            $recipes->delete();
         });
         return redirect()->back();
     }
 
     public function show(Request $request,$id)
     {
-        $recipe = Recipe::find($request->id);
+        $recipe_form = Recipe::find($request->id);
 
         $food = Food::where('recipe_id', $id)->get();
 
-        return view('recipe.show', ['recipe_form' => $recipe, "foods" => $food, 'id' => $id]);
+        return view('recipe.show', ['recipe_form' => $recipe_form, "foods" => $food, 'id' => $id]);
     }
 
     public function index()

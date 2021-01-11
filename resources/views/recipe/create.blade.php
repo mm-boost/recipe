@@ -26,7 +26,7 @@
                     @endif
                     
                     <div class="form-group row">
-                        <label class="cat">カテゴリ１ 料理のジャンル
+                        <label class="cat">カテゴリ１ 料理のジャンル（必須）
                             　<select name="category" id="category">
                                <option value="">----選択してください----</option>
                                <option value="1" @if(old('category', '')=='1') selected @endif>和食</option>
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="cat">カテゴリ２ 調理法
+                        <label class="cat">カテゴリ２ 調理法（必須）
                             　<select name="tool" id="tool">
                                 <?php $tool = old('tool', ''); ?>
                                <option value="">----選択してください----</option>
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="cat">カテゴリ3 キーワード
+                        <label class="cat">カテゴリ3 キーワード（必須）
                             　<select name="keyword" id="keyword">
                                 <?php $keyword = old('keyword', ''); ?>
                                <option value="">----選択してください----</option>
@@ -74,14 +74,15 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="menu">メニュー名
+                        <label class="menu">メニュー名（必須）
                             <input type="text" name="menu" size="50" value="{{ old('menu', '') }}"></label>
                     </div>
 
                     <div class="form-group row">
                         <label class="menu" >材料<span>__[大さじ1杯約15cc（ml）][小さじ1杯約5cc（ml）]</span>
+                            <div>※分量・単位入力時は材料名の入力必須</div>
                             <div>
-                                <input type="text" name="people" size="5" value="{{ old('people', '') }}">人分
+                                <input type="text" name="people" size="5" value="{{ old('people', '') }}">人分（必須）
                             </div>
                             <div class="col-md-10">
 						 <table class="foodtable" id="food_table">
@@ -194,7 +195,7 @@
                     <div class="form-group row">
                         <label class="menu">作り方
                         <div class="col-md-10">
-                        <textarea name="howto" cols="70" rows="6" maxlength="400" value="">{{ old('howto', '') }}</textarea></label>
+                        <textarea name="howto" cols="70" rows="6" value="">{{ old('howto', '') }}</textarea></label>
                         </div>
                     </div>
 

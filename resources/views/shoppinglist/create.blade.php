@@ -9,9 +9,10 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>買い物リスト</h2>
-                <h5>購入したい商品を新しく設定できます</h5>
-                <h5>購入先の入力画面に店舗名を入力しボタンを押すとセレクトボックスに追加されます</h5>
-                <h5>セレクトボックスに選択されている店舗が商品の購入先として登録されます</h5>
+                <h6>購入したい商品を新しく設定できます</h6>
+                <h6>購入先の入力画面に店舗名を入力しボタンを押すとセレクトボックスに追加されます</h6>
+                <h6>セレクトボックスに選択されている店舗が商品の購入先として登録されます</h6>
+                <h6>合計金額は料金と品数を入力すると自動的に表示されます。また合計金額のみの入力は可能です</h6>
                 
                 <form action="{{ action('Admin\ShoppinglistController@create') }}" name="form1" method="post" enctype="multipart/form-data">
                 @if (count($errors) > 0)
@@ -22,10 +23,10 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">購入先</label>
+                        <label class="col-md-2">購入先<br>（必須）</label>
                         <div class="col-md-10">
                         <select name="retailer" id="retailer" required>
-                        <option value="">-購入先を選択してください-</option>
+                        <option value="">-購入先を選択してください（必須）-</option>
                         @foreach ($shops as $shop)
                         <option value="{{$shop->id}}">{{ $shop->name }}</option>
                         @endforeach
@@ -36,7 +37,7 @@
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-2">商品名</label>
+                        <label class="col-md-2">商品名<br>（必須）</label>
                         <div class="col-md-10">
                             <input type="text" name="productname" size="25" value="{{ old('productname') }}">
                         </div>
@@ -45,7 +46,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">金額</label>
                         <div class="col-md-10">
-                            <input type="text" id="amount" name="amount" size="10" value="{{ old('amount') }}" onkeyup="inputCheck()">
+                            <input type="text" id="amount" name="amount" size="8" value="{{ old('amount') }}" onkeyup="inputCheck()">円
                         </div>
                     </div>
 
@@ -70,9 +71,9 @@
                     </div>
 
 　　　　　　　　　　　　<div class="form-group row">
-                        <label class="col-md-2">合計金額</label>
+                        <label class="col-md-2">合計金額<br>(自動表示)</label>
                         <div class="col-md-10">
-                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal') }}">
+                            <input type="text" name="amounttotal" id="amounttotal" size="10" value="{{ old('amounttotal') }}">円
                         </div>
                     </div>
 
@@ -102,13 +103,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-md-2">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                        </div>
-                    </div>
-                    
                     {{ csrf_field() }}
                     <input type="submit" name="create" value="追加" >
                 </form>

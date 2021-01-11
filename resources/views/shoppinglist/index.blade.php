@@ -36,7 +36,6 @@
                             <th scope="col">合計金額</th>
                             <th scope="col">分類</th>
                             <th scope="col">メモ</th>
-                            <th scope="col" >画像</th>
                             <th scope="col">編集</th>
                         </tr>
                     </thead>
@@ -49,7 +48,6 @@
                                     <th data-label="合計金額">{{ \Str::limit($shoppinglist->amounttotal, 80) }}</th>
                                     <th data-label="分類">{{ \Str::limit($shoppinglist->genre, 50) }}</th>
                                     <th data-label="メモ">{{ \Str::limit($shoppinglist->memo, 300) }}</th>
-                                    <th data-label="画像">{{ \Str::limit($shoppinglist->image, 250) }}</th>
                                     <th data-label="編集">
                                     　<div class="link-a">
                                         <a href="{{ action('Admin\ShoppinglistController@edit', ['id' => $shoppinglist->id]) }}">編集/</a>

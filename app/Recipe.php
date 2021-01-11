@@ -12,7 +12,8 @@ class Recipe extends Model
     public static $rules = array(
         'menu' => 'required|string|max:20',
         'people' => 'required|integer|max:5',
-        'howto' => 'max:600',
+        'howto' => 'nullable|string|max:600',
+        'image_path' => 'nullable|image|file|max:2048',
     );
 
     //$fillableで複数代入指定　更新しても良い項目を指定する
@@ -33,7 +34,7 @@ class Recipe extends Model
     {
       return $this->hasOne('App\Keyword');
     }
-    //  単 対 多 の単側
+    //  1 対 多 の1側
     public function foods()
     {
         return $this->hasMany('App\Food');
