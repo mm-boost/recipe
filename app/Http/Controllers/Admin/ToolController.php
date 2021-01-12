@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Recipe;
-use Log;
 use App\Tool;
+use Log;
 
 class ToolController extends Controller
 {

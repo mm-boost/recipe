@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\RecipesiteController;
 use App\Http\Controllers\Controller;
 use App\Setting;
 
-
 class HomeController extends Controller
 {
-    
-    /**
-     * ホーム
-     */
     public function home()
     {
         $id = 1;

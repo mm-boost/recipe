@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Recipe;
 use App\Keyword;
+use Log;
 
 class KeywordController extends Controller
 {

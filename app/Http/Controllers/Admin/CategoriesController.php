@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Recipe;
-use Log;
 use App\Category;
+use Log;
 
 class CategoriesController extends Controller
 {
