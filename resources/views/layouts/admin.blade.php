@@ -62,13 +62,6 @@
           </div>
         </nav>
       {{-- ここまでナビゲーションバー --}}
-
-        {{-- ヘッダー 
-            <footer class="footer">
-            <div class="container">
-            <p class="text-muted">Place sticky footer content here.</p>
-            </div>
-            </footer> --}}
             
         <main class="py-4">
             {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}

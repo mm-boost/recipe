@@ -86,7 +86,7 @@
         </div>
         <div class="recipe1">
             <label class="ima2">画像
-            <img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="300px">
+            <img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="350px">
             </label>
         </div>
 

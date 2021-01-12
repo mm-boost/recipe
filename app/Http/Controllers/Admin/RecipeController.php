@@ -163,9 +163,12 @@ class RecipeController extends Controller
 
             //送信されてきた画像データを格納する
             if($request->file('image')) {
+                //ここには新しく送信された画像データが有る
+                //dd($request);
                 Storage::disk('public')->delete('image/' . $recipe->image_path); //元の画像を削除
-                $path = $request->file('image')->store('public/image');
+                $path = $request->file('image')->store('image/');
                 $recipe_form['image'] = basename($path);
+                Recipe::find($request->id)->update(['image' => $recipe_form['image']]);
             }
 
              //unset()の前にフォーム送信データの配列カラムを各関数に一時的に分ける
@@ -248,12 +251,12 @@ class RecipeController extends Controller
         }
         
         //画像ファイルを削除する
-        //Storage::disk('public')->delete('image/'. $delFileName);
-        $delImg = storage_path('app/public/image/'.$delFileName);
+        Storage::disk('public')->delete('image/'. $delFileName);
+        //$delImg = storage_path('app/public/image/'.$delFileName);
         //dd($delImg);
         //exit;
+        //Storage::disk('public')->delete($delImg);  
 
-        Storage::disk('public')->delete($delImg);  
         $recipes = Recipe::where('id', $id);
         DB::transaction(function () use ($recipes) {
             $recipes->delete();
