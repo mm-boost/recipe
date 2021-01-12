@@ -256,7 +256,6 @@ class RecipeController extends Controller
     public function show(Request $request,$id)
     {
         $recipe_form = Recipe::find($request->id);
-
         $food = Food::where('recipe_id', $id)->get();
 
         return view('recipe.show', ['recipe_form' => $recipe_form, "foods" => $food, 'id' => $id]);

@@ -129,9 +129,11 @@
                     <div class="form-group row">
                         <label class="ima2">画像
                             <input type="file" class="form-control-file" name="image">
-                            <div>
-                                設定中:<img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="300px">
-                            </div>
+                        @if($recipe_form->image_path)
+                            <img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="350px">
+                        @else
+                            <p>ーーーーーーーーーーーーー</p>
+                        @endif
                         </label>
                     </div>
 

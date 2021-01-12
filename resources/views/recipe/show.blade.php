@@ -86,9 +86,12 @@
         </div>
         <div class="recipe1">
             <label class="ima2">画像
-            <img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="350px">
+                @if($recipe_form->image_path)
+                    <img src="{{ asset('/storage/image/' . $recipe_form->image_path) }}" width="550px" height="350px">
+                @else
+                    <p>画像ファイルはありません</p>
+                @endif
             </label>
         </div>
-
     </div>
 @endsection
