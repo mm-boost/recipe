@@ -11,11 +11,8 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-Route::get('/home', 'Admin\HomeController@home');
+//ホーム
+Route::get('/', 'Admin\HomeController@home');
 
 //レシピ
 Route::group(['prefix' => 'recipe'], function() {

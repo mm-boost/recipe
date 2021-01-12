@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\RecipesiteController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Setting;
 
 
-class HomeController extends RecipesiteController
+class HomeController extends Controller
 {
     
     /**
@@ -20,6 +20,6 @@ class HomeController extends RecipesiteController
         if (empty($setting)) {    //プロフィールが未設定の場合はリダイレクト
             return redirect('setting/create');        
         } 
-        return view('home', ['setting' => $setting]);
+        return view('welcome', ['setting' => $setting]);
     }
 }

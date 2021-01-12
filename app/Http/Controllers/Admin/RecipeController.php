@@ -16,12 +16,7 @@ use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
-    public function form()
-    {
-        Log::debug('message');
-        return view('/');
-    }
- 
+    
     public function add()
     {
         $recipes = Recipe::all();
@@ -162,16 +157,16 @@ class RecipeController extends Controller
             $recipe = Recipe::find($request->id);
 
             //送信されてきた画像データを格納する
-            if($request->file('image')) {
-                //ここには新しく送信された画像データが有る
-                //dd($request);
-                Storage::disk('public')->delete('image/' . $recipe->image_path); //元の画像を削除
+            if (isset($recipe_form['image'])) {
                 $path = $request->file('image')->store('image/');
-                $recipe_form['image'] = basename($path);
-                Recipe::find($request->id)->update(['image' => $recipe_form['image']]);
+                Log::debug('store');
+                //画像アップロード時に既に他の画像がアップロードされている場合に既存の画像を削除する処理
+                Storage::delete('image/' . $recipe->image_path); 
+                $recipe->image_path = basename($path);
+                Recipe::find($request->id)->update(['image' => $recipe->image_path]);
             }
 
-             //unset()の前にフォーム送信データの配列カラムを各関数に一時的に分ける
+            //unset()の前にフォーム送信データの配列カラムを各関数に一時的に分ける
             if (isset($_POST["foodname"])) {
                 $foodnames = $recipe_form['foodname'];           
              }
@@ -181,11 +176,8 @@ class RecipeController extends Controller
              if (isset($_POST["unit"])) {
                 $units = $recipe_form['unit'];
             }
-            //dd($foodnums);
-            //exit;
           
             //送信されてきたフォームデータを削除する
-            unset($recipe_form['remove']);
             unset($recipe_form['_token']);
             unset($recipe_form['image']);
             unset($recipe_form['category']);
@@ -211,29 +203,27 @@ class RecipeController extends Controller
             //データが重複しないように、事前に元のテーブルデータを削除する
             Food::where('recipe_id', $recipe_id)->delete();
 
-            //recipeに保存したfoodのidをfoodテーブルへ移す
-            foreach ($foodnames as $key => $value) {
-                if (null !== $value) {
-                    var_dump($foodnames[$key]);
-                    var_dump($foodnums[$key]);
-                    var_dump($units[$key]);
+            //もし、foodに変更があればrecipeに保存したfoodのidをfoodテーブルへ移す
+            if (isset($foodnames)) {
+                foreach ($foodnames as $key => $value) {
+                    if (null !== $value) {
+                        var_dump($foodnames[$key]);
+                        var_dump($foodnums[$key]);
+                        var_dump($units[$key]);
 
-                    $food = new Food();
-                    $food->recipe_id = 	$recipe_id;
-                    $food->foodname = $foodnames[$key];
-                    $food->foodnum = $foodnums[$key];
-                    $food->unit = $units[$key];
-                    // foos DB SAVE
-                    $food->save();
+                        $food = new Food();
+                        $food->recipe_id = 	$recipe_id;
+                        $food->foodname = $foodnames[$key];
+                        $food->foodnum = $foodnums[$key];
+                        $food->unit = $units[$key];
+                        // foos DB SAVE
+                        $food->save();
+                    }
                 }
             }
-            //dd($food);
-            //exit;
-
             //db commit　データベースの更新内容を確定。
             DB::commit();
-
-            return redirect('recipe/index');
+            return redirect()->back();
 
         } catch (Exception $e) {
             DB::rollBack();
@@ -243,20 +233,19 @@ class RecipeController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete(Request $request,$id)
     {
-        $recipes = Recipe::where('id', $id)->get();
-        foreach ($recipes as $recipe) {
-            $delFileName = $recipe->image_path;
-        }
-        
-        //画像ファイルを削除する
-        Storage::disk('public')->delete('image/'. $delFileName);
-        //$delImg = storage_path('app/public/image/'.$delFileName);
-        //dd($delImg);
-        //exit;
-        //Storage::disk('public')->delete($delImg);  
+        $recipe = Recipe::find($request->id);
 
+        //画像ファイルを削除する
+        //取得したデータからimage_pathカラム(ファイルの名前)の情報を取得し、削除
+        $delImage = $recipe->image_path;        
+        Storage::delete('image/'.$delImage); 
+        Log::debug('message');
+
+        //Storage::deleteDirectory('image/');
+
+        //テーブルを削除
         $recipes = Recipe::where('id', $id);
         DB::transaction(function () use ($recipes) {
             $recipes->delete();

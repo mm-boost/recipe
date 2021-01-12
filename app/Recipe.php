@@ -11,7 +11,7 @@ class Recipe extends Model
     //Validation設定を行う　必須項目設定
     public static $rules = array(
         'menu' => 'required|string|max:20',
-        'people' => 'required|integer|max:5',
+        'people' => 'required|integer|digits_between:1,2',
         'howto' => 'nullable|string|max:600',
         'image_path' => 'nullable|image|file|max:2048',
     );

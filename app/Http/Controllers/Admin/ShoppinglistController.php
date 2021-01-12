@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\ShoppingList;
 use Log;
 use App\Shop;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ShoppinglistController extends Controller
